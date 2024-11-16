@@ -1,5 +1,6 @@
 import { fetchArticle } from './fetch-article'
 import { Article } from '@astroneer/types'
+import { urlComposer } from './url-composer'
 
 /**
  * This function will invoke fetchArticle
@@ -18,7 +19,7 @@ export async function fetchArticleDeep (url: string): Promise<Node> {
       node.children = []
     }
     for await (const i of ingredients) {
-      const childNode = await fetchArticleDeep(`https://astroneer.fandom.com/wiki/${i.key}`)
+      const childNode = await fetchArticleDeep(urlComposer(i.key))
       node.children!.push(childNode)
     }
   }
