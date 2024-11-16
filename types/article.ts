@@ -21,3 +21,8 @@ export interface ArticleRecipeIngradient {
   key: ArticleKey
   amount: number
 }
+
+export interface ArticleNode {
+  article: Article
+  children?: ArticleNode[]
+}
