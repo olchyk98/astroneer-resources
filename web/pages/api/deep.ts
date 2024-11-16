@@ -1,5 +1,6 @@
-import { Node, fetchArticleByKeyDeep } from '@astroneer/scrapper'
+import { fetchArticleByKeyDeep } from '@astroneer/scrapper'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { ArticleNode } from '../../../types'
 
 interface ErrorResponse {
   ok: false
@@ -8,7 +9,7 @@ interface ErrorResponse {
 
 export default async function handler (
   req: NextApiRequest,
-  res: NextApiResponse<ErrorResponse | Node>,
+  res: NextApiResponse<ErrorResponse | ArticleNode>,
 ) {
   const key = req.query?.['key']
   if (typeof key !== 'string') {
