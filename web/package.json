@@ -9,8 +9,10 @@
     "lint": "eslint ./**/*.ts ./**/*.tsx"
   },
   "dependencies": {
+    "@astroneer/scrapper": "workspace:^",
     "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^3.1.2",
+    "jsdom": "^25.0.1",
     "next": "15.0.3",
     "next-themes": "^0.4.3",
     "react": "18.3.1",
