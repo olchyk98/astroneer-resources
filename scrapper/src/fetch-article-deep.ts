@@ -1,5 +1,5 @@
 import { fetchArticle } from './fetch-article'
-import { Article } from '@astroneer/types'
+import { ArticleNode } from '@astroneer/types'
 import { urlComposer } from './url-composer'
 
 /**
@@ -8,11 +8,11 @@ import { urlComposer } from './url-composer'
  * ingradient recursively. At the end
  * a tree will be returned containing detailed
  * information about each step of the production
- * process in form of Node structure.
+ * process in form of ArticleNode structure.
  * */
-export async function fetchArticleDeep (url: string): Promise<Node> {
+export async function fetchArticleDeep (url: string): Promise<ArticleNode> {
   const article = await fetchArticle(url)
-  const node: Node = { current: article }
+  const node: ArticleNode = { article }
   if (article.recipe != null) {
     const { ingredients } = article.recipe
     if (ingredients.length > 0) {
@@ -24,9 +24,4 @@ export async function fetchArticleDeep (url: string): Promise<Node> {
     }
   }
   return node
-}
-
-export interface Node {
-  current: Article
-  children?: Node[]
 }
