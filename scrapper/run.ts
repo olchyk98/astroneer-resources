@@ -1,13 +1,7 @@
 import { fetchArticle } from './src'
+import { urlComposer } from './src/url-composer'
 
-// TODO: Add natural resources + planets for them and atmospheric manually
-
-//const articleURL = 'https://astroneer.fandom.com/wiki/RTG' // Done
-//const articleURL = 'https://astroneer.fandom.com/wiki/Nanocarbon_Alloy' // Done
-//const articleURL = 'https://astroneer.fandom.com/wiki/Helium' // Done
-//const articleURL = 'https://astroneer.fandom.com/wiki/Atmospheric_Condenser' // Done
-//const articleURL = 'https://astroneer.fandom.com/wiki/Plastic' // Done
-const articleURL = 'https://astroneer.fandom.com/wiki/Compound'
+const articleURL = urlComposer('Compound')
 
 async function run () {
   console.log('Fetching')

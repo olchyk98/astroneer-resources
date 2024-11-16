@@ -1,8 +1,14 @@
 import { fetchArticle } from '../../src'
+import { urlComposer } from '../../src/url-composer'
+
+// WARNING: Those tests cannot be ran against fandom.com domain,
+// because it violates Terms Of Service.
+// Please, download a copy of the archive from fandom.com
+// or WaybackMachine.
 
 describe('run', () => {
   it('RTG', async () => {
-    const url = 'https://astroneer.fandom.com/wiki/RTG'
+    const url = urlComposer('RTG')
     const article = await fetchArticle(url)
     expect(article).toStrictEqual({
       key: 'RTG',
@@ -23,7 +29,7 @@ describe('run', () => {
   })
 
   it('Nanocarbon Alloy', async () => {
-    const url = 'https://astroneer.fandom.com/wiki/Nanocarbon_Alloy'
+    const url = urlComposer('Nanocarbon_Alloy')
     const article = await fetchArticle(url)
     expect(article).toStrictEqual({
       key: 'Nanocarbon_Alloy',
@@ -45,7 +51,7 @@ describe('run', () => {
   })
 
   it('Helium', async () => {
-    const url = 'https://astroneer.fandom.com/wiki/Helium'
+    const url = urlComposer('Helium')
     const article = await fetchArticle(url)
     expect(article).toStrictEqual({
       key: 'Helium',
@@ -60,7 +66,7 @@ describe('run', () => {
   })
 
   it('Atmospheric Condenser', async () => {
-    const url = 'https://astroneer.fandom.com/wiki/Atmospheric_Condenser'
+    const url = urlComposer('Atmospheric_Condenser')
     const article = await fetchArticle(url)
     expect(article).toStrictEqual({
       key: 'Atmospheric_Condenser',
@@ -82,7 +88,7 @@ describe('run', () => {
   })
 
   it('Plastic', async () => {
-    const url = 'https://astroneer.fandom.com/wiki/Plastic'
+    const url = urlComposer('Plastic')
     const article = await fetchArticle(url)
     expect(article).toStrictEqual({
       key: 'Plastic',
@@ -100,7 +106,7 @@ describe('run', () => {
   })
 
   it('Compound', async () => {
-    const url = 'https://astroneer.fandom.com/wiki/Compound'
+    const url = urlComposer('Compound')
     const article = await fetchArticle(url)
     expect(article).toStrictEqual({
       iconURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/9/9a/Icon_Compound.png/revision/latest/scale-to-width-down/30?cb=20190419174519',
