@@ -1,7 +1,7 @@
 import { fetchHTML } from './fetcher'
 import { parseToArticle } from './parser'
 import { getPreDefinedArticle, isPreDefinedArticle } from './predefined'
-import { Article } from './types'
+import { Article } from '@astroneer/types'
 
 export async function fetchArticle (url: string): Promise<Article> {
   // XXX: Resources that are specific to individual

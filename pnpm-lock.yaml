@@ -36,6 +36,9 @@ importers:
 
   scrapper:
     dependencies:
+      '@astroneer/types':
+        specifier: workspace:^
+        version: link:../types
       axios:
         specifier: ^1.7.7
         version: 1.7.7

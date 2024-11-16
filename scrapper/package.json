@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@astroneer/types": "workspace:^",
     "axios": "^1.7.7",
     "jsdom": "^25.0.1",
     "ramda": "^0.30.1"

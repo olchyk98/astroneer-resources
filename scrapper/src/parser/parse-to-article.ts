@@ -1,8 +1,8 @@
 import { JSDOM } from 'jsdom'
+import { Article } from '@astroneer/types'
 import { mapObjIndexed } from 'ramda'
 import { parsers } from './parsers'
 import { parseSourceTable } from './utils'
-import { Article } from '../types'
 
 export function parseToArticle (html: string, source_url: string): Article {
   const jsdom = new JSDOM(html)

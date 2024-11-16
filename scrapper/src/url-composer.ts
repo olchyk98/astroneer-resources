@@ -1,4 +1,4 @@
-import { Article } from './types'
+import { Article } from '@astroneer/types'
 
 // WARNING: This is just an example URL. Calling this host is
 // strictly discouraged, as it violates Terms Of Service

@@ -1,5 +1,5 @@
 import { fetchArticle } from './fetch-article'
-import { Article } from './types'
+import { Article } from '@astroneer/types'
 
 /**
  * This function will invoke fetchArticle

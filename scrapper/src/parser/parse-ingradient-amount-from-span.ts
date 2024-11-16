@@ -1,5 +1,5 @@
 import { Nullable } from '../type-utils'
-import { ArticleRecipeIngradient } from '../types'
+import { ArticleRecipeIngradient } from '@astroneer/types'
 import { e, getKeyFromURL, parseNumber } from './utils'
 
 /*

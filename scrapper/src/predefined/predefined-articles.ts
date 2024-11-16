@@ -1,5 +1,5 @@
 import { reduce } from 'ramda'
-import { Article } from '../types'
+import { Article } from '@astroneer/types'
 
 export const predefinedArticles: Article[] = [
   {

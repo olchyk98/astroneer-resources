@@ -1,4 +1,4 @@
-import { Article } from '../types'
+import { Article } from '@astroneer/types'
 import { ArticleSourceTable, e, getKeyFromURL, parseNumber } from './utils'
 import { unsafeExtractRecipeFromDeepContent } from './unsafe-extract-recipe-from-deep-content'
 import { parseIngradientAmountFromSpan } from './parse-ingradient-amount-from-span'

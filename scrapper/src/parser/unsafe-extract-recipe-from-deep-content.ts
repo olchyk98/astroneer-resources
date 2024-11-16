@@ -1,6 +1,6 @@
 import { any, isNil, reduce, reduced } from 'ramda'
 import { Nullable } from '../type-utils'
-import { ArticleRecipe } from '../types'
+import { ArticleRecipe } from '@astroneer/types'
 import { e, getKeyFromURL, minimizeStr } from './utils'
 import { parseIngradientAmountFromSpan } from './parse-ingradient-amount-from-span'
 
