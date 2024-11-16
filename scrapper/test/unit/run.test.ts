@@ -14,7 +14,7 @@ describe('run', () => {
       unlockCost: 12500,
       recipe: {
         craftedAt: 'Small_Printer',
-        ingradients: [
+        ingredients: [
           { amount: 1, key: 'Nanocarbon_Alloy' },
           { amount: 1, key: 'Lithium' },
         ],
@@ -35,7 +35,7 @@ describe('run', () => {
       unlockCost: undefined,
       recipe: {
         craftedAt: 'Chemistry_Lab',
-        ingradients: [
+        ingredients: [
           { amount: 1, key: 'Steel' },
           { amount: 1, key: 'Helium' },
           { amount: 1, key: 'Titanium_Alloy' },
@@ -54,8 +54,8 @@ describe('run', () => {
       imageURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/9/9a/Nugget_Helium.png/revision/latest/scale-to-width-down/250?cb=20191016232845',
       tier: 'Small',
       type: 'Atmospheric',
-      unlockCost: undefined,
-      recipe: { craftedAt: 'Atmospheric_Condenser', ingradients: [] },
+      planets: [ 'Atrox' ],
+      recipe: { craftedAt: 'Atmospheric_Condenser', ingredients: [] },
     })
   })
 
@@ -72,7 +72,7 @@ describe('run', () => {
       unlockCost: 2200,
       recipe: {
         craftedAt: 'Medium_Printer',
-        ingradients: [
+        ingredients: [
           { amount: 1, key: 'Plastic' },
           { amount: 1, key: 'Glass' },
           { amount: 1, key: 'Iron' },
@@ -94,8 +94,22 @@ describe('run', () => {
       unlockCost: undefined,
       recipe: {
         craftedAt: 'Chemistry_Lab',
-        ingradients: [ { amount: 1, key: 'Compound' }, { amount: 1, key: 'Carbon' } ],
+        ingredients: [ { amount: 1, key: 'Compound' }, { amount: 1, key: 'Carbon' } ],
       },
+    })
+  })
+
+  it('Compound', async () => {
+    const url = 'https://astroneer.fandom.com/wiki/Compound'
+    const article = await fetchArticle(url)
+    expect(article).toStrictEqual({
+      iconURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/9/9a/Icon_Compound.png/revision/latest/scale-to-width-down/30?cb=20190419174519',
+      imageURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/0/0a/Nugget_Compound.png/revision/latest/scale-to-width-down/250?cb=20191016232839',
+      key: 'Compound',
+      name: 'Compound',
+      planets: true,
+      tier: 'Small',
+      type: 'Natural',
     })
   })
 })

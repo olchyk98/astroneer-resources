@@ -28,17 +28,6 @@ export const parsers: Parsers = {
   recipe (d, _url, table) {
     const recipeEl = table['#Recipe']
     const craftedAtEl = table['#Craftedat']?.querySelector('a')
-    const typeTxt = table['_Type']
-    // XXX: Atmospheric resources can only be obtained
-    // through the atmospheric condenser. Therefore we
-    // can prefill that. Atmospheric doesn't take
-    // anything as input.
-    if (typeTxt === 'Atmospheric') {
-      return {
-        craftedAt: 'Atmospheric_Condenser',
-        ingradients: [],
-      }
-    }
     if (recipeEl == null || craftedAtEl == null) {
       // XXX: Some articles have recipe information, but it
       // is not specified in the overview table. In those
@@ -54,10 +43,10 @@ export const parsers: Parsers = {
     // in recipe, find previous node (which would be the amount),
     // then glue everything afterwards.
     const spans = Array.from(recipeEl.querySelectorAll('span'))
-    const ingradients = spans.map(parseIngradientAmountFromSpan)
+    const ingredients = spans.map(parseIngradientAmountFromSpan)
     return {
       craftedAt: e(getKeyFromURL(craftedAtEl.getAttribute('href'))),
-      ingradients,
+      ingredients,
     }
   },
 }

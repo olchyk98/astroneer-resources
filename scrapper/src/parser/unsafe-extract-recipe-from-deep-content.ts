@@ -49,10 +49,10 @@ export function unsafeExtractRecipeFromDeepContent (document: Document): Nullabl
   if (table == null) return null
   const { recipeEl, craftedAtEl } = getSortedRecipeTable(table)
   const spans = Array.from(recipeEl.querySelectorAll('span'))
-  const ingradients = spans.map(parseIngradientAmountFromSpan)
+  const ingredients = spans.map(parseIngradientAmountFromSpan)
   return {
     craftedAt: e(getKeyFromURL(craftedAtEl.querySelector('a')?.getAttribute('href'))),
-    ingradients,
+    ingredients,
   }
 
 }
