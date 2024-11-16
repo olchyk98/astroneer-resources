@@ -1,12 +1,13 @@
 import { last } from 'ramda'
 import { Nullable } from '../type-utils'
+import { getImageElementSrc } from './get-image-element-src'
 
 export interface ArticleSourceTable {
   name?: Nullable<string>
   iconURL?: Nullable<string>
   imageURL?: Nullable<string>
-  [contentKey: `#${string}`]: Nullable<string>
-  [elKey: `_${string}`]: Nullable<HTMLElement>
+  [contentKey: `_${string}`]: Nullable<string>
+  [elKey: `#${string}`]: Nullable<HTMLElement>
 }
 
 export function parseSourceTable (document: Document): ArticleSourceTable {
@@ -14,11 +15,11 @@ export function parseSourceTable (document: Document): ArticleSourceTable {
   const box = document.querySelector('.infoboxtable > tbody')
   if (box == null) return acc
   acc['name'] = normalizeStr(box?.querySelector('*:nth-child(1)')?.textContent ?? '')
-  acc['iconURL'] = box?.querySelector('*:nth-child(1) img')?.getAttribute('src')
+  acc['iconURL'] = getImageElementSrc(box?.querySelector('*:nth-child(1) img'))
   // FIXME: Using box element here with selector "*:nth-child(2) img" does not work
   // here for some reason. Not really sure why. This works though, so I'm going to
   // look into this later. Probably some elements are colliding.
-  acc['imageURL'] = document.querySelector('.infoboxtable > tbody > *:nth-child(2) img')?.getAttribute('src')
+  acc['imageURL'] = getImageElementSrc(document.querySelector('.infoboxtable > tbody > *:nth-child(2) img'))
   // XXX: Iterating over the rest of the table
   // until we reach "Details" section, afterwards
   // we start reading item properties.
@@ -36,16 +37,24 @@ export function parseSourceTable (document: Document): ArticleSourceTable {
     if (key == null) continue
     const valueEl = el?.querySelector('td')
     const value = valueEl?.textContent
-    const normalizedKey = normalizeStr(key)
-    acc[`#${normalizedKey}`] = normalizeStr(value)
-    acc[`_${normalizedKey}`] = valueEl
+    const normalizedKey = minimizeStr(key)
+    acc[`_${normalizedKey}`] = normalizeStr(value)
+    acc[`#${normalizedKey}`] = valueEl
   }
   return acc
 }
 
-export function normalizeStr<T extends Nullable<string>> (str: T): T {
+// XXX: Replaces all spaces in the string and makes it
+// compact and easily accessible.
+export function minimizeStr<T extends Nullable<string>> (str: T): T {
   if (str == null) return str
   return str.replace(/\s|\n/g, '') as T
+}
+
+// XXX: Removes new lines from the string and trims it.
+export function normalizeStr<T extends Nullable<string>> (str: T): T {
+  if (str == null) return str
+  return str.replace(/\n/g, '').trim() as T
 }
 
 export function e<T> (v: T): NonNullable<T> | never {
@@ -58,4 +67,10 @@ export function e<T> (v: T): NonNullable<T> | never {
 export function getKeyFromURL<T extends Nullable<string>> (url: T): T {
   if (url == null) return url
   return last(url.split('/')) as T
+}
+
+export function parseNumber (str: string): number | null {
+  const normal = minimizeStr(str)
+  const cut = normal.replace(/,/g, '')
+  return parseInt(cut, 10) || null
 }

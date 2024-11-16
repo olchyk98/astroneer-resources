@@ -13,7 +13,7 @@ export function parseToArticle (html: string, source_url: string): Article {
   // own way to fetch this information if needed.
   const table = parseSourceTable(document)
   return mapObjIndexed(
-    (parse) => parse(document, source_url, table),
+    (parse) => parse(document, source_url, table) ?? undefined,
     parsers,
   ) as Article
 }

@@ -4,7 +4,8 @@ export interface Article {
   iconURL: string
   imageURL: string
   tier?: string
-  recipe: ArticleRecipe
+  unlockCost?: number
+  recipe?: ArticleRecipe
 }
 
 export type ArticleKey = string

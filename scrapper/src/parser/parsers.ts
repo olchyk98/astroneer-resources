@@ -1,5 +1,7 @@
-import { Article, ArticleRecipeIngradient } from '../types'
-import { ArticleSourceTable, e, getKeyFromURL } from './utils'
+import { Article } from '../types'
+import { ArticleSourceTable, e, getKeyFromURL, parseNumber } from './utils'
+import { unsafeExtractRecipeFromDeepContent } from './unsafe-extract-recipe-from-deep-content'
+import { parseIngradientAmountFromSpan } from './parse-ingradient-amount-from-span'
 
 export const parsers: Parsers = {
   key (_d, url) {
@@ -14,21 +16,31 @@ export const parsers: Parsers = {
   imageURL (_d, _url, table) {
     return e(table['imageURL'])
   },
-  recipe (_d, _url, table) {
-    const recipeTxt = table['_Recipe']
-    const craftedAtEl = table['_Craftedat']?.querySelector('a')
-    if (recipeTxt == null || craftedAtEl == null) {
-      return null
+  tier (_d, _url, table) {
+    return table['_Tier']
+  },
+  unlockCost (_d, _url, table) {
+    return parseNumber(table['_UnlockCost'] ?? '')
+  },
+  recipe (d, _url, table) {
+    const recipeEl = table['#Recipe']
+    const craftedAtEl = table['#Craftedat']?.querySelector('a')
+    if (recipeEl == null || craftedAtEl == null) {
+      // XXX: Some articles have recipe information, but it
+      // is not specified in the overview table. In those
+      // instances we're going to do less safe and approach
+      // and scan through the whole page to find the recipe
+      // table (part of the main content of the page).
+      // This is risky, because WIKI framework doesn't
+      // doesn't contain different sections (h2) into containers, which
+      // makes the entire page quite hard to split into queryable blocks.
+      return unsafeExtractRecipeFromDeepContent(d)
     }
     // XXX: The idea is to pick spans (containers for page links)
     // in recipe, find previous node (which would be the amount),
     // then glue everything afterwards.
-    const spans = Array.from(recipeTxt.querySelectorAll('span'))
-    const ingradients = spans.map((span): ArticleRecipeIngradient => {
-      const amount = parseInt(span.previousSibling?.textContent ?? '') || 1
-      const key = e(getKeyFromURL(span.querySelector('a')?.getAttribute('href')))
-      return { amount, key }
-    })
+    const spans = Array.from(recipeEl.querySelectorAll('span'))
+    const ingradients = spans.map(parseIngradientAmountFromSpan)
     return {
       craftedAt: e(getKeyFromURL(craftedAtEl.getAttribute('href'))),
       ingradients,
