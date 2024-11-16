@@ -19,12 +19,26 @@ export const parsers: Parsers = {
   tier (_d, _url, table) {
     return table['_Tier']
   },
+  type (_d, _url, table) {
+    return e(table['_Type'])
+  },
   unlockCost (_d, _url, table) {
     return parseNumber(table['_UnlockCost'] ?? '')
   },
   recipe (d, _url, table) {
     const recipeEl = table['#Recipe']
     const craftedAtEl = table['#Craftedat']?.querySelector('a')
+    const typeTxt = table['_Type']
+    // XXX: Atmospheric resources can only be obtained
+    // through the atmospheric condenser. Therefore we
+    // can prefill that. Atmospheric doesn't take
+    // anything as input.
+    if (typeTxt === 'Atmospheric') {
+      return {
+        craftedAt: 'Atmospheric_Condenser',
+        ingradients: [],
+      }
+    }
     if (recipeEl == null || craftedAtEl == null) {
       // XXX: Some articles have recipe information, but it
       // is not specified in the overview table. In those

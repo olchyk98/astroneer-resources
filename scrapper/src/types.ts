@@ -2,9 +2,10 @@ export interface Article {
   key: ArticleKey
   name: string
   iconURL: string
+  type: string
   imageURL: string
-  tier?: string
   unlockCost?: number
+  tier?: string
   recipe?: ArticleRecipe
 }
 
