@@ -80,4 +80,22 @@ describe('run', () => {
       },
     })
   })
+
+  it('Plastic', async () => {
+    const url = 'https://astroneer.fandom.com/wiki/Plastic'
+    const article = await fetchArticle(url)
+    expect(article).toStrictEqual({
+      key: 'Plastic',
+      name: 'Plastic',
+      iconURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/c8/Icon_Plastic.png/revision/latest/scale-to-width-down/30?cb=20200113024642',
+      imageURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/b/b9/Nugget_Plastic.png/revision/latest/scale-to-width-down/250?cb=20191016232857',
+      tier: 'Small',
+      type: 'Composite',
+      unlockCost: undefined,
+      recipe: {
+        craftedAt: 'Chemistry_Lab',
+        ingradients: [ { amount: 1, key: 'Compound' }, { amount: 1, key: 'Carbon' } ],
+      },
+    })
+  })
 })

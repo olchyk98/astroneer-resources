@@ -5,7 +5,9 @@ import { fetchArticle } from './src'
 //const articleURL = 'https://astroneer.fandom.com/wiki/RTG' // Done
 //const articleURL = 'https://astroneer.fandom.com/wiki/Nanocarbon_Alloy' // Done
 //const articleURL = 'https://astroneer.fandom.com/wiki/Helium' // Done
-const articleURL = 'https://astroneer.fandom.com/wiki/Atmospheric_Condenser'
+//const articleURL = 'https://astroneer.fandom.com/wiki/Atmospheric_Condenser' // Done
+//const articleURL = 'https://astroneer.fandom.com/wiki/Plastic' // Done
+const articleURL = 'https://astroneer.fandom.com/wiki/Compound'
 
 async function run () {
   console.log('Fetching')
