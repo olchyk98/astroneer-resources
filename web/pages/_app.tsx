@@ -4,9 +4,9 @@ import { ThemeProvider } from 'next-themes'
 
 export default function App ({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider value={defaultSystem}>
+    <ChakraProvider value={ defaultSystem }>
       <ThemeProvider attribute="class" disableTransitionOnChange>
-        <Component {...pageProps} />
+        <Component { ...pageProps } />
       </ThemeProvider>
     </ChakraProvider>
   )

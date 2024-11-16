@@ -4,6 +4,7 @@ import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import globals from 'globals'
 import stylisticTs from '@stylistic/eslint-plugin-ts'
+import react from 'eslint-plugin-react'
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -42,6 +43,26 @@ export default tseslint.config(
       'no-multiple-empty-lines': ['error', { max: 1 }],
       'prefer-template': ['error'],
       '@typescript-eslint/no-non-null-asserted-optional-chain': 0
+    },
+  },
+  {
+    files: ['**/*.tsx'],
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        ...globals.browser,
+      },
+    },
+    plugins: {
+      // @ts-expect-error The types are incorrect.
+      'react': react
+    },
+    rules: {
+      'react/jsx-curly-spacing': [2, {"when": "always"}]
     },
   },
   { ignores: ['dist', 'node_modules', 'coverage'] },
