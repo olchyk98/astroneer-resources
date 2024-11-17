@@ -31,7 +31,6 @@ export default function Home () {
       position="fixed"
       top="0"
       left="0"
-      p="8"
       gap="4"
     >
       <SearchBar onClickArticle={ setArticleKey } />

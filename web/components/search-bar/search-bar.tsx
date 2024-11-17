@@ -1,4 +1,4 @@
-import { Box, Spacer } from '@chakra-ui/react'
+import { Box, Spacer, VStack } from '@chakra-ui/react'
 import { RawSearchInput } from './raw-search-input'
 import { Suggestions } from './suggestions'
 import { useSearch } from '../../hooks'
@@ -32,7 +32,7 @@ export function SearchBar (props: SearchBarProps) {
         isFocused &&
           <Box onClick={ () => setIsFocused(false) } top="0" left="0" w="full" h="full" position="fixed" zIndex="1" />
       }
-      <Box position="relative" zIndex="2">
+      <VStack position="relative" zIndex="2" maxW="full" gap="0" pt="8">
         <RawSearchInput
           onChange={ setQuery }
           ref={ inputRef }
@@ -52,7 +52,7 @@ export function SearchBar (props: SearchBarProps) {
               isStale={ query.length <= 0 }
             />
         }
-      </Box>
+      </VStack>
     </>
   )
 }

@@ -8,7 +8,7 @@ import {
   getLayoutedElements,
 } from '../../helpers'
 import { NodeRenderer } from './node-renderer'
-import { Box, HStack, Spinner } from '@chakra-ui/react'
+import { Box, HStack, Spinner, useMediaQuery } from '@chakra-ui/react'
 
 // NOTE: Removing attribution as allowed by
 // ReactFlow documentation for personal non-profit projects.
@@ -19,6 +19,7 @@ const nodeTypes: NodeTypes = {
 }
 
 export function ArticleGraph (props: ArticleGraphProps) {
+  const [ isSmallDevice ] = useMediaQuery([ '(max-width: 800px)' ], { ssr: true, fallback: [ true ] })
   const [ nodes, setNodes, onNodesUpdated ] = useNodesState<Node<ArticleGraphNodeData>>([])
   const [ edges, setEdges, onEdgesUpdated ] = useEdgesState<Edge>([])
   const [ isPositioningNodes, setIsPositioningNodes ] = useState(false)
@@ -89,8 +90,14 @@ export function ArticleGraph (props: ArticleGraphProps) {
         draggable={ false }
         style={ { background: 'transparent' } }
       >
-        <MiniMap />
-        <Controls />
+        {
+          !isSmallDevice && (
+            <>
+              <MiniMap />
+              <Controls />
+            </>
+          )
+        }
       </ReactFlow>
     </HStack>
   )
