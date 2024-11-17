@@ -1,7 +1,9 @@
-import { StackProps, VStack } from '@chakra-ui/react'
+import { Spinner, StackProps, VStack } from '@chakra-ui/react'
 import { SuggestionItem } from './suggestion-item'
+import { Article } from '../../../types'
+import { memo } from 'react'
 
-export function Suggestions (props: SuggestionsProps) {
+export const Suggestions = memo((props: SuggestionsProps) => {
   return (
     <VStack
       position="absolute"
@@ -18,12 +20,17 @@ export function Suggestions (props: SuggestionsProps) {
       divideY="1px"
       { ...props }
     >
-      <SuggestionItem />
-      <SuggestionItem />
-      <SuggestionItem />
-      <SuggestionItem />
+      { props.isPending && <Spinner /> }
+      {
+        !props.isPending && props.items.map((article) => (
+          <SuggestionItem key={ article.key } item={ article } />
+        ))
+      }
     </VStack>
   )
-}
+})
 
-export interface SuggestionsProps extends StackProps {}
+export interface SuggestionsProps extends StackProps {
+  isPending: boolean
+  items: Article[]
+}

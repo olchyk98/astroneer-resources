@@ -31,7 +31,7 @@ export default function Home () {
       p="8"
       gap="4"
     >
-      { false && <SearchBar /> }
+      <SearchBar />
       <ArticleGraph article={ exampleArticle } />
     </VStack>
   )

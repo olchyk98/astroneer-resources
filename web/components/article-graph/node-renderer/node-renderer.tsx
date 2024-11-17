@@ -26,6 +26,7 @@ export function NodeRenderer (props: NodeRendererProps) {
       <HStack alignItems="center" pb="6" gap="4">
         <Image
           referrerPolicy="no-referrer"
+          crossOrigin="anonymous"
           src={ props.data.article.iconURL }
           w="8"
         />

@@ -11,8 +11,11 @@ export const RawSearchInput = forwardRef<HTMLInputElement, RawSearchInputProps>(
       placeholder={ 'Search for "Compound"' }
       ref={ ref }
       { ...props }
+      onChange={ (e) => props.onChange?.(e.target.value) }
     />
   )
 })
 
-export interface RawSearchInputProps extends InputProps {}
+export interface RawSearchInputProps extends Omit<InputProps, 'onChange'> {
+  onChange?: (query: string) => void
+}
