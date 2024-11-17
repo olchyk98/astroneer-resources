@@ -43,6 +43,15 @@ export function ArticleGraph (props: ArticleGraphProps) {
       colorMode="dark"
       proOptions={ proOptions }
       nodeTypes={ nodeTypes }
+      nodesDraggable={ false }
+      fitView={ true }
+      panOnScroll={ false }
+      panOnDrag={ false }
+      preventScrolling={ true }
+      zoomOnScroll={ false }
+      zoomOnDoubleClick={ false }
+      zoomOnPinch={ false }
+      draggable={ false }
       style={ { background: 'transparent' } }
     >
     </ReactFlow>
