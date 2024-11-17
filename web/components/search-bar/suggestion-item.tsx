@@ -1,5 +1,6 @@
-import { HStack, Image, StackProps, Text } from '@chakra-ui/react'
+import { HStack, StackProps, Text } from '@chakra-ui/react'
 import { Article } from '../../../types'
+import { NoOriginImage } from '../no-origin-image'
 
 export function SuggestionItem (props: SuggestionItemProps) {
   return (
@@ -18,13 +19,11 @@ export function SuggestionItem (props: SuggestionItemProps) {
       } }
       { ...props }
     >
-      <Image
+      <NoOriginImage
         src={ props.item.imageURL }
         transition="150ms"
-        alt="Shelter"
+        alt={ props.item.name }
         h="full"
-        referrerPolicy="no-referrer"
-        crossOrigin="anonymous"
       />
       <Text fontSize="lg" fontWeight="bold">{ props.item.name }</Text>
     </HStack>
