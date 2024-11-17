@@ -16,7 +16,7 @@ export function articleToGraphElements<T extends Pick<Article, 'key'>> (
   const children = 'article' in node ? (node.children ?? []) : []
   const isRoot = parentId == null
   const id = !isRoot ? `${parentId}-${article.key}` : article.key
-  acc.nodes.push({ ...nodeBase, id, data: { article, isRoot } })
+  acc.nodes.push({ ...nodeBase, id, data: { article, isRoot }, hidden: !isRoot })
   if (!isRoot) {
     acc.edges.push({ id: `__${id}`, source: parentId, target: id })
   }
