@@ -17,7 +17,7 @@ const nodeTypes: NodeTypes = {
   article: NodeRenderer,
 }
 
-export function ArticleGraph (props: RecipeGraphProps) {
+export function ArticleGraph (props: ArticleGraphProps) {
   const [ nodes, setNodes, onNodesUpdated ] = useNodesState<Node<ArticleGraphNodeData>>([])
   const [ edges, setEdges, onEdgesUpdated ] = useEdgesState<Edge>([])
 
@@ -28,7 +28,9 @@ export function ArticleGraph (props: RecipeGraphProps) {
   }
 
   useEffect(() => {
-    setNodes(articleToGraphNodes(props.article))
+    const nextNodes = props.article == null
+      ? [] : articleToGraphNodes(props.article)
+    setNodes(nextNodes)
     setEdges([])
   }, [ props.article ])
 
@@ -47,6 +49,6 @@ export function ArticleGraph (props: RecipeGraphProps) {
   )
 }
 
-export interface RecipeGraphProps {
-  article: ArticleNode | Article
+export interface ArticleGraphProps {
+  article: ArticleNode | Article | null
 }

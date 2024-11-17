@@ -12,7 +12,6 @@ export function useSearch () {
     queryKey: [ 'search', debouncedQuery ],
     async queryFn () {
       if (!debouncedQuery.trim()) return []
-      await new Promise((res) => setTimeout(() => res(undefined), 3000))
       return axios.get<Article[]>('/api/search', { params: { q: debouncedQuery } })
         .then((r) => r.data)
     },

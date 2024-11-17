@@ -3,15 +3,15 @@ import { RawSearchInput } from './raw-search-input'
 import { Suggestions } from './suggestions'
 import { useSearch } from '../../hooks'
 import { useEffect, useRef, useState } from 'react'
-import { Article } from '../../../types'
+import { Article, ArticleKey } from '../../../types'
 
-export function SearchBar () {
+export function SearchBar (props: SearchBarProps) {
   const { query, setQuery, isPending, hits } = useSearch()
   const [ isFocused, setIsFocused ] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const openArticle = (article: Pick<Article, 'name' | 'key'>) => {
-    console.log('opened', article.key)
+  const handleArticleClick = (article: Pick<Article, 'name' | 'key'>) => {
+    props.onClickArticle(article.key)
     setIsFocused(false)
     if (inputRef.current != null) {
       inputRef.current.value = article.name
@@ -38,7 +38,7 @@ export function SearchBar () {
           ref={ inputRef }
           onKeyDown={ (e) => {
             if (e.key === 'Enter' && hits?.[0]?.key) {
-              openArticle(hits?.[0])
+              handleArticleClick(hits?.[0])
             }
           } }
         />
@@ -48,11 +48,15 @@ export function SearchBar () {
             <Suggestions
               items={ hits ?? [] }
               isPending={ isPending }
-              onNavigate={ openArticle }
+              onNavigate={ handleArticleClick }
               isStale={ query.length <= 0 }
             />
         }
       </Box>
     </>
   )
+}
+
+export interface SearchBarProps {
+  onClickArticle(key: ArticleKey): void
 }

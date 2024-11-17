@@ -17,6 +17,7 @@ export function NodeRenderer (props: NodeRendererProps) {
       borderRadius="xl"
       alignItems="center"
       py="6"
+      px="8"
       justifyContent="start"
       gap="0"
       overflow="hidden"
@@ -43,22 +44,48 @@ export function NodeRenderer (props: NodeRendererProps) {
         alignItems="start"
         gap="8"
       >
-        <VStack gap="4" w="full">
-          <Text fontWeight="bold">Crafted At</Text>
-          <Divider axis="x" />
-          <Text fontWeight="normal">{ article.recipe?.craftedAt }</Text>
-        </VStack>
-        <VStack gap="4" w="full">
-          <Text fontWeight="bold">Input</Text>
-          <Divider axis="x" />
-          {
-            article.recipe?.ingredients.map((ingredient) => (
-              <Text fontWeight="normal" textWrap="nowrap" key={ ingredient.key }>
-                { ingredient.key } ({ingredient.amount}x)
-              </Text>
-            ))
-          }
-        </VStack>
+        {
+          article.planets != null && (
+            <VStack gap="4" w="full">
+              <Text fontWeight="bold" textWrap="nowrap">Planets</Text>
+              <Divider axis="x" />
+              {
+                article.planets === true && (
+                  <Text fontWeight="normal">ALL</Text>
+                )
+              }
+              {
+                Array.isArray(article.planets) && (
+                  article.planets.map((name) => (
+                    <Text fontWeight="normal" key={ name }>{ name }</Text>
+                  ))
+                )
+              }
+            </VStack>
+          )
+        }
+        {
+          article.recipe != null && (
+            <>
+              <VStack gap="4" w="full">
+                <Text fontWeight="bold" textWrap="nowrap">Crafted At</Text>
+                <Divider axis="x" />
+                <Text fontWeight="normal">{ article.recipe?.craftedAt }</Text>
+              </VStack>
+              <VStack gap="4" w="full">
+                <Text fontWeight="bold">Input</Text>
+                <Divider axis="x" />
+                {
+                  article.recipe?.ingredients.map((ingredient) => (
+                    <Text fontWeight="normal" textWrap="nowrap" key={ ingredient.key }>
+                      { ingredient.key } ({ingredient.amount}x)
+                    </Text>
+                  ))
+                }
+              </VStack>
+            </>
+          )
+        }
       </HStack>
     </VStack>
   )
