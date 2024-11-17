@@ -14,8 +14,8 @@ export function NodeRenderer (props: NodeRendererProps) {
   function expandChildNode (key: ArticleKey) {
     const childId = `${props.id}-${key}`
     const childNode = api.getNode(childId)
-    if (childNode == null) return
-    api.updateNode(childId, { hidden: !childNode.hidden })
+    if (childNode == null || !childNode.hidden) return
+    api.updateNode(childId, { hidden: false })
   }
 
   // XXX: Some articles don't have any content (like QT-RTG),
