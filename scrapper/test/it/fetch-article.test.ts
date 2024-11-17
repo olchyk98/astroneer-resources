@@ -6,7 +6,7 @@ import { urlComposer } from '../../src/url-composer'
 // Please, download a copy of the archive from fandom.com
 // or WaybackMachine.
 
-describe('run', () => {
+describe('fetchArticle', () => {
   it('RTG', async () => {
     const url = urlComposer('RTG')
     const article = await fetchArticle(url, { strategy: 'remote' })

@@ -20,7 +20,7 @@ export async function fetchArticleDeep (url: string, opts?: GenericFetchOpts): P
       node.children = []
     }
     for await (const i of ingredients) {
-      const childNode = await fetchArticleDeep(urlComposer(i.key))
+      const childNode = await fetchArticleDeep(urlComposer(i.key), opts)
       node.children!.push(childNode)
     }
   }
