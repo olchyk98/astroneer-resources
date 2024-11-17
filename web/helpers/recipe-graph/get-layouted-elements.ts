@@ -12,15 +12,12 @@ import { Edge, Node } from '@xyflow/react'
 export function getLayoutedElements <NodeData extends Record<string, unknown>> (
   nodes: Node<NodeData>[],
   edges: Edge[],
-): { nodes: Node<NodeData>[], edges: Edge[] } {
+): { nodes: Node<NodeData & { layouted?: true }>[], edges: Edge[] } {
   const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}))
   g.setGraph({})
 
-  edges.map((edge) => {
-    g.setEdge(edge.source, edge.target)
-  })
-
   nodes.forEach((node) => {
+    if (node.hidden === true) return
     g.setNode(node.id, {
       ...node,
       width: node.measured?.width ?? 0,
@@ -28,16 +25,26 @@ export function getLayoutedElements <NodeData extends Record<string, unknown>> (
     })
   })
 
+  edges.map((edge) => {
+    const sourceNode = g.node(edge.source)
+    const targetNode = g.node(edge.target)
+    if (sourceNode == null || targetNode == null) return
+    g.setEdge(edge.source, edge.target)
+  })
+
   Dagre.layout(g)
 
   return {
     nodes: nodes.map((node) => {
       const position = g.node(node.id)
+      // NOTE: Position won't be calculated for
+      // hidden nodes, see above.
+      if (position == null) return node
       // XXX: This changes the anchor position from "center center" (set by Dagre)
       // to "top left" (required by React Flow).
       const x = position.x - (node.measured?.width ?? 0) / 2
       const y = position.y - (node.measured?.height ?? 0) / 2
-      return { ...node, position: { x, y } }
+      return { ...node, position: { x, y }, data: { ...node.data, layouted: true } }
     }),
     edges,
   }

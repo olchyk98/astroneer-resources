@@ -5,7 +5,12 @@ const nodeBase = {
   position: { x: 0, y: 0 },
   connectable: false,
   type: 'article',
+  style: { transition: '200ms' },
 } satisfies Partial<Node<ArticleGraphNodeData>>
+
+const edgeBase = {
+  animated: true,
+} satisfies Partial<Edge>
 
 export function articleToGraphElements<T extends Pick<Article, 'key'>> (
   node: ArticleNode<T> | T,
@@ -18,7 +23,7 @@ export function articleToGraphElements<T extends Pick<Article, 'key'>> (
   const id = !isRoot ? `${parentId}-${article.key}` : article.key
   acc.nodes.push({ ...nodeBase, id, data: { article, isRoot }, hidden: !isRoot })
   if (!isRoot) {
-    acc.edges.push({ id: `__${id}`, source: parentId, target: id })
+    acc.edges.push({ ...edgeBase, id: `__${id}`, source: parentId, target: id })
   }
   children.forEach((childNode) => {
     articleToGraphElements(childNode, id, acc)
@@ -27,7 +32,12 @@ export function articleToGraphElements<T extends Pick<Article, 'key'>> (
 }
 
 export interface ArticleGraphNodeData<T extends Pick<Article, 'key'> = Article>
-  extends Record<string, unknown> { article: T, isRoot: boolean }
+  extends Record<string, unknown> {
+  article: T,
+  isRoot: boolean
+  // NOTE: This property is set by getLayoutedElements.
+  layouted?: boolean
+}
 
 export interface ArticleGraphElements<T extends Pick<Article, 'key'>> {
   nodes: Node<ArticleGraphNodeData<T>>[]

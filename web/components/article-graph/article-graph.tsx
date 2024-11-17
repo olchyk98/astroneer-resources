@@ -21,12 +21,14 @@ const nodeTypes: NodeTypes = {
 export function ArticleGraph (props: ArticleGraphProps) {
   const [ nodes, setNodes, onNodesUpdated ] = useNodesState<Node<ArticleGraphNodeData>>([])
   const [ edges, setEdges, onEdgesUpdated ] = useEdgesState<Edge>([])
-  const [ isLoading, setIsLoading ] = useState(false)
+  const [ isPositioningNodes, setIsPositioningNodes ] = useState(false)
   const nodesInitialized = useNodesInitialized()
   const api = useReactFlow()
 
+  const isLoading = props.isLoading || isPositioningNodes
+
   useEffect(() => {
-    setIsLoading(true)
+    setIsPositioningNodes(true)
     const elements = props.article == null
       ? { nodes: [], edges: [] }
       : articleToGraphElements(props.article)
@@ -49,10 +51,12 @@ export function ArticleGraph (props: ArticleGraphProps) {
       // XXX: Very hacky solution to move the camera to the
       // center of the graph after we update the positions
       // for nodes. I know, I don't like this either.
-      setTimeout(() => {
-        api.fitView()
-        setIsLoading(false)
-      }, 50)
+      if (isPositioningNodes) {
+        setTimeout(() => {
+          api.fitView()
+          setIsPositioningNodes(false)
+        }, 50)
+      }
     }
   }, [ nodesInitialized ])
 
@@ -94,4 +98,5 @@ export function ArticleGraph (props: ArticleGraphProps) {
 
 export interface ArticleGraphProps {
   article: ArticleNode | Article | null
+  isLoading?: boolean
 }

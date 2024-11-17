@@ -1,14 +1,23 @@
-import { HStack, Image, Text, VStack } from '@chakra-ui/react'
-import { Handle, NodeProps, Position } from '@xyflow/react'
+import { Box, HStack, Image, Link, Text, VStack } from '@chakra-ui/react'
+import { Handle, NodeProps, Position, useReactFlow } from '@xyflow/react'
 import { ArticleGraphNodeData } from '../../../helpers'
 import { Divider } from '../../divider'
 import { RandomFlare } from '../../flare'
+import { ArticleKey } from '../../../../types'
 
 export function NodeRenderer (props: NodeRendererProps) {
+  const api = useReactFlow()
   const { article, isRoot } = props.data
 
+  function expandChildNode (key: ArticleKey) {
+    const childId = `${props.id}-${key}`
+    const childNode = api.getNode(childId)
+    if (childNode == null) return
+    api.updateNode(childId, { hidden: !childNode.hidden })
+  }
+
   return (
-    <>
+    <Box>
       { !isRoot && <Handle draggable={ false } type="target" position={ Position.Top } /> }
       <VStack
         background="rgba(0, 0, 0, .2)"
@@ -73,7 +82,9 @@ export function NodeRenderer (props: NodeRendererProps) {
               <VStack gap="4" w="full">
                 <Text fontWeight="bold" textWrap="nowrap">Crafted At</Text>
                 <Divider axis="x" />
-                <Text fontWeight="normal">{ article.recipe?.craftedAt }</Text>
+                <Link fontWeight="normal" variant="underline" onClick={ () => expandChildNode(article.recipe!.craftedAt) }>
+                  { article.recipe.craftedAt }
+                </Link>
               </VStack>
             )
           }
@@ -84,9 +95,9 @@ export function NodeRenderer (props: NodeRendererProps) {
                 <Divider axis="x" />
                 {
                   article.recipe?.ingredients.map((ingredient) => (
-                    <Text fontWeight="normal" textWrap="nowrap" key={ ingredient.key }>
+                    <Link variant="underline" fontWeight="normal" textWrap="nowrap" key={ ingredient.key } onClick={ () => expandChildNode(ingredient.key) }>
                       { ingredient.key } ({ingredient.amount}x)
-                    </Text>
+                    </Link>
                   ))
                 }
               </VStack>
@@ -95,7 +106,7 @@ export function NodeRenderer (props: NodeRendererProps) {
         </HStack>
       </VStack>
       <Handle type="source" position={ Position.Bottom } />
-    </>
+    </Box>
   )
 }
 

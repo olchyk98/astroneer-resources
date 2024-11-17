@@ -1,12 +1,12 @@
 import { VStack } from '@chakra-ui/react'
 import { ArticleGraph, SearchBar } from '../components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ArticleKey, ArticleNode } from '../../types'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 export default function Home () {
-  const [ articleKey, setArticleKey ] = useState<ArticleKey>('Shelter')
+  const [ articleKey, setArticleKey ] = useState<ArticleKey>('Small_Printer')
   const { data: articleNode, error, isPending } = useQuery<ArticleNode | null>({
     queryKey: [ 'articleNode', articleKey ],
     async queryFn () {
@@ -15,6 +15,12 @@ export default function Home () {
       return r.data
     },
   })
+
+  useEffect(() => {
+    if (error != null) {
+      alert(`Failed to fetch the resource: ${error}`)
+    }
+  }, [ error ])
 
   return (
     <VStack
@@ -29,7 +35,7 @@ export default function Home () {
       gap="4"
     >
       <SearchBar onClickArticle={ setArticleKey } />
-      <ArticleGraph article={ articleNode ?? null } />
+      <ArticleGraph article={ articleNode ?? null } isLoading={ isPending } />
     </VStack>
   )
 }

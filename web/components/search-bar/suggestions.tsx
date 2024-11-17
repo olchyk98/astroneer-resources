@@ -5,6 +5,8 @@ import { memo } from 'react'
 import { Center } from '../center'
 
 export const Suggestions = memo((props: SuggestionsProps) => {
+  const { onNavigate, ...elementProps } = props
+
   return (
     <VStack
       position="absolute"
@@ -21,7 +23,7 @@ export const Suggestions = memo((props: SuggestionsProps) => {
       borderColor="gray.800"
       divideY="1px"
       gap="0"
-      { ...props }
+      { ...elementProps }
     >
       { props.isPending &&
           <Center position="absolute">
@@ -39,7 +41,7 @@ export const Suggestions = memo((props: SuggestionsProps) => {
           <SuggestionItem
             key={ article.key }
             item={ article }
-            onClick={ () => props.onNavigate(article) }
+            onClick={ () => onNavigate(article) }
           />
         ))
       }
