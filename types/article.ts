@@ -23,7 +23,25 @@ export interface ArticleRecipeIngradient {
   amount: number
 }
 
-export interface ArticleNode<T extends Pick<Article, 'key'> = Article> {
+export interface DenormalizedArticleRecipeIngradient extends Omit<ArticleRecipeIngradient, 'key'> {
+  key: Article
+}
+
+export interface DenormalizedArticleRecipe extends Omit<ArticleRecipe, 'craftedAt' | 'ingredients'> {
+  craftedAt: Article
+  ingredients: DenormalizedArticleRecipeIngradient[]
+}
+
+/**
+ * Extends "Article" interface, but has denormalzied
+ * key references - article resolved properties
+ * like "recipe.craftedAt" and "recipe.ingradient.key"
+ * */
+export interface DenormalizedArticle extends Omit<Article, 'recipe'> {
+  recipe?: DenormalizedArticleRecipe
+}
+
+export interface ArticleNode<T extends Pick<DenormalizedArticle, 'key'> = DenormalizedArticle> {
   article: T
   children?: ArticleNode<T>[]
 }

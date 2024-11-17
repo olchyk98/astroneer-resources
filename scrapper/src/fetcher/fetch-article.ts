@@ -12,6 +12,7 @@ export async function fetchArticle (url: string, opts?: GenericFetchOpts): Promi
   // to an LLM, so instead I'm going to bake in
   // 22 of those resources in the submodule
   // called "predefined".
+
   if (isPreDefinedArticle(url)) {
     return getPreDefinedArticle(url)
   }
