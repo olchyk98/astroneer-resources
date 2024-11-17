@@ -23,7 +23,7 @@ export interface ArticleRecipeIngradient {
   amount: number
 }
 
-export interface ArticleNode {
-  article: Article
-  children?: ArticleNode[]
+export interface ArticleNode<T extends Pick<Article, 'key'> = Article> {
+  article: T
+  children?: ArticleNode<T>[]
 }

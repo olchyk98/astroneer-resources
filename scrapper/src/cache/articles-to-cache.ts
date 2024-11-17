@@ -60,7 +60,6 @@ export const articlesToCache: ArticleKey[] = [
   'Power_Switch',
   'Probe_Scanner',
   'Proximity_Repeater',
-  'QT-RTG',
   'Quartz',
   'Rail_Junction',
   'Rail_Junction_Bundle',

@@ -32,7 +32,11 @@ export function getLayoutedElements <NodeData extends Record<string, unknown>> (
 
   return {
     nodes: nodes.map((node) => {
-      const { x, y } = g.node(node.id)
+      const position = g.node(node.id)
+      // XXX: This changes the anchor position from "center center" (set by Dagre)
+      // to "top left" (required by React Flow).
+      const x = position.x - (node.measured?.width ?? 0) / 2
+      const y = position.y - (node.measured?.height ?? 0) / 2
       return { ...node, position: { x, y } }
     }),
     edges,

@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 export default function Home () {
-  const [ articleKey, setArticleKey ] = useState<ArticleKey>()
+  const [ articleKey, setArticleKey ] = useState<ArticleKey>('Shelter')
   const { data: articleNode, error, isPending } = useQuery<ArticleNode | null>({
     queryKey: [ 'articleNode', articleKey ],
     async queryFn () {
