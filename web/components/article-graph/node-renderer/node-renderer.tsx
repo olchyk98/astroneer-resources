@@ -1,6 +1,6 @@
 import { Box, HStack, Link, Text, VStack } from '@chakra-ui/react'
 import { Handle, NodeProps, Position, useReactFlow } from '@xyflow/react'
-import { ArticleGraphNodeData } from '../../../helpers'
+import { ArticleGraphNodeData, getWikiURL } from '../../../helpers'
 import { Divider } from '../../divider'
 import { RandomFlare } from '../../flare'
 import { ArticleKey } from '../../../../types'
@@ -45,9 +45,9 @@ export function NodeRenderer (props: NodeRendererProps) {
         <RandomFlare maxX={ 60 } maxY={ 60 } />
         <HStack alignItems="center" gap="4">
           <NoOriginImage src={ article.iconURL } alt={ article.name } w="8" />
-          <Text fontWeight="bold" fontSize="xl">
+          <Link fontWeight="bold" fontSize="xl" cursor="alias" href={ getWikiURL(article.key) } target="_blank">
             { article.name }
-          </Text>
+          </Link>
         </HStack>
         {
           !hasNoContent && (
