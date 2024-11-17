@@ -8,6 +8,7 @@
   <p align="center">
     An interactive tree-based recipe book for Astroneer!
     <br />
+    https://astroneer-resources.fly.dev/
   </p>
 </div>
 
