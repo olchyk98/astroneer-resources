@@ -1,16 +1,17 @@
 export interface Article {
   key: ArticleKey
-  name: string
+  name: ArticleName
   iconURL: string
   type: string
   imageURL: string
-  planets?: string[] | true
+  planets?: string[] | boolean
   unlockCost?: number
   tier?: string
   recipe?: ArticleRecipe
 }
 
 export type ArticleKey = string
+export type ArticleName = string
 
 export interface ArticleRecipe {
   craftedAt: ArticleKey

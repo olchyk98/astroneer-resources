@@ -5,8 +5,10 @@ const articleURL = urlComposer('Compound')
 
 async function run () {
   console.log('Fetching')
-  const article = await fetchArticle(articleURL)
+  const article = await fetchArticle(articleURL, { strategy: 'cache' })
   console.dir({ article }, { depth: Infinity })
 }
 
 run()
+
+// cacheArticles()

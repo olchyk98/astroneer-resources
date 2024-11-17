@@ -1,6 +1,7 @@
 import { fetchArticle } from './fetch-article'
 import { ArticleNode } from '@astroneer/types'
-import { urlComposer } from './url-composer'
+import { urlComposer } from '../url-composer'
+import { GenericFetchOpts } from './types'
 
 /**
  * This function will invoke fetchArticle
@@ -10,8 +11,8 @@ import { urlComposer } from './url-composer'
  * information about each step of the production
  * process in form of ArticleNode structure.
  * */
-export async function fetchArticleDeep (url: string): Promise<ArticleNode> {
-  const article = await fetchArticle(url)
+export async function fetchArticleDeep (url: string, opts?: GenericFetchOpts): Promise<ArticleNode> {
+  const article = await fetchArticle(url, opts)
   const node: ArticleNode = { article }
   if (article.recipe != null) {
     const { ingredients } = article.recipe

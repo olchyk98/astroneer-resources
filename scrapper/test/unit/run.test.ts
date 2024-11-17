@@ -9,7 +9,7 @@ import { urlComposer } from '../../src/url-composer'
 describe('run', () => {
   it('RTG', async () => {
     const url = urlComposer('RTG')
-    const article = await fetchArticle(url)
+    const article = await fetchArticle(url, { strategy: 'remote' })
     expect(article).toStrictEqual({
       key: 'RTG',
       type: 'Power Generation',
@@ -30,7 +30,7 @@ describe('run', () => {
 
   it('Nanocarbon Alloy', async () => {
     const url = urlComposer('Nanocarbon_Alloy')
-    const article = await fetchArticle(url)
+    const article = await fetchArticle(url, { strategy: 'remote' })
     expect(article).toStrictEqual({
       key: 'Nanocarbon_Alloy',
       name: 'Nanocarbon Alloy',
@@ -52,7 +52,7 @@ describe('run', () => {
 
   it('Helium', async () => {
     const url = urlComposer('Helium')
-    const article = await fetchArticle(url)
+    const article = await fetchArticle(url, { strategy: 'remote' })
     expect(article).toStrictEqual({
       key: 'Helium',
       name: 'Helium',
@@ -67,7 +67,7 @@ describe('run', () => {
 
   it('Atmospheric Condenser', async () => {
     const url = urlComposer('Atmospheric_Condenser')
-    const article = await fetchArticle(url)
+    const article = await fetchArticle(url, { strategy: 'remote' })
     expect(article).toStrictEqual({
       key: 'Atmospheric_Condenser',
       name: 'Atmospheric Condenser',
@@ -89,7 +89,7 @@ describe('run', () => {
 
   it('Plastic', async () => {
     const url = urlComposer('Plastic')
-    const article = await fetchArticle(url)
+    const article = await fetchArticle(url, { strategy: 'remote' })
     expect(article).toStrictEqual({
       key: 'Plastic',
       name: 'Plastic',
@@ -107,7 +107,7 @@ describe('run', () => {
 
   it('Compound', async () => {
     const url = urlComposer('Compound')
-    const article = await fetchArticle(url)
+    const article = await fetchArticle(url, { strategy: 'remote' })
     expect(article).toStrictEqual({
       iconURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/9/9a/Icon_Compound.png/revision/latest/scale-to-width-down/30?cb=20190419174519',
       imageURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/0/0a/Nugget_Compound.png/revision/latest/scale-to-width-down/250?cb=20191016232839',

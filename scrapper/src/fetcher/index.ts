@@ -1,1 +1,5 @@
-export * from './fetch-html'
+export * from './types'
+export * from './fetch-article'
+export * from './fetch-article-deep'
+export * from './fetch-article-by-key'
+export * from './fetch-article-by-key-deep'

@@ -1,5 +1,5 @@
 import { reduce } from 'ramda'
-import { Article } from '@astroneer/types'
+import { Article, ArticleKey } from '@astroneer/types'
 
 export const predefinedArticles: Article[] = [
   {
@@ -264,7 +264,7 @@ export const predefinedArticles: Article[] = [
   },
 ]
 
-export const _predefinedArticlesMap = reduce<Article, Record<string, Article>>(
+export const _predefinedArticlesMap = reduce<Article, Record<ArticleKey, Article>>(
   (acc, article) => {
     acc[article.key] = article
     return acc

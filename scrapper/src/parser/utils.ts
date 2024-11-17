@@ -24,7 +24,7 @@ export function parseSourceTable (document: Document): ArticleSourceTable {
   // until we reach "Details" section, afterwards
   // we start reading item properties.
   let hasReachedDetails = false
-  for (let ma = 3; ma < Infinity; ++ma) {
+  for (let ma = 0; ma < Infinity; ++ma) {
     const el = box?.querySelector(`*:nth-child(${ma})`)
     if (!hasReachedDetails) {
       if (el?.textContent?.includes('Details')) {
