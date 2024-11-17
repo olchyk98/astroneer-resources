@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/olchyk98/astroneer-resources">
-    <img src="https://github.com/user-attachments/assets/2d7d3d7f-dd4f-46fa-b4d0-23fee333b666" alt="Logo" width="80" height="80">
+    <img src="https://github.com/user-attachments/assets/2d7d3d7f-dd4f-46fa-b4d0-23fee333b666" alt="Logo" height="200">
   </a>
 
   <h3 align="center">Astroneer Resources</h3>
