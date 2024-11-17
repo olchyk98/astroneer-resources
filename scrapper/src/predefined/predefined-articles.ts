@@ -262,6 +262,13 @@ export const predefinedArticles: Article[] = [
     },
     type: 'Atmospheric',
   },
+  {
+    iconURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/6/68/Icon_Backpack.png/revision/latest/scale-to-width-down/20?cb=20191116124822',
+    imageURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/1/13/Backpack_2.0.png/revision/latest/scale-to-width-down/180?cb=20220115211426',
+    key: 'Backpack',
+    name: 'Backpack',
+    type: 'Player',
+  },
 ]
 
 export const _predefinedArticlesMap = reduce<Article, Record<ArticleKey, Article>>(

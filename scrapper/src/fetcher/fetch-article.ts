@@ -6,11 +6,12 @@ import { getCachedArticle } from '../cache'
 
 export async function fetchArticle (url: string, opts?: GenericFetchOpts): Promise<Article> {
   // XXX: Resources that are specific to individual
-  // planets are hard to parse from web, because the
-  // content is in raw text. I'm not in the mood of hooking
-  // this thing up to an LLM, so instead I'm
-  // going to bake in 22 of those resources in the
-  // submodule called "predefined".
+  // planets (and some other articles) are hard to parse.
+  // from web, because the content is in raw text
+  // I'm not in the mood of hooking this thing up
+  // to an LLM, so instead I'm going to bake in
+  // 22 of those resources in the submodule
+  // called "predefined".
   if (isPreDefinedArticle(url)) {
     return getPreDefinedArticle(url)
   }

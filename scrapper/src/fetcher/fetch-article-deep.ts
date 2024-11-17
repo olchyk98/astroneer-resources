@@ -1,21 +1,15 @@
 import { fetchArticle } from './fetch-article'
-import { Article, ArticleKey, ArticleNode } from '@astroneer/types'
+import { Article, ArticleNode } from '@astroneer/types'
 import { urlComposer } from '../url-composer'
 import { GenericFetchOpts } from './types'
 import { pluck } from 'ramda'
-
-// XXX: Base ingradients/craftedAt machines that will be
-// parsed, and should not be part of graph.
-const unwantedIngredients: Set<ArticleKey> = new Set([
-  'Backpack',
-])
 
 function getIngredientKeysForArticle (article: Article): string[] {
   const { recipe } = article
   if (recipe == null) return []
   const inputIngredients = pluck('key', recipe.ingredients)
   const keys = [ ...inputIngredients, recipe.craftedAt ]
-  return keys.filter((l) => !!l && !unwantedIngredients.has(l))
+  return keys.filter((l) => !!l)
 }
 
 /**
