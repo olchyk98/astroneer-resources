@@ -5,6 +5,7 @@ import { Divider } from '../../divider'
 import { RandomFlare } from '../../flare'
 import { ArticleKey } from '../../../../types'
 import { NoOriginImage } from '../../no-origin-image'
+import { ContentColumn } from './content-column'
 
 export function NodeRenderer (props: NodeRendererProps) {
   const api = useReactFlow()
@@ -60,52 +61,29 @@ export function NodeRenderer (props: NodeRendererProps) {
                 alignItems="start"
                 gap="8"
               >
-                {
-                  article.planets != null && (
-                    <VStack gap="4" w="full">
-                      <Text fontWeight="bold" textWrap="nowrap">Planets</Text>
-                      <Divider axis="x" />
-                      {
-                        article.planets === true && (
-                          <Text fontWeight="normal">ALL</Text>
-                        )
-                      }
-                      {
-                        Array.isArray(article.planets) && (
-                          article.planets.map((name) => (
-                            <Text fontWeight="normal" key={ name }>{ name }</Text>
-                          ))
-                        )
-                      }
-                    </VStack>
-                  )
-                }
-                {
-                  article.recipe?.craftedAt != null && (
-                    <VStack gap="4" w="full">
-                      <Text fontWeight="bold" textWrap="nowrap">Crafted At</Text>
-                      <Divider axis="x" />
-                      <Link fontWeight="normal" variant="underline" onClick={ () => expandChildNode(article.recipe!.craftedAt) }>
-                        { article.recipe.craftedAt }
+                <ContentColumn name="Planets" visible={ article.planets != null }>
+                  { article.planets === true && <Text fontWeight="normal">ALL</Text> }
+                  {
+                    Array.isArray(article.planets) &&
+                      article.planets.map((name) => (
+                        <Text fontWeight="normal" key={ name }>{ name }</Text>
+                      ))
+                  }
+                </ContentColumn>
+                <ContentColumn name="Crafted At" visible={ article.recipe?.craftedAt != null }>
+                  <Link fontWeight="normal" variant="underline" onClick={ () => expandChildNode(article.recipe!.craftedAt) }>
+                    { article.recipe?.craftedAt }
+                  </Link>
+                </ContentColumn>
+                <ContentColumn name="Input" visible={ !!article.recipe?.ingredients?.length }>
+                  {
+                    (article.recipe?.ingredients ?? []).map((ingredient) => (
+                      <Link variant="underline" fontWeight="normal" textWrap="nowrap" key={ ingredient.key } onClick={ () => expandChildNode(ingredient.key) }>
+                        { ingredient.key } ({ingredient.amount}x)
                       </Link>
-                    </VStack>
-                  )
-                }
-                {
-                  !!article.recipe?.ingredients?.length && (
-                    <VStack gap="4" w="full">
-                      <Text fontWeight="bold">Input</Text>
-                      <Divider axis="x" />
-                      {
-                        article.recipe?.ingredients.map((ingredient) => (
-                          <Link variant="underline" fontWeight="normal" textWrap="nowrap" key={ ingredient.key } onClick={ () => expandChildNode(ingredient.key) }>
-                            { ingredient.key } ({ingredient.amount}x)
-                          </Link>
-                        ))
-                      }
-                    </VStack>
-                  )
-                }
+                    ))
+                  }
+                </ContentColumn>
               </HStack>
             </>
           )
