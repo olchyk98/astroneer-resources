@@ -59,28 +59,48 @@ export function NodeRenderer (props: NodeRendererProps) {
                 w="full"
                 justifyContent="space-around"
                 alignItems="start"
-                gap="8"
+                gap="10"
               >
                 <ContentColumn name="Planets" visible={ article.planets != null }>
                   { article.planets === true && <Text fontWeight="normal">ALL</Text> }
                   {
                     Array.isArray(article.planets) &&
-                      article.planets.map((name) => (
-                        <Text fontWeight="normal" key={ name }>{ name }</Text>
+                      article.planets.map((key) => (
+                        <Link
+                          variant="underline"
+                          fontWeight="normal"
+                          key={ key }
+                          cursor="alias"
+                          href={ getWikiURL(key) }
+                          target="_blank"
+                        >
+                          { key }
+                        </Link>
                       ))
                   }
                 </ContentColumn>
                 <ContentColumn name="Crafted At" visible={ article.recipe?.craftedAt != null }>
-                  <Link fontWeight="normal" variant="underline" onClick={ () => expandChildNode(article.recipe!.craftedAt.key) }>
-                    { article.recipe?.craftedAt.key }
-                  </Link>
+                  <HStack gap="2">
+                    <NoOriginImage alt={ article.recipe?.craftedAt.name } src={ article.recipe?.craftedAt.iconURL } w="6" />
+                    <Link fontWeight="normal" variant="underline" onClick={ () => expandChildNode(article.recipe!.craftedAt.key) }>
+                      { article.recipe?.craftedAt.key }
+                    </Link>
+                  </HStack>
                 </ContentColumn>
                 <ContentColumn name="Input" visible={ !!article.recipe?.ingredients?.length }>
                   {
                     (article.recipe?.ingredients ?? []).map((ingredient) => (
-                      <Link variant="underline" fontWeight="normal" textWrap="nowrap" key={ ingredient.key } onClick={ () => expandChildNode(ingredient.key.key) }>
-                        { ingredient.key.key } ({ingredient.amount}x)
-                      </Link>
+                      <HStack gap="2" key={ ingredient.key.key }>
+                        <NoOriginImage alt={ ingredient.key.name } src={ ingredient.key.iconURL } w="6" />
+                        <Link
+                          variant="underline"
+                          fontWeight="normal"
+                          textWrap="nowrap"
+                          onClick={ () => expandChildNode(ingredient.key.key) }
+                        >
+                          { ingredient.key.name } ({ingredient.amount}x)
+                        </Link>
+                      </HStack>
                     ))
                   }
                 </ContentColumn>
