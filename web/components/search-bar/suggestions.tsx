@@ -16,7 +16,7 @@ export const Suggestions = memo((props: SuggestionsProps) => {
       w="full"
       bg="rgba(0, 0, 0, 0.2)"
       overflow="auto"
-      bottom="-20"
+      top="14"
       backdropFilter="blur(15px)"
       borderRadius="lg"
       border="1px solid"

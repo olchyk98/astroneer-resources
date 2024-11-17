@@ -1,5 +1,5 @@
 import { Edge, Node } from '@xyflow/react'
-import { Article, ArticleKey, ArticleNode } from '../../../types'
+import { ArticleKey, ArticleNode, DenormalizedArticle } from '../../../types'
 
 const nodeBase = {
   position: { x: 0, y: 0 },
@@ -12,8 +12,8 @@ const edgeBase = {
   animated: true,
 } satisfies Partial<Edge>
 
-export function articleToGraphElements<T extends Pick<Article, 'key'>> (
-  node: ArticleNode<T> | T,
+export function articleToGraphElements<T extends Pick<DenormalizedArticle, 'key'>> (
+  node: ArticleNode<T>,
   parentId: ArticleKey | null = null,
   acc: ArticleGraphElements<T> = { nodes: [], edges: [] },
 ): ArticleGraphElements<T> {
@@ -31,7 +31,7 @@ export function articleToGraphElements<T extends Pick<Article, 'key'>> (
   return acc
 }
 
-export interface ArticleGraphNodeData<T extends Pick<Article, 'key'> = Article>
+export interface ArticleGraphNodeData<T extends Pick<DenormalizedArticle, 'key'> = DenormalizedArticle>
   extends Record<string, unknown> {
   article: T,
   isRoot: boolean
@@ -39,7 +39,7 @@ export interface ArticleGraphNodeData<T extends Pick<Article, 'key'> = Article>
   layouted?: boolean
 }
 
-export interface ArticleGraphElements<T extends Pick<Article, 'key'>> {
+export interface ArticleGraphElements<T extends Pick<DenormalizedArticle, 'key'>> {
   nodes: Node<ArticleGraphNodeData<T>>[]
   edges: Edge[]
 }

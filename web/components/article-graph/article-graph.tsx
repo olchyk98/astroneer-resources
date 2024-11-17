@@ -1,6 +1,6 @@
 import '@xyflow/react/dist/style.css'
 import { Controls, Edge, MiniMap, Node, NodeTypes, ProOptions, ReactFlow, useEdgesState, useNodesInitialized, useNodesState, useReactFlow } from '@xyflow/react'
-import { Article, ArticleNode } from '../../../types'
+import { ArticleNode } from '../../../types'
 import { useEffect, useState } from 'react'
 import {
   ArticleGraphNodeData,
@@ -105,6 +105,6 @@ export function ArticleGraph (props: ArticleGraphProps) {
 }
 
 export interface ArticleGraphProps {
-  article: ArticleNode | Article | null
+  article: ArticleNode | null
   isLoading?: boolean
 }

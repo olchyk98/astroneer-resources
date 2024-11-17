@@ -1,4 +1,4 @@
-import { Box, Spacer, VStack } from '@chakra-ui/react'
+import { Box, HStack, Spacer, VStack } from '@chakra-ui/react'
 import { RawSearchInput } from './raw-search-input'
 import { Suggestions } from './suggestions'
 import { useSearch } from '../../hooks'
@@ -32,27 +32,29 @@ export function SearchBar (props: SearchBarProps) {
         isFocused &&
           <Box onClick={ () => setIsFocused(false) } top="0" left="0" w="full" h="full" position="fixed" zIndex="1" />
       }
-      <VStack position="relative" zIndex="2" maxW="full" gap="0" pt="8">
-        <RawSearchInput
-          onChange={ setQuery }
-          ref={ inputRef }
-          onKeyDown={ (e) => {
-            if (e.key === 'Enter' && hits?.[0]?.key) {
-              handleArticleClick(hits?.[0])
-            }
-          } }
-        />
-        <Spacer py="2" />
-        {
-          isFocused &&
-            <Suggestions
-              items={ hits ?? [] }
-              isPending={ isPending }
-              onNavigate={ handleArticleClick }
-              isStale={ query.length <= 0 }
-            />
-        }
-      </VStack>
+      <HStack position="relative" zIndex="2" maxW="full" pt="8" px="8">
+        <VStack gap="0" w="full" position="relative" id="aa">
+          <RawSearchInput
+            onChange={ setQuery }
+            ref={ inputRef }
+            onKeyDown={ (e) => {
+              if (e.key === 'Enter' && hits?.[0]?.key) {
+                handleArticleClick(hits?.[0])
+              }
+            } }
+          />
+          <Spacer py="2" />
+          {
+            isFocused &&
+              <Suggestions
+                items={ hits ?? [] }
+                isPending={ isPending }
+                onNavigate={ handleArticleClick }
+                isStale={ query.length <= 0 }
+              />
+          }
+        </VStack>
+      </HStack>
     </>
   )
 }

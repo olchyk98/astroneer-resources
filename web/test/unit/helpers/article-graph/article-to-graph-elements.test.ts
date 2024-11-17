@@ -14,17 +14,6 @@ const edgesForTest = (edges: Edge[]): Pick<Edge, 'id' | 'source' | 'target'>[] =
 )
 
 describe('articleToGraphElements', () => {
-  it('should return single node for an article', () => {
-    const article: Pick<Article, 'key'> = { key: 'RTG' }
-    const elements = articleToGraphElements(article)
-    const nodes = nodesForTest(elements.nodes)
-    const edges = edgesForTest(elements.edges)
-    expect(nodes).toStrictEqual([
-      { id: 'RTG', data: { article, isRoot: true } },
-    ])
-    expect(edges).toStrictEqual([])
-  })
-
   it('should return single node for a single level tree', () => {
     const article: Pick<Article, 'key'> = { key: 'RTG' }
     const node: ArticleNode<Pick<Article, 'key'>> = { article }

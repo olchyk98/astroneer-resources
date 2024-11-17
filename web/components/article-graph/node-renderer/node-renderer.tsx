@@ -71,15 +71,15 @@ export function NodeRenderer (props: NodeRendererProps) {
                   }
                 </ContentColumn>
                 <ContentColumn name="Crafted At" visible={ article.recipe?.craftedAt != null }>
-                  <Link fontWeight="normal" variant="underline" onClick={ () => expandChildNode(article.recipe!.craftedAt) }>
-                    { article.recipe?.craftedAt }
+                  <Link fontWeight="normal" variant="underline" onClick={ () => expandChildNode(article.recipe!.craftedAt.key) }>
+                    { article.recipe?.craftedAt.key }
                   </Link>
                 </ContentColumn>
                 <ContentColumn name="Input" visible={ !!article.recipe?.ingredients?.length }>
                   {
                     (article.recipe?.ingredients ?? []).map((ingredient) => (
-                      <Link variant="underline" fontWeight="normal" textWrap="nowrap" key={ ingredient.key } onClick={ () => expandChildNode(ingredient.key) }>
-                        { ingredient.key } ({ingredient.amount}x)
+                      <Link variant="underline" fontWeight="normal" textWrap="nowrap" key={ ingredient.key } onClick={ () => expandChildNode(ingredient.key.key) }>
+                        { ingredient.key.key } ({ingredient.amount}x)
                       </Link>
                     ))
                   }
