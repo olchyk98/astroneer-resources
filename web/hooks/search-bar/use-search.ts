@@ -39,7 +39,7 @@ export function useSearch () {
   return {
     isPending,
     setQuery,
-    query,
+    query: debouncedQuery,
     error,
     hits,
   }

@@ -31,9 +31,11 @@ export const Suggestions = memo((props: SuggestionsProps) => {
           </Center>
       }
       {
-        !props.isPending && !props.items?.length && !props.isStale &&
+        !props.isPending && !props.items?.length &&
           <Center position="absolute">
-            <Text fontWeight="thin" color="gray.400">No matches found</Text>
+            <Text fontWeight="thin" color="gray.400">
+              { props.isStale ? 'The results will appear here' : 'No matches found' }
+            </Text>
           </Center>
       }
       {
