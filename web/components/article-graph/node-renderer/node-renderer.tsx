@@ -82,8 +82,13 @@ export function NodeRenderer (props: NodeRendererProps) {
                 <ContentColumn name="Crafted At" visible={ article.recipe?.craftedAt != null }>
                   <HStack gap="2">
                     <NoOriginImage alt={ article.recipe?.craftedAt.name } src={ article.recipe?.craftedAt.iconURL } w="6" />
-                    <Link fontWeight="normal" variant="underline" onClick={ () => expandChildNode(article.recipe!.craftedAt.key) }>
-                      { article.recipe?.craftedAt.key }
+                    <Link
+                      fontWeight="normal"
+                      variant="underline"
+                      textWrap="nowrap"
+                      onClick={ () => expandChildNode(article.recipe!.craftedAt.key) }
+                    >
+                      { article.recipe?.craftedAt.name }
                     </Link>
                   </HStack>
                 </ContentColumn>
