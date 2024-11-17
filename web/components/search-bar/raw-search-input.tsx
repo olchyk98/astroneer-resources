@@ -8,7 +8,7 @@ export const RawSearchInput = forwardRef<HTMLInputElement, RawSearchInputProps>(
       flexShrink="0"
       size="lg"
       maxW="full"
-      placeholder={ 'Search for "Compound"' }
+      placeholder={ 'Search for "RTG"' }
       ref={ ref }
       { ...props }
       onChange={ (e) => props.onChange?.(e.target.value) }
