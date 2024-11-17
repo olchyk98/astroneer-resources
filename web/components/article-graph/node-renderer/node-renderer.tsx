@@ -103,7 +103,7 @@ export function NodeRenderer (props: NodeRendererProps) {
                           textWrap="nowrap"
                           onClick={ () => expandChildNode(ingredient.key.key) }
                         >
-                          { ingredient.key.name } ({ingredient.amount}x)
+                          { ingredient.key.name }{ ingredient.amount > 1 ? ` (${ingredient.amount}x)` : '' }
                         </Link>
                       </HStack>
                     ))
