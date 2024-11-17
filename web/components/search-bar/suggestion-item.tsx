@@ -16,6 +16,7 @@ export function SuggestionItem (props: SuggestionItemProps) {
         h: '24',
         transition: '200ms',
       } }
+      { ...props }
     >
       <Image
         src={ props.item.imageURL }

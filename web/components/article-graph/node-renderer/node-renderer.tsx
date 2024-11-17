@@ -53,7 +53,7 @@ export function NodeRenderer (props: NodeRendererProps) {
           <Divider axis="x" />
           {
             article.recipe?.ingredients.map((ingredient) => (
-              <Text fontWeight="normal" textWrap="nowrap">
+              <Text fontWeight="normal" textWrap="nowrap" key={ ingredient.key }>
                 { ingredient.key } ({ingredient.amount}x)
               </Text>
             ))
