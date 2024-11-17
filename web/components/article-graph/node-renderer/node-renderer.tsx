@@ -1,6 +1,6 @@
-import { Box, HStack, Link, Text, VStack } from '@chakra-ui/react'
+import { Badge, Box, HStack, Link, Text, VStack } from '@chakra-ui/react'
 import { Handle, NodeProps, Position, useReactFlow } from '@xyflow/react'
-import { ArticleGraphNodeData, getWikiURL } from '../../../helpers'
+import { ArticleGraphNodeData, formatNumber, getWikiURL } from '../../../helpers'
 import { Divider } from '../../divider'
 import { RandomFlare } from '../../flare'
 import { ArticleKey } from '../../../../types'
@@ -44,11 +44,27 @@ export function NodeRenderer (props: NodeRendererProps) {
       >
         <RandomFlare maxX={ 60 } maxY={ 60 } />
         <RandomFlare maxX={ 60 } maxY={ 60 } />
-        <HStack alignItems="center" gap="4">
-          <NoOriginImage src={ article.iconURL } alt={ article.name } w="8" />
-          <Link fontWeight="bold" fontSize="xl" cursor="alias" href={ getWikiURL(article.key) } target="_blank">
-            { article.name }
-          </Link>
+        <HStack alignItems="center" justifyContent="space-between" w="full" gap="8">
+          <HStack gap="4" alignItems="center">
+            <NoOriginImage src={ article.iconURL } alt={ article.name } w="8" />
+            <Link fontWeight="bold" fontSize="xl" cursor="alias" href={ getWikiURL(article.key) } target="_blank">
+              { article.name }
+            </Link>
+          </HStack>
+          {
+            (article.unlockCost != null || article.tier != null) && (
+              <HStack gap="2">
+                {
+                  article.unlockCost != null &&
+                    <Badge colorPalette="purple" variant="surface">{ formatNumber(article.unlockCost) } bytes</Badge>
+                }
+                {
+                  article.tier != null &&
+                    <Badge colorPalette="green" variant="surface">{ article.tier }</Badge>
+                }
+              </HStack>
+            )
+          }
         </HStack>
         {
           !hasNoContent && (
