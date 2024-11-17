@@ -1,12 +1,5 @@
-# fly.toml app configuration file generated for astroneer-resources on 2024-11-17T20:16:23Z
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
-app = 'astroneer-resources'
-primary_region = 'arn'
-
-[build]
+app = "astroneer-resources"
+primary_region = "arn"
 
 [http_service]
   internal_port = 3000
@@ -14,10 +7,6 @@ primary_region = 'arn'
   auto_stop_machines = false
   auto_start_machines = true
   min_machines_running = 0
-  processes = ['app']
 
-[[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
-  memory_mb = 256
+[env]
+TZ="Europe/Stockholm"

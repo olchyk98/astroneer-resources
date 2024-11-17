@@ -1,53 +1,46 @@
 # syntax = docker/dockerfile:1
 
-# Adjust NODE_VERSION as desired
-ARG NODE_VERSION=20.18.0
+ARG NODE_VERSION=20
 FROM node:${NODE_VERSION}-slim as base
 
-LABEL fly_launch_runtime="Node.js"
+LABEL fly_launch_runtime="Next.js"
 
-# Set working directory
 WORKDIR /app
 
-# Set production environment
 ENV NODE_ENV="production"
 
-# Install pnpm
-ARG PNPM_VERSION=latest
-RUN npm install -g pnpm@$PNPM_VERSION
-
-# Throw-away build stage to reduce size of final image
 FROM base as build
 
-# Install necessary packages for building dependencies
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3 && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install --no-install-recommends -y build-essential pkg-config python-is-python3
 
-# Copy workspace root files (e.g., package.json, pnpm-lock.yaml)
-COPY package.json pnpm-lock.yaml ./
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Install workspace dependencies without hoisting to a global level
-RUN pnpm install --frozen-lockfile
+# Copy .npmrc file
+COPY .npmrc ./
 
-# Set working directory to the `web` folder (specific to the Next.js app)
+COPY pnpm-workspace.yaml ./
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+COPY types ./types
+COPY scrapper ./scrapper
+COPY web ./web
+
+# Install dependencies with the new node-linker setting
+RUN pnpm install --force
+
+# Build all workspace packages
 WORKDIR /app/web
 
-# Install and build the `web` app
-RUN pnpm install --frozen-lockfile
-RUN pnpm build
+RUN pnpm run build
 
-# Final stage for running the app
+RUN pnpm prune --prod
+
 FROM base
 
-# Copy only the built application from the build stage
-COPY --from=build /app /app
+COPY --from=build /app/web/.next/standalone /app
+COPY --from=build /app/web/.next/static /app/web/.next/static
+COPY --from=build /app/web/public /app/web/public
 
-# Set working directory to the `web` folder for serving the app
-WORKDIR /app/web
-
-# Expose the port Next.js server runs on
 EXPOSE 3000
-
-# Start the Next.js server
-CMD ["pnpm", "start"]
+CMD [ "node", "/app/web/server.js" ]
