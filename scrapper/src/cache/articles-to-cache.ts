@@ -91,7 +91,7 @@ export const articlesToCache: ArticleKey[] = [
   'Malachite',
   'Medium_Battery',
   'Medium_Buggy_Horn',
-  'Medium_Fluid_%26_Soil_Canister',
+  'Medium_Fluid_&_Soil_Canister',
   'Medium_Gas_Canister',
   'Medium_Generator',
   'Medium_Platform_A',
