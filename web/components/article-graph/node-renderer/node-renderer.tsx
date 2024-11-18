@@ -101,6 +101,7 @@ export function NodeRenderer (props: NodeRendererProps) {
                     <Link
                       fontWeight="normal"
                       variant="underline"
+                      className="nopan"
                       textWrap="nowrap"
                       onClick={ () => expandChildNode(article.recipe!.craftedAt.key) }
                     >
@@ -115,6 +116,7 @@ export function NodeRenderer (props: NodeRendererProps) {
                         <NoOriginImage alt={ ingredient.key.name } src={ ingredient.key.iconURL } w="6" />
                         <Link
                           variant="underline"
+                          className="nopan"
                           fontWeight="normal"
                           textWrap="nowrap"
                           onClick={ () => expandChildNode(ingredient.key.key) }
