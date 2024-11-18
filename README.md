@@ -28,6 +28,17 @@ If you’re unsure how to craft one of the ingredients, just click on it, and a 
 
 https://github.com/user-attachments/assets/d82b1496-30d7-4419-9ef5-f2d8bf68120e
 
+## Feature Requests
+
+| Status             | Description                                                 | Requested By        | Implementation Date |
+| ------------------ | ------------------                                          | ------------------- | ------------------- |
+| ✅                 | Natural resource location on planets                        | Reddit              | 18 November, 2024   |
+| ✅                 | "Bigger" zoom out                                           | Reddit              | 18 November, 2024   |
+| ⏳                 | "Bottom-To-Top" view - Ingredients that are used in recipes | Reddit              |                     |
+| ⏳                 | Scrap/Soil Exchange Rates                                   | Reddit              |                     |
+| ⏳                 | List of recently opened articles                            | Me                  |                     |
+| ⏳                 | Persistent URL state (app routing)                          | Me                  |                     |
+
 ## Problem Statement
 
 While playing **Astroneer**, I often found myself needing to look up recipes online. This became even more frustrating as I delved deeper into automation and started tackling more complex projects. 
