@@ -88,6 +88,7 @@ export function ArticleGraph (props: ArticleGraphProps) {
         zoomOnScroll={ false }
         zoomOnDoubleClick={ true }
         zoomOnPinch={ true }
+        minZoom={ 0.2 }
         draggable={ false }
         style={ { background: 'transparent' } }
       >
