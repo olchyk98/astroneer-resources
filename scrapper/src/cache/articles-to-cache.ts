@@ -118,6 +118,7 @@ export const articlesToCache: ArticleKey[] = [
   'Oxygen_Tank',
   'Oxygenator',
   'Packager',
+  'Paver',
   'Plastic',
   'Portable_Oxygenator',
   'Portable_Smelting_Furnace',
