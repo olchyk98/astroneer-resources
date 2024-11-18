@@ -1,11 +1,11 @@
 import { Edge, Node } from '@xyflow/react'
-import { Article, ArticleNode } from '../../../../../types'
+import { Article, ArticleWithRefs } from '@astroneer/types'
 import { ArticleGraphNodeData, articleToGraphElements } from '../../../../helpers'
 import { map, pick } from 'ramda'
 
 const nodesForTest = <T extends Pick<Article, 'key'>>(
   nodes: Node<ArticleGraphNodeData<T>>[],
-): Pick<Node<ArticleGraphNodeData<T>>, 'id' | 'data'>[] => (
+): Pick<Node<ArticleGraphNodeData<T>>, 'id'>[] => (
   map(pick([ 'id', 'data' ]), nodes)
 )
 
@@ -15,8 +15,8 @@ const edgesForTest = (edges: Edge[]): Pick<Edge, 'id' | 'source' | 'target'>[] =
 
 describe('articleToGraphElements', () => {
   it('should return single node for a single level tree', () => {
-    const article: Pick<Article, 'key'> = { key: 'RTG' }
-    const node: ArticleNode<Pick<Article, 'key'>> = { article }
+    const article= { key: 'RTG' }
+    const node: ArticleWithRefs<Pick<Article, 'recipe' | 'key'>> = { article, _referencesMap: {} }
     const elements = articleToGraphElements(node)
     const nodes = nodesForTest(elements.nodes)
     const edges = edgesForTest(elements.edges)
@@ -27,59 +27,79 @@ describe('articleToGraphElements', () => {
   })
 
   it('should return relational nodes for a nested tree', () => {
-    const node: ArticleNode<Pick<Article, 'key'>> = {
-      article: { key: 'RTG' },
-      children: [
-        {
-          article: { key: 'Nanocarbon_Alloy' },
-          children: [
+    const node: ArticleWithRefs<Pick<Article, 'key' | 'recipe'>> = {
+      article: {
+        key: 'RTG',
+        recipe: {
+          craftedAt: 'Backpack',
+          ingredients: [
             {
-              article: { key: 'Nano_Carbon' },
-              children: [
-                { article: { key: 'Compound' } },
-                { article: { key: 'Carbon' } },
-              ],
+              amount: 1,
+              key: 'Nanocarbon_Alloy',
             },
             {
-              article: { key: 'Alloy' },
+              amount: 1,
+              key: 'Lithium_Carbonide',
             },
           ],
         },
-        {
-          article: { key: 'Lithium_Carbonide' },
-          children: [
-            { article: { key: 'Lithium' } },
-            { article: { key: 'Carbon' } },
-          ],
+      },
+      _referencesMap: {
+        Nanocarbon_Alloy: {
+          key: 'Nanocarbon_Alloy',
+          recipe: {
+            craftedAt: 'Backpack',
+            ingredients: [
+              { amount: 1, key: 'Nano_Carbon' },
+              { amount: 1, key: 'Alloy' },
+            ],
+          },
         },
-      ],
+        Lithium_Carbonide: {
+          key: 'Lithium_Carbonide',
+          recipe: {
+            craftedAt: 'Backpack',
+            ingredients: [
+              { amount: 1, key: 'Lithium' },
+              { amount: 1, key: 'Carbon' },
+            ],
+          },
+        },
+        Backpack: { key: 'Backpack' },
+        Nano_Carbon: { key: 'Nano_Carbon' },
+        Alloy: { key: 'Alloy' },
+        Carbon: { key: 'Carbon' },
+        Lithium: { key: 'Lithium' },
+      },
     }
+
     const elements = articleToGraphElements(node)
     const nodes = nodesForTest(elements.nodes)
     const edges = edgesForTest(elements.edges)
+
     expect(nodes).toStrictEqual([
-      { id: 'RTG', data: { article: { key: 'RTG' }, isRoot: true } },
-
-      { id: 'RTG-Nanocarbon_Alloy', data: { article: { key: 'Nanocarbon_Alloy' }, isRoot: false } },
-      { id: 'RTG-Nanocarbon_Alloy-Nano_Carbon', data: { article: { key: 'Nano_Carbon' }, isRoot: false } },
-      { id: 'RTG-Nanocarbon_Alloy-Nano_Carbon-Compound', data: { article: { key: 'Compound' }, isRoot: false } },
-      { id: 'RTG-Nanocarbon_Alloy-Nano_Carbon-Carbon', data: { article: { key: 'Carbon' }, isRoot: false } },
-      { id: 'RTG-Nanocarbon_Alloy-Alloy', data: { article: { key: 'Alloy' }, isRoot: false } },
-
-      { id: 'RTG-Lithium_Carbonide', data: { article: { key: 'Lithium_Carbonide' }, isRoot: false } },
-      { id: 'RTG-Lithium_Carbonide-Lithium', data: { article: { key: 'Lithium' }, isRoot: false } },
-      { id: 'RTG-Lithium_Carbonide-Carbon', data: { article: { key: 'Carbon' }, isRoot: false } },
+      { id: 'RTG', data: { article: node.article, isRoot: true } },
+      { id: 'RTG-Nanocarbon_Alloy', data: { article: node._referencesMap['Nanocarbon_Alloy'], isRoot: false } },
+      { id: 'RTG-Nanocarbon_Alloy-Nano_Carbon', data: { article: node._referencesMap['Nano_Carbon'], isRoot: false } },
+      { id: 'RTG-Nanocarbon_Alloy-Alloy', data: { article: node._referencesMap['Alloy'], isRoot: false } },
+      { id: 'RTG-Nanocarbon_Alloy-Backpack', data: { article: node._referencesMap['Backpack'], isRoot: false } },
+      { id: 'RTG-Lithium_Carbonide', data: { article: node._referencesMap['Lithium_Carbonide'], isRoot: false } },
+      { id: 'RTG-Lithium_Carbonide-Lithium', data: { article: node._referencesMap['Lithium'], isRoot: false } },
+      { id: 'RTG-Lithium_Carbonide-Carbon', data: { article: node._referencesMap['Carbon'], isRoot: false } },
+      { id: 'RTG-Lithium_Carbonide-Backpack', data: { article: node._referencesMap['Backpack'], isRoot: false } },
+      { id: 'RTG-Backpack', data: { article: node._referencesMap['Backpack'], isRoot: false } },
     ])
+
     expect(edges).toStrictEqual([
       { id: '__RTG-Nanocarbon_Alloy', source: 'RTG', target: 'RTG-Nanocarbon_Alloy' },
       { id: '__RTG-Nanocarbon_Alloy-Nano_Carbon', source: 'RTG-Nanocarbon_Alloy', target: 'RTG-Nanocarbon_Alloy-Nano_Carbon' },
-      { id: '__RTG-Nanocarbon_Alloy-Nano_Carbon-Compound', source: 'RTG-Nanocarbon_Alloy-Nano_Carbon', target: 'RTG-Nanocarbon_Alloy-Nano_Carbon-Compound' },
-      { id: '__RTG-Nanocarbon_Alloy-Nano_Carbon-Carbon', source: 'RTG-Nanocarbon_Alloy-Nano_Carbon', target: 'RTG-Nanocarbon_Alloy-Nano_Carbon-Carbon' },
       { id: '__RTG-Nanocarbon_Alloy-Alloy', source: 'RTG-Nanocarbon_Alloy', target: 'RTG-Nanocarbon_Alloy-Alloy' },
-
+      { id: '__RTG-Nanocarbon_Alloy-Backpack', source: 'RTG-Nanocarbon_Alloy', target: 'RTG-Nanocarbon_Alloy-Backpack' },
       { id: '__RTG-Lithium_Carbonide', source: 'RTG', target: 'RTG-Lithium_Carbonide' },
       { id: '__RTG-Lithium_Carbonide-Lithium', source: 'RTG-Lithium_Carbonide', target: 'RTG-Lithium_Carbonide-Lithium' },
       { id: '__RTG-Lithium_Carbonide-Carbon', source: 'RTG-Lithium_Carbonide', target: 'RTG-Lithium_Carbonide-Carbon' },
+      { id: '__RTG-Lithium_Carbonide-Backpack', source: 'RTG-Lithium_Carbonide', target: 'RTG-Lithium_Carbonide-Backpack' },
+      { id: '__RTG-Backpack', source: 'RTG', target: 'RTG-Backpack' },
     ])
   })
 })

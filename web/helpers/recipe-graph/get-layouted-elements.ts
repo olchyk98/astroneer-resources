@@ -12,7 +12,7 @@ import { Edge, Node } from '@xyflow/react'
 export function getLayoutedElements <NodeData extends Record<string, unknown>> (
   nodes: Node<NodeData>[],
   edges: Edge[],
-): { nodes: Node<NodeData & { layouted?: true }>[], edges: Edge[] } {
+): { nodes: Node<NodeData>[], edges: Edge[] } {
   const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}))
   g.setGraph({})
 
@@ -44,7 +44,7 @@ export function getLayoutedElements <NodeData extends Record<string, unknown>> (
       // to "top left" (required by React Flow).
       const x = position.x - (node.measured?.width ?? 0) / 2
       const y = position.y - (node.measured?.height ?? 0) / 2
-      return { ...node, position: { x, y }, data: { ...node.data, layouted: true } }
+      return { ...node, position: { x, y }, data: { ...node.data } }
     }),
     edges,
   }

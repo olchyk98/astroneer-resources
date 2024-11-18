@@ -1,5 +1,5 @@
 import { HStack, StackProps, Text } from '@chakra-ui/react'
-import { Article } from '../../../types'
+import { Article } from '@astroneer/types'
 import { NoOriginImage } from '../no-origin-image'
 
 export function SuggestionItem (props: SuggestionItemProps) {

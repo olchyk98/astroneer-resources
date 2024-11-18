@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astroneer/scrapper": "workspace:^",
+    "@astroneer/utils": "workspace:^",
     "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^3.1.2",
     "@dagrejs/dagre": "^1.1.4",
@@ -27,11 +28,13 @@
     "use-debounce": "^10.0.4"
   },
   "devDependencies": {
+    "@astroneer/types": "workspace:^",
     "@types/node": "22.9.0",
-    "typescript": "5.6.3",
-    "jest": "^29.7.0",
     "@types/ramda": "^0.30.2",
     "@types/react": "18.3.12",
-    "@types/react-dom": "18.3.1"
+    "@types/react-dom": "18.3.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "5.6.3"
   }
 }

@@ -1,6 +1,6 @@
 import { Spinner, StackProps, Text, VStack } from '@chakra-ui/react'
 import { SuggestionItem } from './suggestion-item'
-import { Article } from '../../../types'
+import { Article } from '@astroneer/types'
 import { memo } from 'react'
 import { Center } from '../center'
 

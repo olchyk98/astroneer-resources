@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useDebounce } from 'use-debounce'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Article } from '../../../types'
+import { Article } from '@astroneer/types'
 
 export function useSearch () {
   const [ query, setQuery ] = useState('')

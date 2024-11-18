@@ -2,17 +2,17 @@ import { HStack, Icon, Link, VStack } from '@chakra-ui/react'
 import { ArticleGraph, SearchBar } from '../components'
 import { FaGithub } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
-import { ArticleKey, ArticleNode } from '../../types'
+import { ArticleKey, ArticleWithRefs } from '@astroneer/types'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 export default function Home () {
   const [ articleKey, setArticleKey ] = useState<ArticleKey>('Small_Printer')
-  const { data: articleNode, error, isPending } = useQuery<ArticleNode | null>({
+  const { data: articleNode, error, isPending } = useQuery<ArticleWithRefs | null>({
     queryKey: [ 'articleNode', articleKey ],
     async queryFn () {
       if (!articleKey) return null
-      const r = await axios.get<ArticleNode>('/api/deep', { params: { key: articleKey } })
+      const r = await axios.get<ArticleWithRefs>('/api/deep', { params: { key: articleKey } })
       return r.data
     },
   })

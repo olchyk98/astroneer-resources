@@ -1,6 +1,6 @@
 import { fetchArticleByKey } from '@astroneer/scrapper'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Article } from '../../../types'
+import { Article } from '@astroneer/types'
 
 interface ErrorResponse {
   ok: false

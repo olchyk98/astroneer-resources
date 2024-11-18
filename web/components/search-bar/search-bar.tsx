@@ -1,4 +1,4 @@
-import { Box, HStack, Spacer, VStack } from '@chakra-ui/react'
+import { Box, HStack, VStack } from '@chakra-ui/react'
 import { RawSearchInput } from './raw-search-input'
 import { Suggestions } from './suggestions'
 import { useSearch } from '../../hooks'

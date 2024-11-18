@@ -3,14 +3,21 @@ import { Handle, NodeProps, Position, useReactFlow } from '@xyflow/react'
 import { ArticleGraphNodeData, formatNumber, getWikiURL, normalizePlanet } from '../../../helpers'
 import { Divider } from '../../divider'
 import { RandomFlare } from '../../flare'
-import { ArticleKey } from '../../../../types'
+import { Article, ArticleKey, ReferencesMap } from '@astroneer/types'
 import { NoOriginImage } from '../../no-origin-image'
 import { ContentColumn } from './content-column'
 import { filter, forEach, pluck, startsWith } from 'ramda'
 
+const getRef_ = <T extends Pick<Article, 'key' | 'recipe'> = Article>(
+  key: ArticleKey | null | undefined,
+  _referencesMap: ReferencesMap<T>,
+): T | null => (
+  key == null ? null : _referencesMap[key]
+)
+
 export function NodeRenderer (props: NodeRendererProps) {
   const api = useReactFlow()
-  const { article, isRoot } = props.data
+  const { article, isRoot, _referencesMap } = props.data
 
   function expandChildNode (key: ArticleKey) {
     const childId = `${props.id}-${key}`
@@ -27,6 +34,8 @@ export function NodeRenderer (props: NodeRendererProps) {
       }, childIds)
     }
   }
+
+  const getRef = (key: ArticleKey | null | undefined) => getRef_(key, _referencesMap)
 
   // XXX: Some articles don't have any content (like QT-RTG),
   // because they are obtained through planet exploring.
@@ -89,31 +98,35 @@ export function NodeRenderer (props: NodeRendererProps) {
               >
                 <ContentColumn name="Crafted At" visible={ article.recipe?.craftedAt != null }>
                   <HStack gap="2">
-                    <NoOriginImage alt={ article.recipe?.craftedAt.name } src={ article.recipe?.craftedAt.iconURL } w="6" />
+                    <NoOriginImage
+                      alt={ getRef(article.recipe?.craftedAt)?.name }
+                      src={ getRef(article.recipe?.craftedAt)?.iconURL }
+                      w="6"
+                    />
                     <Link
                       fontWeight="normal"
                       variant="underline"
                       className="nopan"
                       textWrap="nowrap"
-                      onClick={ () => expandChildNode(article.recipe!.craftedAt.key) }
+                      onClick={ () => expandChildNode(getRef(article.recipe!.craftedAt)?.key ?? '') }
                     >
-                      { article.recipe?.craftedAt.name }
+                      { getRef(article.recipe?.craftedAt)?.name ?? 'Unknown' }
                     </Link>
                   </HStack>
                 </ContentColumn>
                 <ContentColumn name="Input" visible={ !!article.recipe?.ingredients?.length }>
                   {
                     (article.recipe?.ingredients ?? []).map((ingredient) => (
-                      <HStack gap="2" key={ ingredient.key.key }>
-                        <NoOriginImage alt={ ingredient.key.name } src={ ingredient.key.iconURL } w="6" />
+                      <HStack gap="2" key={ getRef(ingredient.key)?.key }>
+                        <NoOriginImage alt={ getRef(ingredient.key)?.name } src={ getRef(ingredient.key)?.iconURL } w="6" />
                         <Link
                           variant="underline"
                           className="nopan"
                           fontWeight="normal"
                           textWrap="nowrap"
-                          onClick={ () => expandChildNode(ingredient.key.key) }
+                          onClick={ () => expandChildNode(getRef(ingredient.key)?.key ?? '') }
                         >
-                          { ingredient.key.name }{ ingredient.amount > 1 ? ` (${ingredient.amount}x)` : '' }
+                          { getRef(ingredient.key)?.name ?? 'Unknown' }{ ingredient.amount > 1 ? ` (${ingredient.amount}x)` : '' }
                         </Link>
                       </HStack>
                     ))

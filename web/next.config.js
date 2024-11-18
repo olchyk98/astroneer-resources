@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  transpilePackages: ['@astroneer/scrapper'],
+  transpilePackages: ['@astroneer/scrapper', '@astroneer/utils'],
   output: "standalone"
 }
 
