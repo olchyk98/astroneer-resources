@@ -24,6 +24,7 @@ COPY package.json ./
 COPY pnpm-lock.yaml ./
 COPY types ./types
 COPY scrapper ./scrapper
+COPY utils ./utils
 COPY web ./web
 
 # Install dependencies with the new node-linker setting
