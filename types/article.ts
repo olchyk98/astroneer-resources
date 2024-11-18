@@ -28,25 +28,11 @@ export interface ArticleRecipeIngradient {
   amount: number
 }
 
-export interface DenormalizedArticleRecipeIngradient extends Omit<ArticleRecipeIngradient, 'key'> {
-  key: Article
-}
-
-export interface DenormalizedArticleRecipe extends Omit<ArticleRecipe, 'craftedAt' | 'ingredients'> {
-  craftedAt: Article
-  ingredients: DenormalizedArticleRecipeIngradient[]
-}
-
-/**
- * Extends "Article" interface, but has denormalzied
- * key references - article resolved properties
- * like "recipe.craftedAt" and "recipe.ingradient.key"
- * */
-export interface DenormalizedArticle extends Omit<Article, 'recipe'> {
-  recipe?: DenormalizedArticleRecipe
-}
-
-export interface ArticleNode<T extends Pick<DenormalizedArticle, 'key'> = DenormalizedArticle> {
+export interface ArticleWithRefs<T extends Pick<Article, 'key' | 'recipe'> = Article> {
   article: T
-  children?: ArticleNode<T>[]
+  _referencesMap: ReferencesMap<T>
 }
+
+export type ReferencesMap<T extends Pick<Article, 'key' | 'recipe'> = Article> = (
+  Record<ArticleKey, T>
+)
