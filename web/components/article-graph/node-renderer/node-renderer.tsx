@@ -6,6 +6,7 @@ import { RandomFlare } from '../../flare'
 import { ArticleKey } from '../../../../types'
 import { NoOriginImage } from '../../no-origin-image'
 import { ContentColumn } from './content-column'
+import { filter, forEach, pluck, startsWith } from 'ramda'
 
 export function NodeRenderer (props: NodeRendererProps) {
   const api = useReactFlow()
@@ -14,8 +15,17 @@ export function NodeRenderer (props: NodeRendererProps) {
   function expandChildNode (key: ArticleKey) {
     const childId = `${props.id}-${key}`
     const childNode = api.getNode(childId)
-    if (childNode == null || !childNode.hidden) return
-    api.updateNode(childId, { hidden: false })
+    if (childNode == null) return
+    if (childNode.hidden) {
+      api.updateNode(childId, { hidden: false })
+    } else {
+      // XXX: Find and hide all the children nodes
+      const allNodeIds = pluck('id', api.getNodes())
+      const childIds = filter(startsWith(childId), allNodeIds)
+      forEach((childId) => {
+        api.updateNode(childId, { hidden: true })
+      }, childIds)
+    }
   }
 
   // XXX: Some articles don't have any content (like QT-RTG),
