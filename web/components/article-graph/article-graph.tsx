@@ -82,11 +82,11 @@ export function ArticleGraph (props: ArticleGraphProps) {
         nodeTypes={ nodeTypes }
         fitView={ true }
         nodesDraggable={ false }
-        panOnScroll={ false }
+        panOnScroll={ true }
         panOnDrag={ true }
         preventScrolling={ true }
-        zoomOnScroll={ true }
-        zoomOnDoubleClick={ false }
+        zoomOnScroll={ false }
+        zoomOnDoubleClick={ true }
         zoomOnPinch={ true }
         draggable={ false }
         style={ { background: 'transparent' } }
