@@ -7,5 +7,6 @@ describe('fetchArticleDeep', () => {
     const url = urlComposer('RTG')
     const article = await fetchArticleDeep(url, { strategy: 'cache' })
     expect(article).toStrictEqual($RTGDeepTree)
+    return
   })
 })

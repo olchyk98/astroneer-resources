@@ -16,7 +16,15 @@ export const predefinedArticles: Article[] = [
     imageURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/f/f0/Nugget_Astronium.png/revision/latest/scale-to-width-down/250?cb=20191016232834',
     key: 'Astronium',
     name: 'Astronium',
-    planets: true,
+    planets: [
+      { name: 'Sylva', locations: [ 'Core' ] },
+      { name: 'Desolo', locations: [ 'Core' ] },
+      { name: 'Calidor', locations: [ 'Core' ] },
+      { name: 'Vesania', locations: [ 'Core' ] },
+      { name: 'Novus', locations: [ 'Core' ] },
+      { name: 'Glacio', locations: [ 'Core' ] },
+      { name: 'Atrox', locations: [ 'Core' ] },
+    ],
     tier: 'Small',
     type: 'Natural',
   },
@@ -53,8 +61,8 @@ export const predefinedArticles: Article[] = [
     key: 'Hematite',
     name: 'Hematite',
     planets: [
-      'Novus',
-      'Glacio',
+      { name: 'Novus', locations: [ 'Caves' ] },
+      { name: 'Glacio', locations: [ 'Ice Dunes', 'Caves' ] },
     ],
     tier: 'Small',
     type: 'Natural',
@@ -64,7 +72,15 @@ export const predefinedArticles: Article[] = [
     imageURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/0/08/Nugget_Laterite.png/revision/latest/scale-to-width-down/250?cb=20191016232851',
     key: 'Laterite',
     name: 'Laterite',
-    planets: true,
+    planets: [
+      { name: 'Sylva', locations: [ 'Caves' ] },
+      { name: 'Desolo', locations: [ 'Caves' ] },
+      { name: 'Calidor', locations: [ 'Caves' ] },
+      { name: 'Vesania', locations: [ 'Caves' ] },
+      { name: 'Novus', locations: [ 'Caves' ] },
+      { name: 'Glacio', locations: [ 'Caves' ] },
+      { name: 'Atrox', locations: [ 'Caves' ] },
+    ],
     tier: 'Small',
     type: 'Natural',
   },
@@ -74,8 +90,8 @@ export const predefinedArticles: Article[] = [
     key: 'Lithium',
     name: 'Lithium',
     planets: [
-      'Vesania',
-      'Novus',
+      { name: 'Vesania', locations: [ 'Caves' ] },
+      { name: 'Novus', locations: [ 'Mountainous Biomes', 'Caves' ] },
     ],
     tier: 'Small',
     type: 'Natural',
@@ -86,8 +102,8 @@ export const predefinedArticles: Article[] = [
     key: 'Malachite',
     name: 'Malachite',
     planets: [
-      'Sylva',
-      'Calidor',
+      { name: 'Sylva', locations: [ 'Gray Mountains', 'Caves' ] },
+      { name: 'Calidor', locations: [ 'Caves' ] },
     ],
     tier: 'Small',
     type: 'Natural',
@@ -97,7 +113,15 @@ export const predefinedArticles: Article[] = [
     imageURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856',
     key: 'Organic',
     name: 'Organic',
-    planets: true,
+    planets: [
+      { name: 'Sylva', locations: [ 'Surface' ] },
+      { name: 'Desolo', locations: [ 'Surface' ] },
+      { name: 'Calidor', locations: [ 'Surface' ] },
+      { name: 'Vesania', locations: [ 'Surface' ] },
+      { name: 'Novus', locations: [ 'Surface' ] },
+      { name: 'Glacio', locations: [ 'Surface' ] },
+      { name: 'Atrox', locations: [ 'Surface' ] },
+    ],
     tier: 'Small',
     type: 'Natural',
   },
@@ -134,8 +158,8 @@ export const predefinedArticles: Article[] = [
     key: 'Sphalerite',
     name: 'Sphalerite',
     planets: [
-      'Sylva',
-      'Desolo',
+      { name: 'Sylva', locations: [ 'Caves' ] },
+      { name: 'Desolo', locations: [ 'Orange Capped Mountains', 'Mantle Layers' ] },
     ],
     tier: 'Small',
     type: 'Natural',
@@ -146,8 +170,8 @@ export const predefinedArticles: Article[] = [
     key: 'Titanite',
     name: 'Titanite',
     planets: [
-      'Vesania',
-      'Glacio',
+      { name: 'Vesania', locations: [ 'Mountain Peaks', 'Caves' ] },
+      { name: 'Glacio', locations: [ 'Caves' ] },
     ],
     tier: 'Small',
     type: 'Natural',
@@ -158,8 +182,8 @@ export const predefinedArticles: Article[] = [
     key: 'Wolframite',
     name: 'Wolframite',
     planets: [
-      'Desolo',
-      'Calidor',
+      { name: 'Desolo', locations: [ 'Caves' ] },
+      { name: 'Calidor', locations: [ 'Mountainous Biome', 'Caves' ] },
     ],
     tier: 'Small',
     type: 'Natural',
@@ -174,10 +198,7 @@ export const predefinedArticles: Article[] = [
       'Vesania',
       'Glacio',
     ],
-    recipe: {
-      craftedAt: 'Atmospheric_Condenser',
-      ingredients: [],
-    },
+    recipe: { craftedAt: 'Atmospheric_Condenser', ingredients: [] },
     type: 'Atmospheric',
   },
   {
@@ -189,10 +210,7 @@ export const predefinedArticles: Article[] = [
     planets: [
       'Atrox',
     ],
-    recipe: {
-      craftedAt: 'Atmospheric_Condenser',
-      ingredients: [],
-    },
+    recipe: { craftedAt: 'Atmospheric_Condenser', ingredients: [] },
     type: 'Atmospheric',
   },
   {
@@ -207,10 +225,7 @@ export const predefinedArticles: Article[] = [
       'Vesania',
       'Novus',
     ],
-    recipe: {
-      craftedAt: 'Atmospheric_Condenser',
-      ingredients: [],
-    },
+    recipe: { craftedAt: 'Atmospheric_Condenser', ingredients: [] },
     type: 'Atmospheric',
   },
   {
@@ -223,10 +238,7 @@ export const predefinedArticles: Article[] = [
       'Novus',
       'Atrox',
     ],
-    recipe: {
-      craftedAt: 'Atmospheric_Condenser',
-      ingredients: [],
-    },
+    recipe: { craftedAt: 'Atmospheric_Condenser', ingredients: [] },
     type: 'Atmospheric',
   },
   {
@@ -240,10 +252,7 @@ export const predefinedArticles: Article[] = [
       'Vesania',
       'Atrox',
     ],
-    recipe: {
-      craftedAt: 'Atmospheric_Condenser',
-      ingredients: [],
-    },
+    recipe: { craftedAt: 'Atmospheric_Condenser', ingredients: [] },
     type: 'Atmospheric',
   },
   {
@@ -256,10 +265,7 @@ export const predefinedArticles: Article[] = [
       'Calidor',
       'Atrox',
     ],
-    recipe: {
-      craftedAt: 'Atmospheric_Condenser',
-      ingredients: [],
-    },
+    recipe: { craftedAt: 'Atmospheric_Condenser', ingredients: [] },
     type: 'Atmospheric',
   },
   {

@@ -62,8 +62,19 @@
             "key": "Lithium",
             "name": "Lithium",
             "planets": [
-              "Vesania",
-              "Novus"
+              {
+                "name": "Vesania",
+                "locations": [
+                  "Caves"
+                ]
+              },
+              {
+                "name": "Novus",
+                "locations": [
+                  "Mountainous Biomes",
+                  "Caves"
+                ]
+              }
             ],
             "tier": "Small",
             "type": "Natural"
@@ -325,7 +336,50 @@
                         "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856",
                         "key": "Organic",
                         "name": "Organic",
-                        "planets": true,
+                        "planets": [
+                          {
+                            "name": "Sylva",
+                            "locations": [
+                              "Surface"
+                            ]
+                          },
+                          {
+                            "name": "Desolo",
+                            "locations": [
+                              "Surface"
+                            ]
+                          },
+                          {
+                            "name": "Calidor",
+                            "locations": [
+                              "Surface"
+                            ]
+                          },
+                          {
+                            "name": "Vesania",
+                            "locations": [
+                              "Surface"
+                            ]
+                          },
+                          {
+                            "name": "Novus",
+                            "locations": [
+                              "Surface"
+                            ]
+                          },
+                          {
+                            "name": "Glacio",
+                            "locations": [
+                              "Surface"
+                            ]
+                          },
+                          {
+                            "name": "Atrox",
+                            "locations": [
+                              "Surface"
+                            ]
+                          }
+                        ],
                         "tier": "Small",
                         "type": "Natural"
                       }
@@ -340,7 +394,50 @@
                     "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856",
                     "key": "Organic",
                     "name": "Organic",
-                    "planets": true,
+                    "planets": [
+                      {
+                        "name": "Sylva",
+                        "locations": [
+                          "Surface"
+                        ]
+                      },
+                      {
+                        "name": "Desolo",
+                        "locations": [
+                          "Surface"
+                        ]
+                      },
+                      {
+                        "name": "Calidor",
+                        "locations": [
+                          "Surface"
+                        ]
+                      },
+                      {
+                        "name": "Vesania",
+                        "locations": [
+                          "Surface"
+                        ]
+                      },
+                      {
+                        "name": "Novus",
+                        "locations": [
+                          "Surface"
+                        ]
+                      },
+                      {
+                        "name": "Glacio",
+                        "locations": [
+                          "Surface"
+                        ]
+                      },
+                      {
+                        "name": "Atrox",
+                        "locations": [
+                          "Surface"
+                        ]
+                      }
+                    ],
                     "tier": "Small",
                     "type": "Natural"
                   }
@@ -799,7 +896,50 @@
                                     "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856",
                                     "key": "Organic",
                                     "name": "Organic",
-                                    "planets": true,
+                                    "planets": [
+                                      {
+                                        "name": "Sylva",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Desolo",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Calidor",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Vesania",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Novus",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Glacio",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Atrox",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      }
+                                    ],
                                     "tier": "Small",
                                     "type": "Natural"
                                   }
@@ -814,7 +954,50 @@
                                 "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856",
                                 "key": "Organic",
                                 "name": "Organic",
-                                "planets": true,
+                                "planets": [
+                                  {
+                                    "name": "Sylva",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Desolo",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Calidor",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Vesania",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Novus",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Glacio",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Atrox",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  }
+                                ],
                                 "tier": "Small",
                                 "type": "Natural"
                               }
@@ -1396,8 +1579,19 @@
                                         "key": "Wolframite",
                                         "name": "Wolframite",
                                         "planets": [
-                                          "Desolo",
-                                          "Calidor"
+                                          {
+                                            "name": "Desolo",
+                                            "locations": [
+                                              "Caves"
+                                            ]
+                                          },
+                                          {
+                                            "name": "Calidor",
+                                            "locations": [
+                                              "Mountainous Biome",
+                                              "Caves"
+                                            ]
+                                          }
                                         ],
                                         "tier": "Small",
                                         "type": "Natural"
@@ -1414,8 +1608,19 @@
                                     "key": "Wolframite",
                                     "name": "Wolframite",
                                     "planets": [
-                                      "Desolo",
-                                      "Calidor"
+                                      {
+                                        "name": "Desolo",
+                                        "locations": [
+                                          "Caves"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Calidor",
+                                        "locations": [
+                                          "Mountainous Biome",
+                                          "Caves"
+                                        ]
+                                      }
                                     ],
                                     "tier": "Small",
                                     "type": "Natural"
@@ -2273,8 +2478,19 @@
                                 "key": "Hematite",
                                 "name": "Hematite",
                                 "planets": [
-                                  "Novus",
-                                  "Glacio"
+                                  {
+                                    "name": "Novus",
+                                    "locations": [
+                                      "Caves"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Glacio",
+                                    "locations": [
+                                      "Ice Dunes",
+                                      "Caves"
+                                    ]
+                                  }
                                 ],
                                 "tier": "Small",
                                 "type": "Natural"
@@ -2291,8 +2507,19 @@
                             "key": "Hematite",
                             "name": "Hematite",
                             "planets": [
-                              "Novus",
-                              "Glacio"
+                              {
+                                "name": "Novus",
+                                "locations": [
+                                  "Caves"
+                                ]
+                              },
+                              {
+                                "name": "Glacio",
+                                "locations": [
+                                  "Ice Dunes",
+                                  "Caves"
+                                ]
+                              }
                             ],
                             "tier": "Small",
                             "type": "Natural"
@@ -2646,8 +2873,19 @@
                         "key": "Hematite",
                         "name": "Hematite",
                         "planets": [
-                          "Novus",
-                          "Glacio"
+                          {
+                            "name": "Novus",
+                            "locations": [
+                              "Caves"
+                            ]
+                          },
+                          {
+                            "name": "Glacio",
+                            "locations": [
+                              "Ice Dunes",
+                              "Caves"
+                            ]
+                          }
                         ],
                         "tier": "Small",
                         "type": "Natural"
@@ -2664,8 +2902,19 @@
                     "key": "Hematite",
                     "name": "Hematite",
                     "planets": [
-                      "Novus",
-                      "Glacio"
+                      {
+                        "name": "Novus",
+                        "locations": [
+                          "Caves"
+                        ]
+                      },
+                      {
+                        "name": "Glacio",
+                        "locations": [
+                          "Ice Dunes",
+                          "Caves"
+                        ]
+                      }
                     ],
                     "tier": "Small",
                     "type": "Natural"
@@ -3248,8 +3497,19 @@
                             "key": "Wolframite",
                             "name": "Wolframite",
                             "planets": [
-                              "Desolo",
-                              "Calidor"
+                              {
+                                "name": "Desolo",
+                                "locations": [
+                                  "Caves"
+                                ]
+                              },
+                              {
+                                "name": "Calidor",
+                                "locations": [
+                                  "Mountainous Biome",
+                                  "Caves"
+                                ]
+                              }
                             ],
                             "tier": "Small",
                             "type": "Natural"
@@ -3266,8 +3526,19 @@
                         "key": "Wolframite",
                         "name": "Wolframite",
                         "planets": [
-                          "Desolo",
-                          "Calidor"
+                          {
+                            "name": "Desolo",
+                            "locations": [
+                              "Caves"
+                            ]
+                          },
+                          {
+                            "name": "Calidor",
+                            "locations": [
+                              "Mountainous Biome",
+                              "Caves"
+                            ]
+                          }
                         ],
                         "tier": "Small",
                         "type": "Natural"
@@ -4093,7 +4364,50 @@
                                 "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856",
                                 "key": "Organic",
                                 "name": "Organic",
-                                "planets": true,
+                                "planets": [
+                                  {
+                                    "name": "Sylva",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Desolo",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Calidor",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Vesania",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Novus",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Glacio",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Atrox",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  }
+                                ],
                                 "tier": "Small",
                                 "type": "Natural"
                               }
@@ -4108,7 +4422,50 @@
                             "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856",
                             "key": "Organic",
                             "name": "Organic",
-                            "planets": true,
+                            "planets": [
+                              {
+                                "name": "Sylva",
+                                "locations": [
+                                  "Surface"
+                                ]
+                              },
+                              {
+                                "name": "Desolo",
+                                "locations": [
+                                  "Surface"
+                                ]
+                              },
+                              {
+                                "name": "Calidor",
+                                "locations": [
+                                  "Surface"
+                                ]
+                              },
+                              {
+                                "name": "Vesania",
+                                "locations": [
+                                  "Surface"
+                                ]
+                              },
+                              {
+                                "name": "Novus",
+                                "locations": [
+                                  "Surface"
+                                ]
+                              },
+                              {
+                                "name": "Glacio",
+                                "locations": [
+                                  "Surface"
+                                ]
+                              },
+                              {
+                                "name": "Atrox",
+                                "locations": [
+                                  "Surface"
+                                ]
+                              }
+                            ],
                             "tier": "Small",
                             "type": "Natural"
                           }
@@ -4690,8 +5047,19 @@
                                     "key": "Wolframite",
                                     "name": "Wolframite",
                                     "planets": [
-                                      "Desolo",
-                                      "Calidor"
+                                      {
+                                        "name": "Desolo",
+                                        "locations": [
+                                          "Caves"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Calidor",
+                                        "locations": [
+                                          "Mountainous Biome",
+                                          "Caves"
+                                        ]
+                                      }
                                     ],
                                     "tier": "Small",
                                     "type": "Natural"
@@ -4708,8 +5076,19 @@
                                 "key": "Wolframite",
                                 "name": "Wolframite",
                                 "planets": [
-                                  "Desolo",
-                                  "Calidor"
+                                  {
+                                    "name": "Desolo",
+                                    "locations": [
+                                      "Caves"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Calidor",
+                                    "locations": [
+                                      "Mountainous Biome",
+                                      "Caves"
+                                    ]
+                                  }
                                 ],
                                 "tier": "Small",
                                 "type": "Natural"
@@ -5567,8 +5946,19 @@
                             "key": "Hematite",
                             "name": "Hematite",
                             "planets": [
-                              "Novus",
-                              "Glacio"
+                              {
+                                "name": "Novus",
+                                "locations": [
+                                  "Caves"
+                                ]
+                              },
+                              {
+                                "name": "Glacio",
+                                "locations": [
+                                  "Ice Dunes",
+                                  "Caves"
+                                ]
+                              }
                             ],
                             "tier": "Small",
                             "type": "Natural"
@@ -5585,8 +5975,19 @@
                         "key": "Hematite",
                         "name": "Hematite",
                         "planets": [
-                          "Novus",
-                          "Glacio"
+                          {
+                            "name": "Novus",
+                            "locations": [
+                              "Caves"
+                            ]
+                          },
+                          {
+                            "name": "Glacio",
+                            "locations": [
+                              "Ice Dunes",
+                              "Caves"
+                            ]
+                          }
                         ],
                         "tier": "Small",
                         "type": "Natural"
@@ -6044,8 +6445,19 @@
                         "key": "Titanite",
                         "name": "Titanite",
                         "planets": [
-                          "Vesania",
-                          "Glacio"
+                          {
+                            "name": "Vesania",
+                            "locations": [
+                              "Mountain Peaks",
+                              "Caves"
+                            ]
+                          },
+                          {
+                            "name": "Glacio",
+                            "locations": [
+                              "Caves"
+                            ]
+                          }
                         ],
                         "tier": "Small",
                         "type": "Natural"
@@ -6062,8 +6474,19 @@
                     "key": "Titanite",
                     "name": "Titanite",
                     "planets": [
-                      "Vesania",
-                      "Glacio"
+                      {
+                        "name": "Vesania",
+                        "locations": [
+                          "Mountain Peaks",
+                          "Caves"
+                        ]
+                      },
+                      {
+                        "name": "Glacio",
+                        "locations": [
+                          "Caves"
+                        ]
+                      }
                     ],
                     "tier": "Small",
                     "type": "Natural"
@@ -6524,7 +6947,50 @@
                                     "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856",
                                     "key": "Organic",
                                     "name": "Organic",
-                                    "planets": true,
+                                    "planets": [
+                                      {
+                                        "name": "Sylva",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Desolo",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Calidor",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Vesania",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Novus",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Glacio",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Atrox",
+                                        "locations": [
+                                          "Surface"
+                                        ]
+                                      }
+                                    ],
                                     "tier": "Small",
                                     "type": "Natural"
                                   }
@@ -6539,7 +7005,50 @@
                                 "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856",
                                 "key": "Organic",
                                 "name": "Organic",
-                                "planets": true,
+                                "planets": [
+                                  {
+                                    "name": "Sylva",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Desolo",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Calidor",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Vesania",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Novus",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Glacio",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Atrox",
+                                    "locations": [
+                                      "Surface"
+                                    ]
+                                  }
+                                ],
                                 "tier": "Small",
                                 "type": "Natural"
                               }
@@ -7121,8 +7630,19 @@
                                         "key": "Wolframite",
                                         "name": "Wolframite",
                                         "planets": [
-                                          "Desolo",
-                                          "Calidor"
+                                          {
+                                            "name": "Desolo",
+                                            "locations": [
+                                              "Caves"
+                                            ]
+                                          },
+                                          {
+                                            "name": "Calidor",
+                                            "locations": [
+                                              "Mountainous Biome",
+                                              "Caves"
+                                            ]
+                                          }
                                         ],
                                         "tier": "Small",
                                         "type": "Natural"
@@ -7139,8 +7659,19 @@
                                     "key": "Wolframite",
                                     "name": "Wolframite",
                                     "planets": [
-                                      "Desolo",
-                                      "Calidor"
+                                      {
+                                        "name": "Desolo",
+                                        "locations": [
+                                          "Caves"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Calidor",
+                                        "locations": [
+                                          "Mountainous Biome",
+                                          "Caves"
+                                        ]
+                                      }
                                     ],
                                     "tier": "Small",
                                     "type": "Natural"
@@ -7998,8 +8529,19 @@
                                 "key": "Hematite",
                                 "name": "Hematite",
                                 "planets": [
-                                  "Novus",
-                                  "Glacio"
+                                  {
+                                    "name": "Novus",
+                                    "locations": [
+                                      "Caves"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Glacio",
+                                    "locations": [
+                                      "Ice Dunes",
+                                      "Caves"
+                                    ]
+                                  }
                                 ],
                                 "tier": "Small",
                                 "type": "Natural"
@@ -8016,8 +8558,19 @@
                             "key": "Hematite",
                             "name": "Hematite",
                             "planets": [
-                              "Novus",
-                              "Glacio"
+                              {
+                                "name": "Novus",
+                                "locations": [
+                                  "Caves"
+                                ]
+                              },
+                              {
+                                "name": "Glacio",
+                                "locations": [
+                                  "Ice Dunes",
+                                  "Caves"
+                                ]
+                              }
                             ],
                             "tier": "Small",
                             "type": "Natural"
@@ -8765,7 +9318,50 @@
                                             "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856",
                                             "key": "Organic",
                                             "name": "Organic",
-                                            "planets": true,
+                                            "planets": [
+                                              {
+                                                "name": "Sylva",
+                                                "locations": [
+                                                  "Surface"
+                                                ]
+                                              },
+                                              {
+                                                "name": "Desolo",
+                                                "locations": [
+                                                  "Surface"
+                                                ]
+                                              },
+                                              {
+                                                "name": "Calidor",
+                                                "locations": [
+                                                  "Surface"
+                                                ]
+                                              },
+                                              {
+                                                "name": "Vesania",
+                                                "locations": [
+                                                  "Surface"
+                                                ]
+                                              },
+                                              {
+                                                "name": "Novus",
+                                                "locations": [
+                                                  "Surface"
+                                                ]
+                                              },
+                                              {
+                                                "name": "Glacio",
+                                                "locations": [
+                                                  "Surface"
+                                                ]
+                                              },
+                                              {
+                                                "name": "Atrox",
+                                                "locations": [
+                                                  "Surface"
+                                                ]
+                                              }
+                                            ],
                                             "tier": "Small",
                                             "type": "Natural"
                                           }
@@ -8780,7 +9376,50 @@
                                         "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/c/ca/Nugget_Organic.png/revision/latest/scale-to-width-down/250?cb=20191016232856",
                                         "key": "Organic",
                                         "name": "Organic",
-                                        "planets": true,
+                                        "planets": [
+                                          {
+                                            "name": "Sylva",
+                                            "locations": [
+                                              "Surface"
+                                            ]
+                                          },
+                                          {
+                                            "name": "Desolo",
+                                            "locations": [
+                                              "Surface"
+                                            ]
+                                          },
+                                          {
+                                            "name": "Calidor",
+                                            "locations": [
+                                              "Surface"
+                                            ]
+                                          },
+                                          {
+                                            "name": "Vesania",
+                                            "locations": [
+                                              "Surface"
+                                            ]
+                                          },
+                                          {
+                                            "name": "Novus",
+                                            "locations": [
+                                              "Surface"
+                                            ]
+                                          },
+                                          {
+                                            "name": "Glacio",
+                                            "locations": [
+                                              "Surface"
+                                            ]
+                                          },
+                                          {
+                                            "name": "Atrox",
+                                            "locations": [
+                                              "Surface"
+                                            ]
+                                          }
+                                        ],
                                         "tier": "Small",
                                         "type": "Natural"
                                       }
@@ -9362,8 +10001,19 @@
                                                 "key": "Wolframite",
                                                 "name": "Wolframite",
                                                 "planets": [
-                                                  "Desolo",
-                                                  "Calidor"
+                                                  {
+                                                    "name": "Desolo",
+                                                    "locations": [
+                                                      "Caves"
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "Calidor",
+                                                    "locations": [
+                                                      "Mountainous Biome",
+                                                      "Caves"
+                                                    ]
+                                                  }
                                                 ],
                                                 "tier": "Small",
                                                 "type": "Natural"
@@ -9380,8 +10030,19 @@
                                             "key": "Wolframite",
                                             "name": "Wolframite",
                                             "planets": [
-                                              "Desolo",
-                                              "Calidor"
+                                              {
+                                                "name": "Desolo",
+                                                "locations": [
+                                                  "Caves"
+                                                ]
+                                              },
+                                              {
+                                                "name": "Calidor",
+                                                "locations": [
+                                                  "Mountainous Biome",
+                                                  "Caves"
+                                                ]
+                                              }
                                             ],
                                             "tier": "Small",
                                             "type": "Natural"
@@ -10239,8 +10900,19 @@
                                         "key": "Hematite",
                                         "name": "Hematite",
                                         "planets": [
-                                          "Novus",
-                                          "Glacio"
+                                          {
+                                            "name": "Novus",
+                                            "locations": [
+                                              "Caves"
+                                            ]
+                                          },
+                                          {
+                                            "name": "Glacio",
+                                            "locations": [
+                                              "Ice Dunes",
+                                              "Caves"
+                                            ]
+                                          }
                                         ],
                                         "tier": "Small",
                                         "type": "Natural"
@@ -10257,8 +10929,19 @@
                                     "key": "Hematite",
                                     "name": "Hematite",
                                     "planets": [
-                                      "Novus",
-                                      "Glacio"
+                                      {
+                                        "name": "Novus",
+                                        "locations": [
+                                          "Caves"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Glacio",
+                                        "locations": [
+                                          "Ice Dunes",
+                                          "Caves"
+                                        ]
+                                      }
                                     ],
                                     "tier": "Small",
                                     "type": "Natural"
@@ -10956,8 +11639,19 @@
                                     "key": "Wolframite",
                                     "name": "Wolframite",
                                     "planets": [
-                                      "Desolo",
-                                      "Calidor"
+                                      {
+                                        "name": "Desolo",
+                                        "locations": [
+                                          "Caves"
+                                        ]
+                                      },
+                                      {
+                                        "name": "Calidor",
+                                        "locations": [
+                                          "Mountainous Biome",
+                                          "Caves"
+                                        ]
+                                      }
                                     ],
                                     "tier": "Small",
                                     "type": "Natural"
@@ -10974,8 +11668,19 @@
                                 "key": "Wolframite",
                                 "name": "Wolframite",
                                 "planets": [
-                                  "Desolo",
-                                  "Calidor"
+                                  {
+                                    "name": "Desolo",
+                                    "locations": [
+                                      "Caves"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Calidor",
+                                    "locations": [
+                                      "Mountainous Biome",
+                                      "Caves"
+                                    ]
+                                  }
                                 ],
                                 "tier": "Small",
                                 "type": "Natural"
@@ -11925,8 +12630,19 @@
                                 "key": "Wolframite",
                                 "name": "Wolframite",
                                 "planets": [
-                                  "Desolo",
-                                  "Calidor"
+                                  {
+                                    "name": "Desolo",
+                                    "locations": [
+                                      "Caves"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Calidor",
+                                    "locations": [
+                                      "Mountainous Biome",
+                                      "Caves"
+                                    ]
+                                  }
                                 ],
                                 "tier": "Small",
                                 "type": "Natural"
@@ -11943,8 +12659,19 @@
                             "key": "Wolframite",
                             "name": "Wolframite",
                             "planets": [
-                              "Desolo",
-                              "Calidor"
+                              {
+                                "name": "Desolo",
+                                "locations": [
+                                  "Caves"
+                                ]
+                              },
+                              {
+                                "name": "Calidor",
+                                "locations": [
+                                  "Mountainous Biome",
+                                  "Caves"
+                                ]
+                              }
                             ],
                             "tier": "Small",
                             "type": "Natural"
@@ -12894,8 +13621,19 @@
                             "key": "Wolframite",
                             "name": "Wolframite",
                             "planets": [
-                              "Desolo",
-                              "Calidor"
+                              {
+                                "name": "Desolo",
+                                "locations": [
+                                  "Caves"
+                                ]
+                              },
+                              {
+                                "name": "Calidor",
+                                "locations": [
+                                  "Mountainous Biome",
+                                  "Caves"
+                                ]
+                              }
                             ],
                             "tier": "Small",
                             "type": "Natural"
@@ -12912,8 +13650,19 @@
                         "key": "Wolframite",
                         "name": "Wolframite",
                         "planets": [
-                          "Desolo",
-                          "Calidor"
+                          {
+                            "name": "Desolo",
+                            "locations": [
+                              "Caves"
+                            ]
+                          },
+                          {
+                            "name": "Calidor",
+                            "locations": [
+                              "Mountainous Biome",
+                              "Caves"
+                            ]
+                          }
                         ],
                         "tier": "Small",
                         "type": "Natural"
@@ -13863,8 +14612,19 @@
                         "key": "Wolframite",
                         "name": "Wolframite",
                         "planets": [
-                          "Desolo",
-                          "Calidor"
+                          {
+                            "name": "Desolo",
+                            "locations": [
+                              "Caves"
+                            ]
+                          },
+                          {
+                            "name": "Calidor",
+                            "locations": [
+                              "Mountainous Biome",
+                              "Caves"
+                            ]
+                          }
                         ],
                         "tier": "Small",
                         "type": "Natural"
@@ -13881,8 +14641,19 @@
                     "key": "Wolframite",
                     "name": "Wolframite",
                     "planets": [
-                      "Desolo",
-                      "Calidor"
+                      {
+                        "name": "Desolo",
+                        "locations": [
+                          "Caves"
+                        ]
+                      },
+                      {
+                        "name": "Calidor",
+                        "locations": [
+                          "Mountainous Biome",
+                          "Caves"
+                        ]
+                      }
                     ],
                     "tier": "Small",
                     "type": "Natural"
@@ -14455,8 +15226,19 @@
         "key": "Lithium",
         "name": "Lithium",
         "planets": [
-          "Vesania",
-          "Novus"
+          {
+            "name": "Vesania",
+            "locations": [
+              "Caves"
+            ]
+          },
+          {
+            "name": "Novus",
+            "locations": [
+              "Mountainous Biomes",
+              "Caves"
+            ]
+          }
         ],
         "tier": "Small",
         "type": "Natural"
