@@ -15,7 +15,7 @@ export default function App ({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={ queryClient }>
       <ChakraProvider value={ defaultSystem }>
-        <ThemeProvider attribute="class" disableTransitionOnChange>
+        <ThemeProvider attribute="class" disableTransitionOnChange forcedTheme="dark">
           <div className={ outfit.className }>
             <Component { ...pageProps } />
           </div>
