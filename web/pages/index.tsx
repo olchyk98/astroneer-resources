@@ -12,7 +12,7 @@ export default function Home () {
     queryKey: [ 'articleNode', articleKey ],
     async queryFn () {
       if (!articleKey) return null
-      const r = await axios.get<ArticleNode>(`/api/deep?key=${articleKey}`)
+      const r = await axios.get<ArticleNode>('/api/deep', { params: { key: articleKey } })
       return r.data
     },
   })
