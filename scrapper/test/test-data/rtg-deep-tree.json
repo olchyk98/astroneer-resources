@@ -8392,7 +8392,7 @@
                           "craftedAt": "Chemistry_Lab",
                           "ingredients": [
                             {
-                              "amount": 1,
+                              "amount": 2,
                               "key": "Ammonium"
                             },
                             {
@@ -8455,7 +8455,7 @@
                       },
                       "ingredients": [
                         {
-                          "amount": 1,
+                          "amount": 2,
                           "key": {
                             "iconURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/3/30/Icon_Ammonium.png/revision/latest/scale-to-width-down/30?cb=20190419174509",
                             "imageURL": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/f/f5/Nugget_Ammonium.png/revision/latest/scale-to-width-down/250?cb=20191016232832",

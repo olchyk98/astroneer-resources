@@ -1,8 +1,7 @@
 import { fetchArticle } from './src'
-import { cacheArticles } from './src/cache'
 import { urlComposer } from './src/url-composer'
 
-const articleURL = urlComposer('Backpack')
+const articleURL = urlComposer('Large_Rover')
 
 async function run () {
   console.log('Fetching')
@@ -10,6 +9,4 @@ async function run () {
   console.dir({ article }, { depth: Infinity })
 }
 
-//run()
-
-cacheArticles()
+run()

@@ -74,6 +74,6 @@ export function getKeyFromURL<T extends Nullable<string>> (url: T): T {
 
 export function parseNumber (str: string): number | null {
   const normal = minimizeStr(str)
-  const cut = normal.replace(/,/g, '')
+  const cut = normal.replace(/,|[A-Z]|[a-z]/g, '')
   return parseInt(cut, 10) || null
 }

@@ -118,4 +118,28 @@ describe('fetchArticle', () => {
       type: 'Natural',
     })
   })
+
+  it('Large Rover', async () => {
+    const url = urlComposer('Large_Rover')
+    const article = await fetchArticle(url, { strategy: 'remote' })
+    expect(article).toStrictEqual({
+      article: {
+        key: 'Large_Rover',
+        name: 'Large Rover',
+        iconURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/a/ad/Icon_Rover.png/revision/latest/scale-to-width-down/30?cb=20191116124915',
+        imageURL: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/7/76/Large_Rover.png/revision/latest/scale-to-width-down/250?cb=20200706154223',
+        tier: 'Extra Large',
+        type: 'Rover',
+        unlockCost: 5000,
+        recipe: {
+          craftedAt: 'Large_Printer',
+          ingredients: [
+            { amount: 2, key: 'EXO_Chip' },
+            { amount: 1, key: 'Aluminum_Alloy' },
+            { amount: 1, key: 'Rubber' },
+          ],
+        },
+      },
+    })
+  })
 })
