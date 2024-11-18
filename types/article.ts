@@ -4,10 +4,15 @@ export interface Article {
   iconURL: string
   type: string
   imageURL: string
-  planets?: string[] | boolean
+  planets?: ArticlePlanetOfOrigin[] | string[] | boolean
   unlockCost?: number
   tier?: string
   recipe?: ArticleRecipe
+}
+
+export interface ArticlePlanetOfOrigin {
+  name: string
+  locations: string[] | boolean
 }
 
 export type ArticleKey = string
