@@ -1,0 +1,21 @@
+{
+  "name": "@astroneer/utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@astroneer/types": "workspace:^",
+    "@types/node": "22.9.0",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@types/ramda": "^0.30.2",
+    "ramda": "^0.30.1"
+  }
+}
