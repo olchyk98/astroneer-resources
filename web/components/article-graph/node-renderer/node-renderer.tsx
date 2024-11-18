@@ -1,6 +1,6 @@
 import { Badge, Box, HStack, Link, Text, VStack } from '@chakra-ui/react'
 import { Handle, NodeProps, Position, useReactFlow } from '@xyflow/react'
-import { ArticleGraphNodeData, formatNumber, getWikiURL } from '../../../helpers'
+import { ArticleGraphNodeData, formatNumber, getWikiURL, normalizePlanet } from '../../../helpers'
 import { Divider } from '../../divider'
 import { RandomFlare } from '../../flare'
 import { ArticleKey } from '../../../../types'
@@ -31,7 +31,7 @@ export function NodeRenderer (props: NodeRendererProps) {
   // XXX: Some articles don't have any content (like QT-RTG),
   // because they are obtained through planet exploring.
   // For those cases we'll just show their image, icon and name.
-  const hasNoContent = article.recipe == null && article.planets == null
+  const hasNoBody = article.recipe == null && article.planets == null
 
   return (
     <Box>
@@ -77,7 +77,7 @@ export function NodeRenderer (props: NodeRendererProps) {
           }
         </HStack>
         {
-          !hasNoContent && (
+          !hasNoBody && (
             <>
               <Divider axis="x" my="4" />
               <HStack
@@ -87,24 +87,6 @@ export function NodeRenderer (props: NodeRendererProps) {
                 alignItems="start"
                 gap="10"
               >
-                <ContentColumn name="Planets" visible={ article.planets != null }>
-                  { article.planets === true && <Text fontWeight="normal">ALL</Text> }
-                  {
-                    Array.isArray(article.planets) &&
-                      article.planets.map((key) => (
-                        <Link
-                          variant="underline"
-                          fontWeight="normal"
-                          key={ key }
-                          cursor="alias"
-                          href={ getWikiURL(key) }
-                          target="_blank"
-                        >
-                          { key }
-                        </Link>
-                      ))
-                  }
-                </ContentColumn>
                 <ContentColumn name="Crafted At" visible={ article.recipe?.craftedAt != null }>
                   <HStack gap="2">
                     <NoOriginImage alt={ article.recipe?.craftedAt.name } src={ article.recipe?.craftedAt.iconURL } w="6" />
@@ -135,6 +117,43 @@ export function NodeRenderer (props: NodeRendererProps) {
                         </Link>
                       </HStack>
                     ))
+                  }
+                </ContentColumn>
+                <ContentColumn name="Planets" visible={ article.planets != null }>
+                  { article.planets === true && <Text fontWeight="normal">All / Everywhere</Text> }
+                  {
+                    Array.isArray(article.planets) &&
+                      <VStack position="relative">
+                        {
+                          article.planets.map((planet_) => {
+                            const planet = normalizePlanet(planet_)
+                            return (
+                              <HStack gap="6" key={ planet.name } w="full" justifyContent="space-between">
+                                <Link
+                                  variant="underline"
+                                  fontWeight="normal"
+                                  key={ planet.name }
+                                  cursor="alias"
+                                  href={ getWikiURL(planet.name) }
+                                  target="_blank"
+                                >
+                                  { planet.name }
+                                </Link>
+                                {
+                                  Array.isArray(planet.locations) &&
+                                    <HStack gap="2">
+                                      {
+                                        planet.locations.map((location) => (
+                                          <Badge key={ location } colorPalette="yellow">{ location }</Badge>
+                                        ))
+                                      }
+                                    </HStack>
+                                }
+                              </HStack>
+                            )
+                          })
+                        }
+                      </VStack>
                   }
                 </ContentColumn>
               </HStack>
