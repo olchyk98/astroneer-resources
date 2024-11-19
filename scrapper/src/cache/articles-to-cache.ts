@@ -142,6 +142,7 @@ export const articlesToCache: ArticleKey[] = [
   'Resin',
   'Rover_Seat',
   'Rubber',
+  'Scrap',
   'Shelter',
   'Silicone',
   'Small_Battery',

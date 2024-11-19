@@ -65,7 +65,7 @@ export function e<T> (v: T): NonNullable<T> | never {
 }
 
 export function getKeyFromURL<T extends Nullable<string>> (url: T): T {
-  if (url == null) return url
+  if (url == null || !url.includes('/')) return url
   // XXX: To handle more complex keys, like "Medium_Fluid_%26_Soil_Canister",
   // we have to decode it. Decoding on raw string like "Medium_Fluid_&_Soil_Canister"
   // will not do anything.
