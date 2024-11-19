@@ -21,7 +21,7 @@ describe('articleToGraphElements', () => {
     const nodes = nodesForTest(elements.nodes)
     const edges = edgesForTest(elements.edges)
     expect(nodes).toStrictEqual([
-      { id: 'RTG', data: { article, isRoot: true } },
+      { id: 'RTG', data: { article, isRoot: true, _referencesMap: {} } },
     ])
     expect(edges).toStrictEqual([])
   })
@@ -78,16 +78,16 @@ describe('articleToGraphElements', () => {
     const edges = edgesForTest(elements.edges)
 
     expect(nodes).toStrictEqual([
-      { id: 'RTG', data: { article: node.article, isRoot: true } },
-      { id: 'RTG-Nanocarbon_Alloy', data: { article: node._referencesMap['Nanocarbon_Alloy'], isRoot: false } },
-      { id: 'RTG-Nanocarbon_Alloy-Nano_Carbon', data: { article: node._referencesMap['Nano_Carbon'], isRoot: false } },
-      { id: 'RTG-Nanocarbon_Alloy-Alloy', data: { article: node._referencesMap['Alloy'], isRoot: false } },
-      { id: 'RTG-Nanocarbon_Alloy-Backpack', data: { article: node._referencesMap['Backpack'], isRoot: false } },
-      { id: 'RTG-Lithium_Carbonide', data: { article: node._referencesMap['Lithium_Carbonide'], isRoot: false } },
-      { id: 'RTG-Lithium_Carbonide-Lithium', data: { article: node._referencesMap['Lithium'], isRoot: false } },
-      { id: 'RTG-Lithium_Carbonide-Carbon', data: { article: node._referencesMap['Carbon'], isRoot: false } },
-      { id: 'RTG-Lithium_Carbonide-Backpack', data: { article: node._referencesMap['Backpack'], isRoot: false } },
-      { id: 'RTG-Backpack', data: { article: node._referencesMap['Backpack'], isRoot: false } },
+      { id: 'RTG', data: { article: node.article, isRoot: true, _referencesMap: node._referencesMap } },
+      { id: 'RTG-Nanocarbon_Alloy', data: { article: node._referencesMap['Nanocarbon_Alloy'], isRoot: false, _referencesMap: node._referencesMap } },
+      { id: 'RTG-Nanocarbon_Alloy-Nano_Carbon', data: { article: node._referencesMap['Nano_Carbon'], isRoot: false, _referencesMap: node._referencesMap } },
+      { id: 'RTG-Nanocarbon_Alloy-Alloy', data: { article: node._referencesMap['Alloy'], isRoot: false, _referencesMap: node._referencesMap } },
+      { id: 'RTG-Nanocarbon_Alloy-Backpack', data: { article: node._referencesMap['Backpack'], isRoot: false, _referencesMap: node._referencesMap } },
+      { id: 'RTG-Lithium_Carbonide', data: { article: node._referencesMap['Lithium_Carbonide'], isRoot: false, _referencesMap: node._referencesMap } },
+      { id: 'RTG-Lithium_Carbonide-Lithium', data: { article: node._referencesMap['Lithium'], isRoot: false, _referencesMap: node._referencesMap } },
+      { id: 'RTG-Lithium_Carbonide-Carbon', data: { article: node._referencesMap['Carbon'], isRoot: false, _referencesMap: node._referencesMap } },
+      { id: 'RTG-Lithium_Carbonide-Backpack', data: { article: node._referencesMap['Backpack'], isRoot: false, _referencesMap: node._referencesMap } },
+      { id: 'RTG-Backpack', data: { article: node._referencesMap['Backpack'], isRoot: false, _referencesMap: node._referencesMap } },
     ])
 
     expect(edges).toStrictEqual([

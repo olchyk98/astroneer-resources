@@ -27,6 +27,11 @@ const articleURL = urlComposer('Wolframite')
 //console.dir({ article }, { depth: Infinity })
 //}
 
+// TODO: Refactor articleToGraphElements and write tests
+// for bottom-to-top approach.
+// TODO: Optimize getParentsForCachedArticle by separating
+// cache: "articlesMap: {}" / childToParentsMap: {}"
+
 async function run () {
   console.log('Fetching')
   const article = await fetchParentsForArticle(articleURL)

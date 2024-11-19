@@ -13,11 +13,12 @@ const edgeBase = {
   animated: true,
 } satisfies Partial<Edge>
 
-export function articleToGraphElements<T extends Pick<Article, 'key'>> (
+export function articleToGraphElements<T extends Pick<Article, 'key' | 'recipe' | '_parentKeys'>> (
   node: ArticleWithRefs<T>,
   parentId: ArticleKey | null = null,
   acc: ArticleGraphElements<T> = { nodes: [], edges: [] },
 ): ArticleGraphElements<T> {
+  const parentsAsChildren = Array.isArray(node.article._parentKeys)
   const { article, _referencesMap } = node
   const isRoot = parentId == null
   const id = !isRoot ? `${parentId}-${article.key}` : article.key
@@ -25,7 +26,17 @@ export function articleToGraphElements<T extends Pick<Article, 'key'>> (
   if (!isRoot) {
     acc.edges.push({ ...edgeBase, id: `__${id}`, source: parentId, target: id })
   }
-  const childKeys = getChildRefKeysForArticle(article)
+  // TODO: This is exterimental, refactor
+  // this function. It is very confusing.
+  // TODO: This is exterimental, refactor
+  // this function. It is very confusing.
+  // TODO: This is exterimental, refactor
+  // this function. It is very confusing.
+  // TODO: This is exterimental, refactor
+  // this function. It is very confusing.
+  const childKeys = parentsAsChildren
+    ? node.article._parentKeys ?? []
+    : getChildRefKeysForArticle(article)
   childKeys.forEach((childKey) => {
     if (!(childKey in _referencesMap)) return
     const childNode = { article: _referencesMap[childKey], _referencesMap }

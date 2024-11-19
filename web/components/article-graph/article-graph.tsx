@@ -1,6 +1,5 @@
 import '@xyflow/react/dist/style.css'
 import { Controls, Edge, MiniMap, Node, NodeTypes, ProOptions, ReactFlow, useEdgesState, useNodesInitialized, useNodesState, useReactFlow } from '@xyflow/react'
-import { ArticleWithRefs } from '@astroneer/types'
 import { useEffect, useState } from 'react'
 import {
   ArticleGraphNodeData,
@@ -10,6 +9,7 @@ import {
 import { NodeRenderer } from './node-renderer'
 import { Box, HStack, Spinner } from '@chakra-ui/react'
 import { useIsSmallDevice } from '../../hooks'
+import { useArticleStore } from '../../state'
 
 // NOTE: Removing attribution as allowed by
 // ReactFlow documentation for personal non-profit projects.
@@ -19,24 +19,25 @@ const nodeTypes: NodeTypes = {
   article: NodeRenderer,
 }
 
-export function ArticleGraph (props: ArticleGraphProps) {
+export function ArticleGraph (_props: ArticleGraphProps) {
   const isSmallDevice = useIsSmallDevice()
+  const articleStore = useArticleStore()
   const [ nodes, setNodes, onNodesUpdated ] = useNodesState<Node<ArticleGraphNodeData>>([])
   const [ edges, setEdges, onEdgesUpdated ] = useEdgesState<Edge>([])
   const [ isPositioningNodes, setIsPositioningNodes ] = useState(false)
   const nodesInitialized = useNodesInitialized()
   const api = useReactFlow()
 
-  const isLoading = props.isLoading || isPositioningNodes
+  const isLoading = articleStore.isPending || isPositioningNodes
 
   useEffect(() => {
     setIsPositioningNodes(true)
-    const elements = props.article == null
+    const elements = articleStore.article == null
       ? { nodes: [], edges: [] }
-      : articleToGraphElements(props.article)
+      : articleToGraphElements(articleStore.article)
     setNodes(elements.nodes)
     setEdges(elements.edges)
-  }, [ props.article ])
+  }, [ articleStore.article ])
 
   useEffect(() => {
     // XXX: Because ReactFlow has to assign property
@@ -105,7 +106,4 @@ export function ArticleGraph (props: ArticleGraphProps) {
   )
 }
 
-export interface ArticleGraphProps {
-  article: ArticleWithRefs | null
-  isLoading?: boolean
-}
+export interface ArticleGraphProps {}

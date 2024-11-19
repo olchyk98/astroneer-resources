@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { useDebounce } from 'use-debounce'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { Article } from '@astroneer/types'
+import { search } from '../../request'
 
 export function useSearch () {
   const [ query, setQuery ] = useState('')
@@ -12,8 +12,7 @@ export function useSearch () {
     queryKey: [ 'search', debouncedQuery ],
     async queryFn () {
       if (!debouncedQuery.trim()) return []
-      return axios.get<Article[]>('/api/search', { params: { q: debouncedQuery } })
-        .then((r) => r.data)
+      return search(debouncedQuery)
     },
   })
 
