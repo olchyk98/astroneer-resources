@@ -13,7 +13,7 @@ export function SearchBar (_props: SearchBarProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleArticleClick = (article: Pick<Article, 'name' | 'key'>) => {
-    articleStore.set(article.key, 'recipe')
+    articleStore.recipe(article.key)
     setIsFocused(false)
     if (inputRef.current != null) {
       inputRef.current.value = article.name

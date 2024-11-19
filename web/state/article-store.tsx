@@ -5,7 +5,8 @@ import { fetchDeep, fetchParentsDeep } from '../request'
 
 export const ArticleStoreContext = createContext<ArticleStoreState>({
   article: null,
-  set: () => null,
+  usages: async () => false,
+  recipe: async () => false,
   isPending: true,
   viewStrategy: 'recipe',
 })
@@ -19,14 +20,33 @@ export function ArticleStoreProvider (props: PropsWithChildren) {
     async queryFn () {
       if (!articleKey) return null
       if (viewStrategy === 'recipe') return fetchDeep(articleKey)
-      if (viewStrategy === 'usage') return fetchParentsDeep(articleKey)
+      if (viewStrategy === 'usages') return fetchParentsDeep(articleKey)
       throw new Error(`Unknown view strategy "${viewStrategy}"`)
     },
   })
 
-  const set = (key: ArticleKey, strategy: ViewStrategy = 'recipe') => {
+  /**
+   * Fetches article for input key and displays it in form
+   * of "recipe". See more information in ViewStrategy type.
+   * */
+  const recipe = async (key: ArticleKey): Promise<true> => {
+    setViewStrategy('recipe')
     setArticleKey(key)
-    setViewStrategy(strategy)
+    return true
+  }
+
+  /**
+   * Fetches article for input key and displays it in form
+   * of "usage". See more information in ViewStrategy type.
+   *
+   * Returns false if if there are no parents
+   * */
+  const usages = async (key: ArticleKey): Promise<boolean> => {
+    const articleWithParents = await fetchParentsDeep(key)
+    if (!articleWithParents.article._parentKeys?.length) return false
+    setViewStrategy('usages')
+    setArticleKey(key)
+    return true
   }
 
   useEffect(() => {
@@ -37,10 +57,11 @@ export function ArticleStoreProvider (props: PropsWithChildren) {
 
   const value = useMemo(() => ({
     article,
-    set,
     isPending,
     viewStrategy,
-  }), [ article, isPending ])
+    recipe,
+    usages,
+  }), [ article, isPending, viewStrategy ])
 
   return (
     <ArticleStoreContext.Provider value={ value }>
@@ -55,9 +76,10 @@ export function useArticleStore () {
 
 export interface ArticleStoreState {
   article: ArticleWithRefs | null | undefined
-  set(articleKey: ArticleKey, viewStrategy?: ViewStrategy): void
   viewStrategy: ViewStrategy
   isPending: boolean
+  recipe(articleKey: ArticleKey): Promise<boolean>
+  usages(articleKey: ArticleKey): Promise<boolean>
 }
 
 export type ViewStrategy =
@@ -68,4 +90,4 @@ export type ViewStrategy =
   // XXX: bottom-to-top approach, where graph
   // displays what articles the current ingredient (article)
   // can be crafted with.
-  | 'usage'
+  | 'usages'

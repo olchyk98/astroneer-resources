@@ -1,8 +1,8 @@
 import '@xyflow/react/dist/style.css'
-import { Controls, Edge, MiniMap, Node, NodeTypes, ProOptions, ReactFlow, useEdgesState, useNodesInitialized, useNodesState, useReactFlow } from '@xyflow/react'
+import { Controls, Edge, MiniMap, NodeTypes, ProOptions, ReactFlow, useEdgesState, useNodesInitialized, useNodesState, useReactFlow } from '@xyflow/react'
 import { useEffect, useState } from 'react'
 import {
-  ArticleGraphNodeData,
+  ArticleGraphNode,
   articleToGraphElements,
   getLayoutedElements,
 } from '../../helpers'
@@ -22,7 +22,7 @@ const nodeTypes: NodeTypes = {
 export function ArticleGraph (_props: ArticleGraphProps) {
   const isSmallDevice = useIsSmallDevice()
   const articleStore = useArticleStore()
-  const [ nodes, setNodes, onNodesUpdated ] = useNodesState<Node<ArticleGraphNodeData>>([])
+  const [ nodes, setNodes, onNodesUpdated ] = useNodesState<ArticleGraphNode>([])
   const [ edges, setEdges, onEdgesUpdated ] = useEdgesState<Edge>([])
   const [ isPositioningNodes, setIsPositioningNodes ] = useState(false)
   const nodesInitialized = useNodesInitialized()
@@ -34,7 +34,7 @@ export function ArticleGraph (_props: ArticleGraphProps) {
     setIsPositioningNodes(true)
     const elements = articleStore.article == null
       ? { nodes: [], edges: [] }
-      : articleToGraphElements(articleStore.article)
+      : articleToGraphElements(articleStore.article, articleStore.viewStrategy)
     setNodes(elements.nodes)
     setEdges(elements.edges)
   }, [ articleStore.article ])
@@ -48,7 +48,8 @@ export function ArticleGraph (_props: ArticleGraphProps) {
     // to use getLayoutedElements function. Check description
     // of that function for more info.
     if (nodesInitialized) {
-      const layoutedElements = getLayoutedElements(nodes, edges)
+      const direction = articleStore.viewStrategy === 'recipe' ? 'TB' : 'BT'
+      const layoutedElements = getLayoutedElements(nodes, edges, direction)
       setNodes(layoutedElements.nodes)
       setEdges(layoutedElements.edges)
       // XXX: Very hacky solution to move the camera to the

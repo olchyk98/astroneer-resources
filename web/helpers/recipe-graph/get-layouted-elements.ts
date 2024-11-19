@@ -12,9 +12,10 @@ import { Edge, Node } from '@xyflow/react'
 export function getLayoutedElements <NodeData extends Record<string, unknown>> (
   nodes: Node<NodeData>[],
   edges: Edge[],
+  direction: 'TB' | 'BT' = 'TB',
 ): { nodes: Node<NodeData>[], edges: Edge[] } {
   const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}))
-  g.setGraph({})
+  g.setGraph({ rankdir: direction })
 
   nodes.forEach((node) => {
     if (node.hidden === true) return

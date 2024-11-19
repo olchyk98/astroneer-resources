@@ -1,24 +1,25 @@
 import { Edge, Node } from '@xyflow/react'
 import { getChildRefKeysForArticle } from '@astroneer/utils'
 import { Article, ArticleKey, ArticleWithRefs, ReferencesMap } from '@astroneer/types'
+import { ViewStrategy } from '../../state'
 
 const nodeBase = {
   position: { x: 0, y: 0 },
   connectable: false,
   type: 'article',
   style: { transition: '200ms' },
-} satisfies Partial<Node<ArticleGraphNodeData>>
+} satisfies Partial<ArticleGraphNode>
 
 const edgeBase = {
-  animated: true,
+  animated: false,
 } satisfies Partial<Edge>
 
 export function articleToGraphElements<T extends Pick<Article, 'key' | 'recipe' | '_parentKeys'>> (
   node: ArticleWithRefs<T>,
+  viewStrategy: ViewStrategy,
   parentId: ArticleKey | null = null,
   acc: ArticleGraphElements<T> = { nodes: [], edges: [] },
 ): ArticleGraphElements<T> {
-  const parentsAsChildren = Array.isArray(node.article._parentKeys)
   const { article, _referencesMap } = node
   const isRoot = parentId == null
   const id = !isRoot ? `${parentId}-${article.key}` : article.key
@@ -26,21 +27,13 @@ export function articleToGraphElements<T extends Pick<Article, 'key' | 'recipe' 
   if (!isRoot) {
     acc.edges.push({ ...edgeBase, id: `__${id}`, source: parentId, target: id })
   }
-  // TODO: This is exterimental, refactor
-  // this function. It is very confusing.
-  // TODO: This is exterimental, refactor
-  // this function. It is very confusing.
-  // TODO: This is exterimental, refactor
-  // this function. It is very confusing.
-  // TODO: This is exterimental, refactor
-  // this function. It is very confusing.
-  const childKeys = parentsAsChildren
-    ? node.article._parentKeys ?? []
-    : getChildRefKeysForArticle(article)
+  const childKeys = viewStrategy === 'recipe'
+    ? getChildRefKeysForArticle(article)
+    : node.article._parentKeys ?? []
   childKeys.forEach((childKey) => {
     if (!(childKey in _referencesMap)) return
     const childNode = { article: _referencesMap[childKey], _referencesMap }
-    articleToGraphElements(childNode, id, acc)
+    articleToGraphElements(childNode, viewStrategy, id, acc)
   })
   return acc
 }
@@ -52,7 +45,11 @@ export interface ArticleGraphNodeData<T extends Pick<Article, 'key'> = Article>
   _referencesMap: ReferencesMap<T>
 }
 
+export type ArticleGraphNode<T extends Pick<Article, 'key'> = Article> = (
+  Node<ArticleGraphNodeData<T>>
+)
+
 export interface ArticleGraphElements<T extends Pick<Article, 'key'>> {
-  nodes: Node<ArticleGraphNodeData<T>>[]
+  nodes: ArticleGraphNode<T>[]
   edges: Edge[]
 }
