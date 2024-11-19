@@ -8,6 +8,11 @@ export interface Article {
   unlockCost?: number
   tier?: string
   recipe?: ArticleRecipe
+  // NOTE: "ChildArticle" struct variation.
+  // Indicates which articles reference current article.
+  // This value is not "deep" - therefore only
+  // the nearest parent keys must be projected here.
+  _parentKeys?: string[]
 }
 
 export interface ArticlePlanetOfOrigin {
@@ -28,11 +33,11 @@ export interface ArticleRecipeIngradient {
   amount: number
 }
 
-export interface ArticleWithRefs<T extends Pick<Article, 'key' | 'recipe'> = Article> {
+export interface ArticleWithRefs<T extends Pick<Article, 'key' | 'recipe' | '_parentKeys'> = Article> {
   article: T
   _referencesMap: ReferencesMap<T>
 }
 
-export type ReferencesMap<T extends Pick<Article, 'key' | 'recipe'> = Article> = (
+export type ReferencesMap<T extends Pick<Article, 'key' | 'recipe' | '_parentKeys'> = Article> = (
   Record<ArticleKey, T>
 )
