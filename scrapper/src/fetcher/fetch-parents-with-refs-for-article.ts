@@ -1,7 +1,7 @@
 import { Article, ArticleWithRefs, ReferencesMap } from '@astroneer/types'
 import { fetchParentsForArticle } from './fetch-parents-for-article'
 import { fetchArticle } from './fetch-article'
-import { forEach, pluck } from 'ramda'
+import { pluck } from 'ramda'
 import { urlComposer } from '../url-composer'
 import { getChildRefKeysForArticle } from '@astroneer/utils'
 

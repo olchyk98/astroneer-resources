@@ -1,3 +1,6 @@
 import { Article, ArticleKey } from '@astroneer/types'
 
-export type CacheMap = Record<ArticleKey, Article>
+export interface CacheMap {
+  articlesMap: Record<ArticleKey, Article>
+  articleParentsMap: Record<ArticleKey, Article[]>
+}

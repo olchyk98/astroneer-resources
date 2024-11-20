@@ -1,12 +1,8 @@
 import { fetchArticleWithRefs } from './src'
+import { cacheArticles } from './src/cache'
 import { urlComposer } from './src/url-composer'
 
 const articleURL = urlComposer('Wolframite')
-
-// TODO: Refactor articleToGraphElements and write tests
-// for bottom-to-top approach.
-// TODO: Optimize getParentsForCachedArticle by separating
-// cache: "articlesMap: {}" / childToParentsMap: {}"
 
 async function run () {
   console.log('Fetching')
@@ -14,4 +10,6 @@ async function run () {
   console.dir({ article }, { depth: Infinity })
 }
 
-run()
+//run()
+
+cacheArticles()

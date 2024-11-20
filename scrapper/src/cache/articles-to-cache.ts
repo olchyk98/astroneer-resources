@@ -10,6 +10,7 @@ export const articlesToCache: ArticleKey[] = [
   'Atmospheric_Condenser',
   'Auto_Arm',
   'Auto_Extractor',
+  'Backpack',
   'Battery_Sensor',
   'Beacon',
   'Boost_Mod',

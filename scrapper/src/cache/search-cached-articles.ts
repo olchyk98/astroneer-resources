@@ -1,8 +1,8 @@
 import { Article, ArticleKey, ArticleName } from '@astroneer/types'
-import { cache } from './cache'
+import { getArticlesFromCache } from './cache'
 import Fuse from 'fuse.js'
 
-const cachedArticles = Object.values(cache)
+const cachedArticles = Object.values(getArticlesFromCache())
 const fuse = new Fuse(cachedArticles, {
   threshold: 0.2,
   keys: [ 'name', 'key' ],
