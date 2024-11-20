@@ -3,9 +3,11 @@ import { useDebounce } from 'use-debounce'
 import { useEffect, useState } from 'react'
 import { Article } from '@astroneer/types'
 import { search } from '../../request'
+import { ViewStrategy } from '../../state'
 
 export function useSearch () {
   const [ query, setQuery ] = useState('')
+  const [ viewStrategy, setViewStrategy ] = useState<ViewStrategy>('recipe')
   const [ debouncedQuery ] = useDebounce(query, 300)
   const [ hits, setHits ] = useState<Article[]>([])
   const { isPending, error, data } = useQuery<Article[]>({
@@ -38,6 +40,8 @@ export function useSearch () {
   return {
     isPending,
     setQuery,
+    viewStrategy,
+    setViewStrategy,
     query: debouncedQuery,
     error,
     hits,

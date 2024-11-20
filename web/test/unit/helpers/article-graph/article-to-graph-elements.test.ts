@@ -17,7 +17,7 @@ describe('articleToGraphElements', () => {
   it('should return single node for a single level tree', () => {
     const article= { key: 'RTG' }
     const node: ArticleWithRefs<Pick<Article, 'recipe' | 'key'>> = { article, _referencesMap: {} }
-    const elements = articleToGraphElements(node)
+    const elements = articleToGraphElements(node, 'recipe')
     const nodes = nodesForTest(elements.nodes)
     const edges = edgesForTest(elements.edges)
     expect(nodes).toStrictEqual([
@@ -73,7 +73,7 @@ describe('articleToGraphElements', () => {
       },
     }
 
-    const elements = articleToGraphElements(node)
+    const elements = articleToGraphElements(node, 'recipe')
     const nodes = nodesForTest(elements.nodes)
     const edges = edgesForTest(elements.edges)
 

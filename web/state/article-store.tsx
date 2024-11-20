@@ -7,6 +7,7 @@ export const ArticleStoreContext = createContext<ArticleStoreState>({
   article: null,
   usages: async () => false,
   recipe: async () => false,
+  set: async () => false,
   isPending: true,
   viewStrategy: 'recipe',
 })
@@ -29,10 +30,8 @@ export function ArticleStoreProvider (props: PropsWithChildren) {
    * Fetches article for input key and displays it in form
    * of "recipe". See more information in ViewStrategy type.
    * */
-  const recipe = async (key: ArticleKey): Promise<true> => {
-    setViewStrategy('recipe')
-    setArticleKey(key)
-    return true
+  const recipe = async (key: ArticleKey): Promise<boolean> => {
+    return set(key, 'recipe')
   }
 
   /**
@@ -44,8 +43,23 @@ export function ArticleStoreProvider (props: PropsWithChildren) {
   const usages = async (key: ArticleKey): Promise<boolean> => {
     const articleWithParents = await fetchParentsDeep(key)
     if (!articleWithParents.article._parentKeys?.length) return false
-    setViewStrategy('usages')
-    setArticleKey(key)
+    return set(key, 'usages')
+  }
+
+  /**
+   * Fetches article for input key and displays it in form
+   * of specified view strategy. See more
+   * information in ViewStrategy type.
+   *
+   * Returns false if if there are no parents
+   * */
+  const set = async (key?: ArticleKey, strategy?: ViewStrategy): Promise<boolean> => {
+    if (key != null) {
+      setArticleKey(key)
+    }
+    if (strategy != null) {
+      setViewStrategy(strategy)
+    }
     return true
   }
 
@@ -55,12 +69,13 @@ export function ArticleStoreProvider (props: PropsWithChildren) {
     }
   }, [ error ])
 
-  const value = useMemo(() => ({
+  const value = useMemo((): ArticleStoreState => ({
     article,
     isPending,
     viewStrategy,
     recipe,
     usages,
+    set,
   }), [ article, isPending, viewStrategy ])
 
   return (
@@ -80,6 +95,7 @@ export interface ArticleStoreState {
   isPending: boolean
   recipe(articleKey: ArticleKey): Promise<boolean>
   usages(articleKey: ArticleKey): Promise<boolean>
+  set(articleKey?: ArticleKey, strategy?: ViewStrategy): Promise<boolean>
 }
 
 export type ViewStrategy =

@@ -1,4 +1,5 @@
 export * from './recipe-graph'
+export * from './search-bar'
 export * from './range'
 export * from './choice'
 export * from './format-number'
