@@ -1,6 +1,6 @@
-import { Box, HStack, IconButton, VStack } from '@chakra-ui/react'
+import { Box, HStack, VStack } from '@chakra-ui/react'
 import { MdRefresh } from 'react-icons/md'
-import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
+import { AnimatePresence, LayoutGroup } from 'framer-motion'
 import { SearchInput, SearchInputRef } from './search-input'
 import { Suggestions } from './suggestions'
 import { useSearch } from '../../hooks'

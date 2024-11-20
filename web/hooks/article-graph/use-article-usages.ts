@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { useArticleStore } from '../../state'
-import { any, filter, forEach } from 'ramda'
-import { useReactFlow } from '@xyflow/react'
 import { ArticleGraphNode } from '../../helpers'
+import { useToggleChildNodes } from './use-toggle-child-nodes'
 
 export function useArticleUsages (articleNode: Pick<ArticleGraphNode, 'id' | 'data'>): ArticleUsagesManager {
   const { article } = articleNode.data
-  const api = useReactFlow()
   const articleStore = useArticleStore()
+  const { toggleChildNodes } = useToggleChildNodes(articleNode)
   const [ foundNoUsages, setFoundNoUsages ] = useState(false)
   const [ isSearching, setIsSearching ] = useState(false)
 
@@ -17,25 +16,7 @@ export function useArticleUsages (articleNode: Pick<ArticleGraphNode, 'id' | 'da
 
   const toggleFetchedUsagesVisibility = () => {
     if (articleStore.viewStrategy !== 'usages') return
-    const allNodes = api.getNodes() as ArticleGraphNode[]
-    const nearestChildNodes = filter(
-      (node) => node.id === `${articleNode.id}-${node.data.article.key}`,
-      allNodes,
-    )
-    const anyNodeIsHidden = any((l) => Boolean(l.hidden), nearestChildNodes)
-    if (anyNodeIsHidden) {
-      // XXX: Open first nearest children only
-      forEach((childNode) => {
-        api.updateNode(childNode.id, { hidden: false })
-      }, nearestChildNodes)
-    } else {
-      // XXX: Hide all nested children
-      forEach((node) => {
-        if (node.id.startsWith(`${articleNode.id}-`)) {
-          api.updateNode(node.id, { hidden: true })
-        }
-      }, allNodes)
-    }
+    toggleChildNodes()
   }
 
   const fetchUsages = async () => {

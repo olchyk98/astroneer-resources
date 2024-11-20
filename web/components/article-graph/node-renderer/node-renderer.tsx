@@ -1,5 +1,5 @@
 import { Badge, Box, HStack, IconButton, Spinner, Text, VStack } from '@chakra-ui/react'
-import { MdOutlineCallMade } from 'react-icons/md'
+import { MdOutlineCallMade, MdOutlineCallReceived } from 'react-icons/md'
 import { Handle, NodeProps, Position, useReactFlow } from '@xyflow/react'
 import { ArticleGraphNodeData, formatNumber, getWikiURL, normalizePlanet } from '../../../helpers'
 import { Divider } from '../../divider'
@@ -9,7 +9,7 @@ import { NoOriginImage } from '../../no-origin-image'
 import { Link } from '../../link'
 import { ContentColumn } from './content-column'
 import { filter, forEach, pluck, startsWith } from 'ramda'
-import { useArticleUsages } from '../../../hooks/article-graph'
+import { useArticleRecipes, useArticleUsages } from '../../../hooks'
 import { useArticleStore } from '../../../state'
 import { useEffect } from 'react'
 
@@ -21,26 +21,10 @@ const getRef_ = <T extends Pick<Article, 'key' | 'recipe'> = Article>(
 )
 
 export function NodeRenderer (props: NodeRendererProps) {
-  const api = useReactFlow()
   const { article, isRoot, _referencesMap } = props.data
   const { hasUsages, toggleUsages, isSearchingUsages } = useArticleUsages(props)
+  const { hasRecipes, toggleRecipes, expandRecipe } = useArticleRecipes(props)
   const articleStore = useArticleStore()
-
-  function expandChildNode (key: ArticleKey) {
-    const childId = `${props.id}-${key}`
-    const childNode = api.getNode(childId)
-    if (childNode == null) return
-    if (childNode.hidden) {
-      api.updateNode(childId, { hidden: false })
-    } else {
-      const allNodeIds = pluck('id', api.getNodes())
-      const nestedChildIds = filter(startsWith(childId), allNodeIds)
-      // XXX: Find and hide all the children nodes
-      forEach((nestedChildId) => {
-        api.updateNode(nestedChildId, { hidden: true })
-      }, nestedChildIds)
-    }
-  }
 
   useEffect(() => {
     // XXX: When in usages mode and the root node triggers,
@@ -49,10 +33,11 @@ export function NodeRenderer (props: NodeRendererProps) {
     // clicked on the "expand usages" button. To remove the need
     // of pressing on it again after load, we're expanding the first
     // level automatically.
-    if (isRoot && articleStore.viewStrategy === 'usages') {
-      toggleUsages()
-    }
-  }, [ article.key, isRoot ])
+    if (!isRoot) return
+    if (articleStore.viewStrategy === 'recipe') toggleRecipes()
+    if (articleStore.viewStrategy === 'usages') toggleUsages()
+
+  }, [ article.key, articleStore.viewStrategy, isRoot ])
 
   const getRef = (key: ArticleKey | null | undefined) => getRef_(key, _referencesMap)
 
@@ -113,23 +98,37 @@ export function NodeRenderer (props: NodeRendererProps) {
               )
             }
           </HStack>
-          {
-            hasUsages &&
-              <IconButton
-                size="xs"
-                variant="ghost"
-                aria-label="See usages"
-                onClick={ toggleUsages }
-                className="nopan nodrag"
-              >
-                { isSearchingUsages && <Spinner size="xs" /> }
-                { !isSearchingUsages && <MdOutlineCallMade /> }
-              </IconButton>
-          }
-          {
-            !hasUsages &&
+          <HStack>
+            {
+              hasRecipes &&
+                <IconButton
+                  size="xs"
+                  variant="ghost"
+                  aria-label="See recipe"
+                  onClick={ toggleRecipes }
+                  className="nopan nodrag"
+                >
+                  <MdOutlineCallReceived />
+                </IconButton>
+            }
+            {
+              hasUsages &&
+                <IconButton
+                  size="xs"
+                  variant="ghost"
+                  aria-label="See usages"
+                  onClick={ toggleUsages }
+                  className="nopan nodrag"
+                >
+                  { isSearchingUsages && <Spinner size="xs" /> }
+                  { !isSearchingUsages && <MdOutlineCallMade /> }
+                </IconButton>
+            }
+            {
+              !hasUsages &&
               <Badge variant="outline">No usages</Badge>
-          }
+            }
+          </HStack>
         </HStack>
         {
           !hasNoBody && (
@@ -155,7 +154,7 @@ export function NodeRenderer (props: NodeRendererProps) {
                       className="nopan"
                       textWrap="nowrap"
                       isDisabled={ articleStore.viewStrategy !== 'recipe' }
-                      onClick={ () => expandChildNode(getRef(article.recipe!.craftedAt)?.key ?? '') }
+                      onClick={ () => expandRecipe(getRef(article.recipe!.craftedAt)?.key ?? '') }
                     >
                       { getRef(article.recipe?.craftedAt)?.name ?? 'Unknown' }
                     </Link>
@@ -171,7 +170,7 @@ export function NodeRenderer (props: NodeRendererProps) {
                           fontWeight="normal"
                           textWrap="nowrap"
                           isDisabled={ articleStore.viewStrategy !== 'recipe' }
-                          onClick={ () => expandChildNode(getRef(ingredient.key)?.key ?? '') }
+                          onClick={ () => expandRecipe(getRef(ingredient.key)?.key ?? '') }
                         >
                           { getRef(ingredient.key)?.name ?? 'Unknown' }{ ingredient.amount > 1 ? ` (${ingredient.amount}x)` : '' }
                         </Link>
