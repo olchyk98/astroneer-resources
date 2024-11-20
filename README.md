@@ -34,10 +34,14 @@ https://github.com/user-attachments/assets/d82b1496-30d7-4419-9ef5-f2d8bf68120e
 | ------------------ | ------------------                                          | ------------------- | ------------------- |
 | ✅                 | Natural resource location on planets                        | Reddit              | 18 November, 2024   |
 | ✅                 | "Bigger" zoom out                                           | Reddit              | 18 November, 2024   |
-| ⏳                 | "Bottom-To-Top" view - Ingredients that are used in recipes | Reddit              |                     |
+| ✅                 | "Bottom-To-Top" view - Ingredients that are used in recipes | Reddit              | 20 November, 2024   |
+| ✅                 | List of recently opened articles                            | Me                  | 20 November, 2024   |
+| ⏳                 | Button for expanding a recipe section                       | Reddit              |                     |
+| ⏳                 | Default Wiki URL change in web to wiki.gg                   | Reddit              |                     |
 | ⏳                 | Scrap/Soil Exchange Rates                                   | Reddit              |                     |
-| ⏳                 | List of recently opened articles                            | Me                  |                     |
 | ⏳                 | Persistent URL state (app routing)                          | Me                  |                     |
+
+domain change
 
 ## Problem Statement
 
