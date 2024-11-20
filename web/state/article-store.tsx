@@ -2,8 +2,9 @@ import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useSt
 import { ArticleKey, ArticleWithRefs } from '@astroneer/types'
 import { useQuery } from '@tanstack/react-query'
 import { fetchDeep, fetchParentsDeep } from '../request'
+import { useArticlesHistoryStore } from './articles-history-store'
 
-export const ArticleStoreContext = createContext<ArticleStoreState>({
+const ArticleStoreContext = createContext<ArticleStoreState>({
   article: null,
   usages: async () => false,
   recipe: async () => false,
@@ -13,6 +14,7 @@ export const ArticleStoreContext = createContext<ArticleStoreState>({
 })
 
 export function ArticleStoreProvider (props: PropsWithChildren) {
+  const historyStore = useArticlesHistoryStore()
   const [ articleKey, setArticleKey ] = useState<ArticleKey>('Small_Printer')
   const [ viewStrategy, setViewStrategy ] = useState<ViewStrategy>('recipe')
 
@@ -25,6 +27,12 @@ export function ArticleStoreProvider (props: PropsWithChildren) {
       throw new Error(`Unknown view strategy "${viewStrategy}"`)
     },
   })
+
+  useEffect(() => {
+    if (article != null) {
+      historyStore.add(article.article)
+    }
+  }, [ article ])
 
   /**
    * Fetches article for input key and displays it in form

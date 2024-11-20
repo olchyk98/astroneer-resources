@@ -1,6 +1,6 @@
 import { Badge, Box, HStack, IconButton, Spinner, Text, VStack } from '@chakra-ui/react'
 import { MdOutlineCallMade, MdOutlineCallReceived } from 'react-icons/md'
-import { Handle, NodeProps, Position, useReactFlow } from '@xyflow/react'
+import { Handle, NodeProps, Position, useNodesInitialized } from '@xyflow/react'
 import { ArticleGraphNodeData, formatNumber, getWikiURL, normalizePlanet } from '../../../helpers'
 import { Divider } from '../../divider'
 import { RandomFlare } from '../../flare'
@@ -8,7 +8,6 @@ import { Article, ArticleKey, ReferencesMap } from '@astroneer/types'
 import { NoOriginImage } from '../../no-origin-image'
 import { Link } from '../../link'
 import { ContentColumn } from './content-column'
-import { filter, forEach, pluck, startsWith } from 'ramda'
 import { useArticleRecipes, useArticleUsages } from '../../../hooks'
 import { useArticleStore } from '../../../state'
 import { useEffect } from 'react'
@@ -37,7 +36,7 @@ export function NodeRenderer (props: NodeRendererProps) {
     if (articleStore.viewStrategy === 'recipe') toggleRecipes()
     if (articleStore.viewStrategy === 'usages') toggleUsages()
 
-  }, [ article.key, articleStore.viewStrategy, isRoot ])
+  }, [ article, isRoot ])
 
   const getRef = (key: ArticleKey | null | undefined) => getRef_(key, _referencesMap)
 
