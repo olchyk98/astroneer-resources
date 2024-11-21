@@ -2,7 +2,7 @@ export interface Article {
   key: ArticleKey
   name: ArticleName
   iconURL: string
-  type: string
+  type?: string
   imageURL: string
   planets?: ArticlePlanetOfOrigin[] | string[] | boolean
   unlockCost?: number

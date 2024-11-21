@@ -12,4 +12,5 @@ export interface GenericFetchOpts {
    * be used, as they cannot be fetched, nor cached.
    * */
   strategy?: 'cache' | 'remote'
+  noPredefined?: boolean
 }

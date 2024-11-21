@@ -2,6 +2,7 @@ import { Article } from '@astroneer/types'
 import { ArticleSourceTable, e, getKeyFromURL, parseNumber } from './utils'
 import { unsafeExtractRecipeFromDeepContent } from './unsafe-extract-recipe-from-deep-content'
 import { parseIngradientAmountFromSpan } from './parse-ingradient-amount-from-span'
+import { urlComposer } from '../url-composer'
 
 export const parsers: Parsers = {
   key (_d, url) {
@@ -11,16 +12,16 @@ export const parsers: Parsers = {
     return e(table['name'])
   },
   iconURL (_d, _url, table) {
-    return e(table['iconURL'])
+    return urlComposer(e(table['iconURL']), 'root')
   },
   imageURL (_d, _url, table) {
-    return e(table['imageURL'])
+    return urlComposer(e(table['imageURL']), 'root')
   },
   tier (_d, _url, table) {
     return table['_Tier']
   },
   type (_d, _url, table) {
-    return e(table['_Type'])
+    return table['_Type']
   },
   unlockCost (_d, _url, table) {
     return parseNumber(table['_UnlockCost'] ?? '')

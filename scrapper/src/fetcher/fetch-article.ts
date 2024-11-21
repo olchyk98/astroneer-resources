@@ -13,7 +13,7 @@ export async function fetchArticle (url: string, opts?: GenericFetchOpts): Promi
   // 22 of those resources in the submodule
   // called "predefined".
 
-  if (isPreDefinedArticle(url)) {
+  if (isPreDefinedArticle(url) && !opts?.noPredefined) {
     return getPreDefinedArticle(url)
   }
   const { strategy = 'cache' } = opts ?? {}

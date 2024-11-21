@@ -1,5 +1,4 @@
 import { Article, ArticleWithRefs } from '@astroneer/types'
-import fs from 'fs'
 import { fetchParentsWithRefsForArticle } from '../../src'
 import { urlComposer } from '../../src/url-composer'
 import { getCachedArticle } from '../../src/cache'
@@ -9,7 +8,6 @@ describe('fetchParentsWithRefsForArticle', () => {
   it('RTG - should handle no parents', async () => {
     const url = urlComposer('RTG')
     const result = await fetchParentsWithRefsForArticle(url)
-    fs.writeFileSync('./output.json', JSON.stringify(result, null, 2))
     expect(result).toStrictEqual<ArticleWithRefs>({
       article: { ...getCachedArticle('RTG'), _parentKeys: [] },
       _referencesMap: {
@@ -30,6 +28,7 @@ describe('fetchParentsWithRefsForArticle', () => {
       article: pick([ 'key', '_parentKeys' ], result_.article),
       _referencesMap: mapObjIndexed(pick([ 'key', '_parentKeys' ]), result_._referencesMap),
     }
+
     expect(result).toStrictEqual<ArticleWithRefs<Pick<Article, 'key' | '_parentKeys'>>>({
       article: {
         key: 'Atmospheric_Condenser',
@@ -211,6 +210,7 @@ describe('fetchParentsWithRefsForArticle', () => {
           _parentKeys: [
             'Extra_Large_Resource_Canister',
             'Large_Resource_Canister',
+            'Portable_Oxygenator',
             'RTG',
           ],
         },
@@ -230,6 +230,16 @@ describe('fetchParentsWithRefsForArticle', () => {
           key: 'Large_Resource_Canister',
           _parentKeys: [],
         },
+        Backpack: {
+          key: 'Backpack',
+          _parentKeys: [
+            'Portable_Oxygenator',
+          ],
+        },
+        Portable_Oxygenator: {
+          key: 'Portable_Oxygenator',
+          _parentKeys: [],
+        },
         Lithium: {
           key: 'Lithium',
           _parentKeys: [
@@ -239,12 +249,6 @@ describe('fetchParentsWithRefsForArticle', () => {
         RTG: {
           key: 'RTG',
           _parentKeys: [],
-        },
-        Backpack: {
-          key: 'Backpack',
-          _parentKeys: [
-            'Probe_Scanner',
-          ],
         },
         Probe_Scanner: {
           key: 'Probe_Scanner',

@@ -11,8 +11,14 @@ export function parseToArticle (html: string, source_url: string): Article {
   // This can be re-used in parsers, or parsers may use their
   // own way to fetch this information if needed.
   const table = parseSourceTable(document)
-  return mapObjIndexed(
-    (parse) => parse(document, source_url, table) ?? undefined,
+  console.group('Parsing')
+  const article = mapObjIndexed(
+    (parse, key) => {
+      console.log(`> ${key}`)
+      return parse(document, source_url, table) ?? undefined
+    },
     parsers,
   ) as Article
+  console.groupEnd()
+  return article
 }

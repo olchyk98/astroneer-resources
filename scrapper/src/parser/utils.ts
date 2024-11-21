@@ -1,4 +1,4 @@
-import { last } from 'ramda'
+import { forEach, last } from 'ramda'
 import { Nullable } from '../type-utils'
 import { getImageElementSrc } from './get-image-element-src'
 
@@ -7,40 +7,26 @@ export interface ArticleSourceTable {
   iconURL?: Nullable<string>
   imageURL?: Nullable<string>
   [contentKey: `_${string}`]: Nullable<string>
-  [elKey: `#${string}`]: Nullable<HTMLElement>
+  [elKey: `#${string}`]: Nullable<Element>
 }
 
 export function parseSourceTable (document: Document): ArticleSourceTable {
   const acc: ArticleSourceTable = {}
-  const box = document.querySelector('.infoboxtable > tbody')
+  const box = document.querySelector('.portable-infobox')
   if (box == null) return acc
-  acc['name'] = normalizeStr(box?.querySelector('*:nth-child(1)')?.textContent ?? '')
-  acc['iconURL'] = getImageElementSrc(box?.querySelector('*:nth-child(1) img'))
-  // FIXME: Using box element here with selector "*:nth-child(2) img" does not work
-  // here for some reason. Not really sure why. This works though, so I'm going to
-  // look into this later. Probably some elements are colliding.
-  acc['imageURL'] = getImageElementSrc(document.querySelector('.infoboxtable > tbody > *:nth-child(2) img'))
-  // XXX: Iterating over the rest of the table
-  // until we reach "Details" section, afterwards
-  // we start reading item properties.
-  let hasReachedDetails = false
-  for (let ma = 0; ma < Infinity; ++ma) {
-    const el = box?.querySelector(`*:nth-child(${ma})`)
-    if (!hasReachedDetails) {
-      if (el?.textContent?.includes('Details')) {
-        hasReachedDetails = true
-      }
-      continue
-    }
-    if (el == null) break
-    const key = el?.querySelector('th')?.textContent
-    if (key == null) continue
-    const valueEl = el?.querySelector('td')
+  acc['name'] = normalizeStr(box?.querySelector('h2')?.textContent ?? '')
+  acc['iconURL'] = getImageElementSrc(box?.querySelector('h2 > img'))
+  acc['imageURL'] = getImageElementSrc(box.querySelector('.portable-infobox > *:nth-child(2) img'))
+  const metaInfoEls = Array.from(box.querySelectorAll('.portable-infobox > section > .pi-data'))
+  forEach((el) => {
+    const key = el?.querySelector('.pi-data-label')?.textContent
+    if (key == null) return
+    const valueEl = el?.querySelector('.pi-data-value')
     const value = valueEl?.textContent
     const normalizedKey = minimizeStr(key)
     acc[`_${normalizedKey}`] = normalizeStr(value)
     acc[`#${normalizedKey}`] = valueEl
-  }
+  }, metaInfoEls)
   return acc
 }
 

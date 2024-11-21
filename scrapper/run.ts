@@ -1,15 +1,11 @@
-import { fetchArticleWithRefs } from './src'
-import { cacheArticles } from './src/cache'
+import { fetchArticle } from './src'
 import { urlComposer } from './src/url-composer'
 
-const articleURL = urlComposer('Wolframite')
+const articleURL = urlComposer('Compound')
 
 async function run () {
-  console.log('Fetching')
-  const article = await fetchArticleWithRefs(articleURL, { strategy: 'cache' })
+  const article = await fetchArticle(articleURL, { strategy: 'remote' })
   console.dir({ article }, { depth: Infinity })
 }
 
-//run()
-
-cacheArticles()
+run()
