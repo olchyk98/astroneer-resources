@@ -4,9 +4,8 @@ import { Image } from '@chakra-ui/react'
 export function NoOriginImage (props: NoOriginImageProps) {
   return (
     <Image
-      referrerPolicy="no-referrer"
-      crossOrigin="anonymous"
       { ...props }
+      src={ `/api/image?url=${encodeURIComponent(props.src ?? '')}` }
     />
   )
 }
