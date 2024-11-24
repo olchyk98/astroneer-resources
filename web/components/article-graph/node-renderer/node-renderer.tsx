@@ -11,6 +11,7 @@ import { ContentColumn } from './content-column'
 import { useArticleRecipes, useArticleUsages } from '../../../hooks'
 import { useArticleStore } from '../../../state'
 import { Blinker } from '../../blinker'
+import { getChildRefKeysForArticle } from '@astroneer/utils'
 
 const getRef_ = <T extends Pick<Article, 'key' | 'recipe'> = Article>(
   key: ArticleKey | null | undefined,
@@ -95,6 +96,11 @@ export function NodeRenderer (props: NodeRendererProps) {
                   className="nopan nodrag"
                 >
                   { articleStore.viewStrategy !== 'recipe' && <Blinker /> }
+                  { articleStore.viewStrategy === 'recipe' && (
+                    <Blinker w="auto" h="auto" bg="transparent">
+                      <Badge size="xs">{ getChildRefKeysForArticle(article).length ?? 0 }</Badge>
+                    </Blinker>
+                  ) }
                   <MdOutlineCallReceived />
                 </IconButton>
             }
@@ -108,6 +114,11 @@ export function NodeRenderer (props: NodeRendererProps) {
                   className="nopan nodrag"
                 >
                   { articleStore.viewStrategy !== 'usages' && <Blinker /> }
+                  { articleStore.viewStrategy === 'usages' && (
+                    <Blinker w="auto" h="auto" bg="transparent">
+                      <Badge size="xs">{ article._parentKeys?.length ?? 0 }</Badge>
+                    </Blinker>
+                  ) }
                   { isSearchingUsages && <Spinner size="xs" /> }
                   { !isSearchingUsages && <MdOutlineCallMade /> }
                 </IconButton>
