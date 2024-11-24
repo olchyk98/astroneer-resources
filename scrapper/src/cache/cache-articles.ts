@@ -3,7 +3,7 @@ import fs from 'fs'
 import { articlesToCache } from './articles-to-cache'
 import { CacheMap } from './types'
 import { fetchArticleByKey } from '../fetcher'
-import { filter, mergeRight } from 'ramda'
+import { filter, mergeRight, uniq } from 'ramda'
 import { _predefinedArticlesMap } from '../predefined'
 import { getChildRefKeysForArticle } from '@astroneer/utils'
 
@@ -34,13 +34,14 @@ async function _cacheArticles (newCache: CacheMap) {
 }
 
 async function _cacheArticleParentLinks (newCache: CacheMap) {
-  const withPredefined = mergeRight(newCache.articlesMap, _predefinedArticlesMap)
+  const articlesToCacheWithPredefined = uniq([ ...articlesToCache, ...Object.keys(_predefinedArticlesMap) ])
+  const cacheWithPredefined = mergeRight(newCache.articlesMap, _predefinedArticlesMap)
   console.group('Caching parents...')
-  for await (const key of articlesToCache) {
+  for await (const key of articlesToCacheWithPredefined) {
     const parentArticles = filter((article) => {
       const childKeys = getChildRefKeysForArticle(article)
       return childKeys.includes(key)
-    }, Object.values(withPredefined))
+    }, Object.values(cacheWithPredefined))
     newCache.articleParentsMap[key] = parentArticles
   }
   fs.writeFileSync(outPath, JSON.stringify(newCache))
