@@ -19,43 +19,43 @@ export const predefinedArticles: Article[] = [
     name: 'Astronium',
     planets: [
       {
-        name: 'Sylva',
+        key: planetKeysMap['Sylva'],
         locations: [
           'Core',
         ],
       },
       {
-        name: 'Desolo',
+        key: planetKeysMap['Desolo'],
         locations: [
           'Core',
         ],
       },
       {
-        name: 'Calidor',
+        key: planetKeysMap['Calidor'],
         locations: [
           'Core',
         ],
       },
       {
-        name: 'Vesania',
+        key: planetKeysMap['Vesania'],
         locations: [
           'Core',
         ],
       },
       {
-        name: 'Novus',
+        key: planetKeysMap['Novus'],
         locations: [
           'Core',
         ],
       },
       {
-        name: 'Glacio',
+        key: planetKeysMap['Glacio'],
         locations: [
           'Core',
         ],
       },
       {
-        name: 'Atrox',
+        key: planetKeysMap['Atrox'],
         locations: [
           'Core',
         ],
@@ -98,13 +98,13 @@ export const predefinedArticles: Article[] = [
     name: 'Hematite',
     planets: [
       {
-        name: 'Novus',
+        key: planetKeysMap['Novus'],
         locations: [
           'Caves',
         ],
       },
       {
-        name: 'Glacio',
+        key: planetKeysMap['Glacio'],
         locations: [
           'Ice Dunes',
           'Caves',
@@ -121,43 +121,43 @@ export const predefinedArticles: Article[] = [
     name: 'Laterite',
     planets: [
       {
-        name: 'Sylva',
+        key: planetKeysMap['Sylva'],
         locations: [
           'Caves',
         ],
       },
       {
-        name: 'Desolo',
+        key: planetKeysMap['Desolo'],
         locations: [
           'Caves',
         ],
       },
       {
-        name: 'Calidor',
+        key: planetKeysMap['Calidor'],
         locations: [
           'Caves',
         ],
       },
       {
-        name: 'Vesania',
+        key: planetKeysMap['Vesania'],
         locations: [
           'Caves',
         ],
       },
       {
-        name: 'Novus',
+        key: planetKeysMap['Novus'],
         locations: [
           'Caves',
         ],
       },
       {
-        name: 'Glacio',
+        key: planetKeysMap['Glacio'],
         locations: [
           'Caves',
         ],
       },
       {
-        name: 'Atrox',
+        key: planetKeysMap['Atrox'],
         locations: [
           'Caves',
         ],
@@ -173,13 +173,13 @@ export const predefinedArticles: Article[] = [
     name: 'Lithium',
     planets: [
       {
-        name: 'Vesania',
+        key: planetKeysMap['Vesania'],
         locations: [
           'Caves',
         ],
       },
       {
-        name: 'Novus',
+        key: planetKeysMap['Novus'],
         locations: [
           'Mountainous Biomes',
           'Caves',
@@ -196,14 +196,14 @@ export const predefinedArticles: Article[] = [
     name: 'Malachite',
     planets: [
       {
-        name: 'Sylva',
+        key: planetKeysMap['Sylva'],
         locations: [
           'Gray Mountains',
           'Caves',
         ],
       },
       {
-        name: 'Calidor',
+        key: planetKeysMap['Calidor'],
         locations: [
           'Caves',
         ],
@@ -219,43 +219,43 @@ export const predefinedArticles: Article[] = [
     name: 'Organic',
     planets: [
       {
-        name: 'Sylva',
+        key: planetKeysMap['Sylva'],
         locations: [
           'Surface',
         ],
       },
       {
-        name: 'Desolo',
+        key: planetKeysMap['Desolo'],
         locations: [
           'Surface',
         ],
       },
       {
-        name: 'Calidor',
+        key: planetKeysMap['Calidor'],
         locations: [
           'Surface',
         ],
       },
       {
-        name: 'Vesania',
+        key: planetKeysMap['Vesania'],
         locations: [
           'Surface',
         ],
       },
       {
-        name: 'Novus',
+        key: planetKeysMap['Novus'],
         locations: [
           'Surface',
         ],
       },
       {
-        name: 'Glacio',
+        key: planetKeysMap['Glacio'],
         locations: [
           'Surface',
         ],
       },
       {
-        name: 'Atrox',
+        key: planetKeysMap['Atrox'],
         locations: [
           'Surface',
         ],
@@ -298,13 +298,13 @@ export const predefinedArticles: Article[] = [
     name: 'Sphalerite',
     planets: [
       {
-        name: 'Sylva',
+        key: planetKeysMap['Sylva'],
         locations: [
           'Caves',
         ],
       },
       {
-        name: 'Desolo',
+        key: planetKeysMap['Desolo'],
         locations: [
           'Orange Capped Mountains',
           'Mantle Layers',
@@ -321,14 +321,14 @@ export const predefinedArticles: Article[] = [
     name: 'Titanite',
     planets: [
       {
-        name: 'Vesania',
+        key: planetKeysMap['Vesania'],
         locations: [
           'Mountain Peaks',
           'Caves',
         ],
       },
       {
-        name: 'Glacio',
+        key: planetKeysMap['Glacio'],
         locations: [
           'Caves',
         ],
@@ -344,13 +344,13 @@ export const predefinedArticles: Article[] = [
     name: 'Wolframite',
     planets: [
       {
-        name: 'Desolo',
+        key: planetKeysMap['Desolo'],
         locations: [
           'Caves',
         ],
       },
       {
-        name: 'Calidor',
+        key: planetKeysMap['Calidor'],
         locations: [
           'Mountainous Biome',
           'Caves',
