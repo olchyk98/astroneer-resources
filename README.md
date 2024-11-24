@@ -26,7 +26,7 @@ If you’re unsure how to craft one of the ingredients, just click on it, and a 
 
 ## Demo
 
-https://github.com/user-attachments/assets/d82b1496-30d7-4419-9ef5-f2d8bf68120e
+https://github.com/user-attachments/assets/518408ae-0d8a-40d4-9a5b-afa6bcee8bc6
 
 ## Feature Requests
 
