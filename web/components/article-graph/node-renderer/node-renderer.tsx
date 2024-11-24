@@ -1,4 +1,6 @@
 import { Badge, Box, HStack, IconButton, Spinner, Text, VStack } from '@chakra-ui/react'
+import { FaCheck } from 'react-icons/fa'
+import { ImCross } from 'react-icons/im'
 import { MdOutlineCallMade, MdOutlineCallReceived } from 'react-icons/md'
 import { Handle, NodeProps, Position } from '@xyflow/react'
 import { ArticleGraphNodeData, formatNumber, getWikiURL, normalizePlanet } from '../../../helpers'
@@ -9,9 +11,10 @@ import { NoOriginImage } from '../../no-origin-image'
 import { Link } from '../../link'
 import { ContentColumn } from './content-column'
 import { useArticleRecipes, useArticleUsages } from '../../../hooks'
-import { useArticleStore } from '../../../state'
+import { useArticleStore, useNodesStatusStore } from '../../../state'
 import { Blinker } from '../../blinker'
 import { getChildRefKeysForArticle } from '@astroneer/utils'
+import { MotionHStack } from '../../motion'
 
 const getRef_ = <T extends Pick<Article, 'key' | 'recipe'> = Article>(
   key: ArticleKey | null | undefined,
@@ -25,6 +28,7 @@ export function NodeRenderer (props: NodeRendererProps) {
   const { hasUsages, toggleUsages, isSearchingUsages } = useArticleUsages(props)
   const { hasRecipes, toggleRecipes, expandRecipe } = useArticleRecipes(props)
   const articleStore = useArticleStore()
+  const nodesStatusStore = useNodesStatusStore()
 
   const getRef = (key: ArticleKey | null | undefined) => getRef_(key, _referencesMap)
 
@@ -33,8 +37,10 @@ export function NodeRenderer (props: NodeRendererProps) {
   // For those cases we'll just show their image, icon and name.
   const hasNoBody = article.recipe == null && article.planets == null
 
+  const isDone = nodesStatusStore.statusMap[props.id] === 'done'
+
   return (
-    <Box>
+    <Box position="relative">
       {
         !isRoot && (
           <Handle
@@ -50,7 +56,9 @@ export function NodeRenderer (props: NodeRendererProps) {
         cursor="default"
         backdropFilter="blur(2px)"
         border="1px solid"
-        borderColor="gray.900"
+        borderColor={ isDone ? 'green.400' : 'gray.900' }
+        transition="200ms"
+        transitionDelay={ isDone ? '400ms' : '0ms' }
         boxShadow="md"
         borderRadius="xl"
         alignItems="center"
@@ -228,6 +236,57 @@ export function NodeRenderer (props: NodeRendererProps) {
           h="24"
         />
       </VStack>
+      <IconButton
+        position="absolute"
+        bottom="0"
+        right="0"
+        className="nopan nodrag"
+        borderTopLeftRadius="2xl"
+        zIndex="sticky"
+        borderBottomRightRadius="xl"
+        bg={ isDone ? 'transparent' : undefined }
+        borderColor="transparent"
+        variant="surface"
+        onClick={ () => nodesStatusStore.toggle(props.id, 'done') }
+        size="md"
+        transition="200ms"
+        px={ isDone ? '0' : '4' }
+        boxShadow="none"
+      >
+        { isDone && <ImCross /> }
+        { !isDone && <FaCheck /> }
+      </IconButton>
+      {
+        isDone && (
+          <MotionHStack
+            w="full"
+            h="full"
+            borderRadius="xl"
+            overflow="hidden"
+            position="absolute"
+            bottom="0"
+            right="0"
+            bg="transparent"
+            animate={ { display: [ 'flex', 'flex', 'none' ] } }
+          >
+            <MotionHStack
+              bg="green.300"
+              bottom="0"
+              h="full"
+              w="full"
+              zIndex="docked"
+              right="0"
+              position="absolute"
+              animate={ {
+                height: [ 0, '100%' ],
+                width: [ 0, '100%' ],
+                opacity: [ 0, 0.6, 0 ],
+                borderTopLeftRadius: [ '500px', '12px' ],
+              } }
+            />
+          </MotionHStack>
+        )
+      }
       <Handle
         type="source"
         position={ articleStore.viewStrategy === 'recipe' ? Position.Bottom : Position.Top }
