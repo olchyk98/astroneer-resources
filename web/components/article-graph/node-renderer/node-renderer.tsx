@@ -1,7 +1,5 @@
 import { Badge, Box, HStack, IconButton, Spinner, Text, VStack } from '@chakra-ui/react'
-import { FaCheck } from 'react-icons/fa'
-import { ImCross } from 'react-icons/im'
-import { MdOutlineCallMade, MdOutlineCallReceived } from 'react-icons/md'
+import { MdCheck, MdClose, MdOutlineCallMade, MdOutlineCallReceived } from 'react-icons/md'
 import { Handle, NodeProps, Position } from '@xyflow/react'
 import { ArticleGraphNodeData, formatNumber, getWikiURL, normalizePlanet } from '../../../helpers'
 import { Divider } from '../../divider'
@@ -58,7 +56,7 @@ export function NodeRenderer (props: NodeRendererProps) {
         border="1px solid"
         borderColor={ isDone ? 'green.400' : 'gray.900' }
         transition="200ms"
-        transitionDelay={ isDone ? '400ms' : '0ms' }
+        transitionDelay={ isDone ? '300ms' : '0ms' }
         boxShadow="md"
         borderRadius="xl"
         alignItems="center"
@@ -135,6 +133,16 @@ export function NodeRenderer (props: NodeRendererProps) {
               !hasUsages &&
               <Badge variant="outline">No usages</Badge>
             }
+            <IconButton
+              size="xs"
+              variant="ghost"
+              aria-label="Mark as done"
+              className="nopan nodrag"
+              onClick={ () => nodesStatusStore.toggle(props.id, 'done') }
+            >
+              { !isDone && <MdCheck /> }
+              { isDone && <MdClose /> }
+            </IconButton>
           </HStack>
         </HStack>
         {
@@ -236,26 +244,6 @@ export function NodeRenderer (props: NodeRendererProps) {
           h="24"
         />
       </VStack>
-      <IconButton
-        position="absolute"
-        bottom="0"
-        right="0"
-        className="nopan nodrag"
-        borderTopLeftRadius="2xl"
-        zIndex="sticky"
-        borderBottomRightRadius="xl"
-        bg={ isDone ? 'transparent' : undefined }
-        borderColor="transparent"
-        variant="surface"
-        onClick={ () => nodesStatusStore.toggle(props.id, 'done') }
-        size="md"
-        transition="200ms"
-        px={ isDone ? '0' : '4' }
-        boxShadow="none"
-      >
-        { isDone && <ImCross /> }
-        { !isDone && <FaCheck /> }
-      </IconButton>
       {
         isDone && (
           <MotionHStack
@@ -271,17 +259,17 @@ export function NodeRenderer (props: NodeRendererProps) {
           >
             <MotionHStack
               bg="green.300"
-              bottom="0"
               h="full"
               w="full"
-              zIndex="docked"
+              zIndex="2"
+              top="0"
               right="0"
               position="absolute"
               animate={ {
                 height: [ 0, '100%' ],
                 width: [ 0, '100%' ],
-                opacity: [ 0, 0.6, 0 ],
-                borderTopLeftRadius: [ '500px', '12px' ],
+                opacity: [ 0, 0.3, 0 ],
+                borderBottomLeftRadius: [ '1000px', '12px' ],
               } }
             />
           </MotionHStack>
