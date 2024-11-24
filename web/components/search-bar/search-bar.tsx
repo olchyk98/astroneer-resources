@@ -51,6 +51,7 @@ export function SearchBar (_props: SearchBarProps) {
             <MotionHStack gap="2" w="full">
               <AnimatePresence>
                 <SearchInput
+                  key="search-input"
                   onValueChange={ setQuery }
                   onStrategyChange={ setViewStrategy }
                   strategy={ viewStrategy }
@@ -64,6 +65,7 @@ export function SearchBar (_props: SearchBarProps) {
                 {
                   articleStore.viewStrategy !== viewStrategy && articleStore.article != null && (
                     <MotionIconButton
+                      key="refresh-search"
                       variant="ghost"
                       exit={ { scaleX: 0, x: 20, opacity: 0, transition: { duration: 0.2 } } }
                       animate={ { x: [ 20, 0 ], opacity: [ 0, 1 ], transition: { duration: 0.2 } } }

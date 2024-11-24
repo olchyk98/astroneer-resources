@@ -110,29 +110,23 @@ export function NodeRenderer (props: NodeRendererProps) {
                   <MdOutlineCallReceived />
                 </IconButton>
             }
-            {
-              hasUsages &&
-                <IconButton
-                  size="xs"
-                  variant="ghost"
-                  aria-label="See usages"
-                  onClick={ toggleUsages }
-                  className="nopan nodrag"
-                >
-                  { articleStore.viewStrategy !== 'usages' && <Blinker /> }
-                  { articleStore.viewStrategy === 'usages' && (
-                    <Blinker w="auto" h="auto" bg="transparent">
-                      <Badge size="xs">{ article._parentKeys?.length ?? 0 }</Badge>
-                    </Blinker>
-                  ) }
-                  { isSearchingUsages && <Spinner size="xs" /> }
-                  { !isSearchingUsages && <MdOutlineCallMade /> }
-                </IconButton>
-            }
-            {
-              !hasUsages &&
-              <Badge variant="outline">No usages</Badge>
-            }
+            <IconButton
+              size="xs"
+              variant="ghost"
+              aria-label="See usages"
+              onClick={ toggleUsages }
+              disabled={ !hasUsages }
+              className="nopan nodrag"
+            >
+              { articleStore.viewStrategy !== 'usages' && <Blinker /> }
+              { (articleStore.viewStrategy === 'usages' || !hasUsages) && (
+                <Blinker w="auto" h="auto" bg="transparent">
+                  <Badge size="xs">{ hasUsages ? (article._parentKeys?.length ?? 0) : 0 }</Badge>
+                </Blinker>
+              ) }
+              { isSearchingUsages && <Spinner size="xs" /> }
+              { !isSearchingUsages && <MdOutlineCallMade /> }
+            </IconButton>
             <IconButton
               size="xs"
               variant="ghost"
