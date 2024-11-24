@@ -10,7 +10,7 @@ import { Link } from '../../link'
 import { ContentColumn } from './content-column'
 import { useArticleRecipes, useArticleUsages } from '../../../hooks'
 import { useArticleStore } from '../../../state'
-import { useEffect } from 'react'
+import { Blinker } from '../../blinker'
 
 const getRef_ = <T extends Pick<Article, 'key' | 'recipe'> = Article>(
   key: ArticleKey | null | undefined,
@@ -24,19 +24,6 @@ export function NodeRenderer (props: NodeRendererProps) {
   const { hasUsages, toggleUsages, isSearchingUsages } = useArticleUsages(props)
   const { hasRecipes, toggleRecipes, expandRecipe } = useArticleRecipes(props)
   const articleStore = useArticleStore()
-
-  useEffect(() => {
-    // XXX: When in usages mode and the root node triggers,
-    // we'd like to expand the nearest article parents (node children) - usages.
-    // This is because to access this behaviour the user has already
-    // clicked on the "expand usages" button. To remove the need
-    // of pressing on it again after load, we're expanding the first
-    // level automatically.
-    if (!isRoot) return
-    if (articleStore.viewStrategy === 'recipe') toggleRecipes()
-    if (articleStore.viewStrategy === 'usages') toggleUsages()
-
-  }, [ article, isRoot ])
 
   const getRef = (key: ArticleKey | null | undefined) => getRef_(key, _referencesMap)
 
@@ -107,6 +94,7 @@ export function NodeRenderer (props: NodeRendererProps) {
                   onClick={ toggleRecipes }
                   className="nopan nodrag"
                 >
+                  { articleStore.viewStrategy !== 'recipe' && <Blinker /> }
                   <MdOutlineCallReceived />
                 </IconButton>
             }
@@ -119,6 +107,7 @@ export function NodeRenderer (props: NodeRendererProps) {
                   onClick={ toggleUsages }
                   className="nopan nodrag"
                 >
+                  { articleStore.viewStrategy !== 'usages' && <Blinker /> }
                   { isSearchingUsages && <Spinner size="xs" /> }
                   { !isSearchingUsages && <MdOutlineCallMade /> }
                 </IconButton>
