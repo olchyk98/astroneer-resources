@@ -40,8 +40,8 @@ https://github.com/user-attachments/assets/518408ae-0d8a-40d4-9a5b-afa6bcee8bc6
 | ✅                 | Default Wiki URL change in web to wiki.gg                   | Reddit              | 21 November, 2024   |
 | ✅                 | Add icons for planets                                       | Me                  | 24 November, 2024   |
 | ✅                 | Marking nodes as "Done"                                     | Me                  | 24 November, 2024   |
+| ✅                 | Persistent articles history                                 | Me                  | 24 November, 2024   |
 | ⏳                 | Scrap/Soil Exchange Rates                                   | Reddit              |                     |
-| ⏳                 | Persistent URL state (app routing)                          | Me                  |                     |
 
 ## Problem Statement
 
