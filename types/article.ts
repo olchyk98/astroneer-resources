@@ -16,7 +16,7 @@ export interface Article {
 }
 
 export interface ArticlePlanetOfOrigin {
-  name: string
+  key: string
   locations: string[] | boolean
 }
 
@@ -33,11 +33,11 @@ export interface ArticleRecipeIngradient {
   amount: number
 }
 
-export interface ArticleWithRefs<T extends Pick<Article, 'key' | 'recipe' | '_parentKeys'> = Article> {
+export interface ArticleWithRefs<T extends Pick<Article, 'key' | 'recipe' | 'planets' | '_parentKeys'> = Article> {
   article: T
   _referencesMap: ReferencesMap<T>
 }
 
-export type ReferencesMap<T extends Pick<Article, 'key' | 'recipe' | '_parentKeys'> = Article> = (
+export type ReferencesMap<T extends Pick<Article, 'key' | 'recipe' | 'planets' | '_parentKeys'> = Article> = (
   Record<ArticleKey, T>
 )
