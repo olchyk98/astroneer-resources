@@ -1,6 +1,6 @@
 import { Badge, Box, HStack, IconButton, Spinner, Text, VStack } from '@chakra-ui/react'
 import { MdOutlineCallMade, MdOutlineCallReceived } from 'react-icons/md'
-import { Handle, NodeProps, Position, useNodesInitialized } from '@xyflow/react'
+import { Handle, NodeProps, Position } from '@xyflow/react'
 import { ArticleGraphNodeData, formatNumber, getWikiURL, normalizePlanet } from '../../../helpers'
 import { Divider } from '../../divider'
 import { RandomFlare } from '../../flare'
@@ -186,16 +186,20 @@ export function NodeRenderer (props: NodeRendererProps) {
                           article.planets.map((planet_) => {
                             const planet = normalizePlanet(planet_)
                             return (
-                              <HStack gap="6" key={ planet.name } w="full" justifyContent="space-between">
-                                <Link
-                                  fontWeight="normal"
-                                  key={ planet.name }
-                                  cursor="alias"
-                                  href={ getWikiURL(planet.name) }
-                                  target="_blank"
-                                >
-                                  { planet.name }
-                                </Link>
+                              <HStack gap="6" key={ planet.key } w="full" justifyContent="space-between">
+                                <HStack gap="2" key={ planet.key }>
+                                  <NoOriginImage alt={ getRef(planet.key)?.name } src={ getRef(planet.key)?.iconURL } w="6" />
+                                  <Link
+                                    fontWeight="normal"
+                                    variant="underline"
+                                    className="nopan"
+                                    textWrap="nowrap"
+                                    isDisabled={ articleStore.viewStrategy !== 'recipe' }
+                                    onClick={ () => expandRecipe(planet.key ?? '') }
+                                  >
+                                    { getRef(planet.key)?.key ?? 'Unknown' }
+                                  </Link>
+                                </HStack>
                                 {
                                   Array.isArray(planet.locations) &&
                                     <HStack gap="2">
