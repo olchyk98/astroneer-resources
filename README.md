@@ -38,8 +38,8 @@ https://github.com/user-attachments/assets/518408ae-0d8a-40d4-9a5b-afa6bcee8bc6
 | ✅                 | List of recently opened articles                            | Me                  | 20 November, 2024   |
 | ✅                 | Button for expanding a recipe section                       | Reddit              | 20 November, 2024   |
 | ✅                 | Default Wiki URL change in web to wiki.gg                   | Reddit              | 21 November, 2024   |
+| ✅                 | Add icons for planets                                       | Me                  | 24 November, 2024   |
 | ⏳                 | Marking nodes as "Done"                                     | Me                  |                     |
-| ⏳                 | Add icons for planets                                       | Me                  |                     |
 | ⏳                 | Scrap/Soil Exchange Rates                                   | Reddit              |                     |
 | ⏳                 | Persistent URL state (app routing)                          | Me                  |                     |
 
