@@ -4,7 +4,7 @@ export interface Article {
   iconURL: string
   type?: string
   imageURL: string
-  planets?: ArticlePlanetOfOrigin[] | string[] | boolean
+  planets?: ArticlePlanetOfOrigin[] | ArticleKey[] | boolean
   unlockCost?: number
   tier?: string
   recipe?: ArticleRecipe
