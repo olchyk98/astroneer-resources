@@ -77,6 +77,18 @@ describe('fetchParentsWithRefsForArticle', () => {
             'Sulfur',
           ],
         },
+        Vesania: {
+          key: 'Vesania',
+          _parentKeys: [
+            'Argon',
+          ],
+        },
+        Glacio: {
+          key: 'Glacio',
+          _parentKeys: [
+            'Argon',
+          ],
+        },
         Argon: {
           key: 'Argon',
           _parentKeys: [
@@ -253,6 +265,30 @@ describe('fetchParentsWithRefsForArticle', () => {
         Probe_Scanner: {
           key: 'Probe_Scanner',
           _parentKeys: [],
+        },
+        Atrox: {
+          key: 'Atrox',
+          _parentKeys: [
+            'Helium',
+          ],
+        },
+        Sylva: {
+          key: 'Sylva',
+          _parentKeys: [
+            'Hydrogen',
+          ],
+        },
+        Calidor: {
+          key: 'Calidor',
+          _parentKeys: [
+            'Hydrogen',
+          ],
+        },
+        Novus: {
+          key: 'Novus',
+          _parentKeys: [
+            'Hydrogen',
+          ],
         },
         Hydrogen: {
           key: 'Hydrogen',

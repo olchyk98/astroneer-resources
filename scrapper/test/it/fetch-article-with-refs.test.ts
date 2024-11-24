@@ -79,43 +79,43 @@ describe('fetchArticleWithRefs', () => {
           name: 'Organic',
           planets: [
             {
-              name: 'Sylva',
+              key: 'Sylva',
               locations: [
                 'Surface',
               ],
             },
             {
-              name: 'Desolo',
+              key: 'Desolo',
               locations: [
                 'Surface',
               ],
             },
             {
-              name: 'Calidor',
+              key: 'Calidor',
               locations: [
                 'Surface',
               ],
             },
             {
-              name: 'Vesania',
+              key: 'Vesania',
               locations: [
                 'Surface',
               ],
             },
             {
-              name: 'Novus',
+              key: 'Novus',
               locations: [
                 'Surface',
               ],
             },
             {
-              name: 'Glacio',
+              key: 'Glacio',
               locations: [
                 'Surface',
               ],
             },
             {
-              name: 'Atrox',
+              key: 'Atrox',
               locations: [
                 'Surface',
               ],
@@ -229,13 +229,13 @@ describe('fetchArticleWithRefs', () => {
           name: 'Wolframite',
           planets: [
             {
-              name: 'Desolo',
+              key: 'Desolo',
               locations: [
                 'Caves',
               ],
             },
             {
-              name: 'Calidor',
+              key: 'Calidor',
               locations: [
                 'Mountainous Biome',
                 'Caves',
@@ -368,13 +368,13 @@ describe('fetchArticleWithRefs', () => {
           name: 'Hematite',
           planets: [
             {
-              name: 'Novus',
+              key: 'Novus',
               locations: [
                 'Caves',
               ],
             },
             {
-              name: 'Glacio',
+              key: 'Glacio',
               locations: [
                 'Ice Dunes',
                 'Caves',
@@ -427,6 +427,20 @@ describe('fetchArticleWithRefs', () => {
             ],
           },
         },
+        Vesania: {
+          iconURL: 'https://astroneer.wiki.gg/images/thumb/f/fd/Icon_Vesania.png/30px-Icon_Vesania.png',
+          imageURL: 'https://astroneer.wiki.gg/images/thumb/b/b6/Vesania.png/270px-Vesania.png',
+          key: 'Vesania',
+          name: 'Vesania',
+          type: 'Planet',
+        },
+        Glacio: {
+          iconURL: 'https://astroneer.wiki.gg/images/thumb/d/dc/Icon_Glacio.png/30px-Icon_Glacio.png',
+          imageURL: 'https://astroneer.wiki.gg/images/thumb/2/2e/Glacio.png/270px-Glacio.png',
+          key: 'Glacio',
+          name: 'Glacio',
+          type: 'Planet',
+        },
         Argon: {
           iconURL: 'https://astroneer.wiki.gg/images/thumb/2/24/Icon_Argon.png/30px-Icon_Argon.png',
           imageURL: 'https://astroneer.wiki.gg/images/thumb/b/b7/Nugget_Argon.png/270px-Nugget_Argon.png',
@@ -468,6 +482,13 @@ describe('fetchArticleWithRefs', () => {
             ],
           },
         },
+        Atrox: {
+          iconURL: 'https://astroneer.wiki.gg/images/thumb/5/5c/Icon_Atrox.png/30px-Icon_Atrox.png',
+          imageURL: 'https://astroneer.wiki.gg/images/thumb/a/a2/Atrox.png/270px-Atrox.png',
+          key: 'Atrox',
+          name: 'Atrox',
+          type: 'Planet',
+        },
         Helium: {
           iconURL: 'https://astroneer.wiki.gg/images/thumb/7/79/Icon_Helium.png/30px-Icon_Helium.png',
           imageURL: 'https://astroneer.wiki.gg/images/thumb/9/9a/Nugget_Helium.png/270px-Nugget_Helium.png',
@@ -490,14 +511,14 @@ describe('fetchArticleWithRefs', () => {
           name: 'Titanite',
           planets: [
             {
-              name: 'Vesania',
+              key: 'Vesania',
               locations: [
                 'Mountain Peaks',
                 'Caves',
               ],
             },
             {
-              name: 'Glacio',
+              key: 'Glacio',
               locations: [
                 'Caves',
               ],
@@ -522,6 +543,13 @@ describe('fetchArticleWithRefs', () => {
               },
             ],
           },
+        },
+        Sylva: {
+          iconURL: 'https://astroneer.wiki.gg/images/thumb/d/d2/Icon_Sylva.png/30px-Icon_Sylva.png',
+          imageURL: 'https://astroneer.wiki.gg/images/thumb/f/f1/Sylva.png/270px-Sylva.png',
+          key: 'Sylva',
+          name: 'Sylva',
+          type: 'Planet',
         },
         Nitrogen: {
           iconURL: 'https://astroneer.wiki.gg/images/thumb/e/e2/Icon_Nitrogen.png/30px-Icon_Nitrogen.png',
@@ -557,6 +585,20 @@ describe('fetchArticleWithRefs', () => {
           planets: true,
           tier: 'Small',
           type: 'Natural',
+        },
+        Calidor: {
+          iconURL: 'https://astroneer.wiki.gg/images/thumb/f/f6/Icon_Calidor.png/30px-Icon_Calidor.png',
+          imageURL: 'https://astroneer.wiki.gg/images/thumb/3/3a/Calidor.png/270px-Calidor.png',
+          key: 'Calidor',
+          name: 'Calidor',
+          type: 'Planet',
+        },
+        Novus: {
+          iconURL: 'https://astroneer.wiki.gg/images/thumb/1/1c/Icon_Novus.png/30px-Icon_Novus.png',
+          imageURL: 'https://astroneer.wiki.gg/images/thumb/4/49/Novus.png/270px-Novus.png',
+          key: 'Novus',
+          name: 'Novus',
+          type: 'Planet',
         },
         Hydrogen: {
           iconURL: 'https://astroneer.wiki.gg/images/thumb/4/42/Icon_Hydrogen.png/30px-Icon_Hydrogen.png',
@@ -675,13 +717,13 @@ describe('fetchArticleWithRefs', () => {
           name: 'Lithium',
           planets: [
             {
-              name: 'Vesania',
+              key: 'Vesania',
               locations: [
                 'Caves',
               ],
             },
             {
-              name: 'Novus',
+              key: 'Novus',
               locations: [
                 'Mountainous Biomes',
                 'Caves',
