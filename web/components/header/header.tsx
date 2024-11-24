@@ -7,7 +7,7 @@ export function Header () {
   return (
     <HStack w="full" p="4" alignItems="start" justifyContent="space-between">
       <HStack w="12" />
-      <VStack gap="4">
+      <VStack gap="4" w="full">
         <SearchBar />
         <ArticlesHistory />
       </VStack>
