@@ -74,17 +74,17 @@ export function NodeRenderer (props: NodeRendererProps) {
       >
         <RandomFlare maxX={ 60 } maxY={ 60 } />
         <RandomFlare maxX={ 60 } maxY={ 60 } />
-        <HStack alignItems="center" justifyContent="space-between" w="full" gap="8">
-          <HStack gap="4">
-            <HStack gap="4" alignItems="center">
+        <HStack alignItems="center" justifyContent="space-between" minW="max-content" w="full" gap="8">
+          <HStack gap="4" flexShrink="0">
+            <HStack gap="4" alignItems="center" flexShrink="0">
               <NoOriginImage src={ article.iconURL } alt={ article.name } w="8" />
-              <Link fontWeight="bold" fontSize="xl" cursor="alias" href={ getWikiURL(article.key) } target="_blank">
+              <Link fontWeight="bold" fontSize="xl" cursor="alias" href={ getWikiURL(article.key) } target="_blank" whiteSpace="nowrap">
                 { article.name }
               </Link>
             </HStack>
             {
               (article.unlockCost != null || article.tier != null) && (
-                <HStack gap="2">
+                <HStack gap="2" flexShrink="0">
                   {
                     article.unlockCost != null &&
                     <Badge colorPalette="purple" variant="surface">{ formatNumber(article.unlockCost) } bytes</Badge>
@@ -97,7 +97,7 @@ export function NodeRenderer (props: NodeRendererProps) {
               )
             }
           </HStack>
-          <HStack>
+          <HStack flexShrink="0">
             {
               hasRecipes &&
                 <IconButton
