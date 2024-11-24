@@ -1,20 +1,21 @@
-import { HStack } from '@chakra-ui/react'
 import { HistoryItem } from './history-item'
 import { useArticlesHistoryStore } from '../../state'
+import { MotionHStack } from '../motion'
+import { reverse } from 'ramda'
 
 export function ArticlesHistory () {
   const historyStore = useArticlesHistoryStore()
 
   return (
-    <HStack w="xl" maxW="full" overflow="auto">
+    <MotionHStack w="xl" maxW="full" overflow="auto">
       {
-        historyStore.get().map((article) => (
+        reverse(historyStore.get()).map((article) => (
           <HistoryItem
             key={ article.key }
             article={ article }
           />
         ))
       }
-    </HStack>
+    </MotionHStack>
   )
 }

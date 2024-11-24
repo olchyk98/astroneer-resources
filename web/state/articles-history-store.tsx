@@ -2,7 +2,7 @@ import { PropsWithChildren, createContext, useContext, useMemo, useState } from 
 import { Article } from '@astroneer/types'
 import { any } from 'ramda'
 
-const MAX_HISTORY_SIZE = 3
+const MAX_HISTORY_SIZE = 7
 
 const ArticlesHistoryContext = createContext<ArticlesHistoryState>({
   add: () => false,

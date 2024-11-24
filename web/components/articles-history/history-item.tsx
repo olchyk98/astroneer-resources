@@ -9,10 +9,10 @@ export function HistoryItem (props: HistoryItemProps) {
 
   return (
     <Button
+      key={ article.key }
       py="2"
       px="4"
       variant={ article.key === articleStore.article?.article.key ? 'solid' : 'subtle' }
-      size="xs"
       borderRadius="full"
       onClick={ () => articleStore.recipe(article.key) }
       { ...props }
