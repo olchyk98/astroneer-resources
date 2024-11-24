@@ -1,4 +1,5 @@
 import { reduce } from 'ramda'
+import { planetKeysMap } from '@astroneer/utils'
 import { Article, ArticleKey } from '@astroneer/types'
 
 export const predefinedArticles: Article[] = [
@@ -463,6 +464,62 @@ export const predefinedArticles: Article[] = [
     key: 'Backpack',
     name: 'Backpack',
     type: 'Player',
+  },
+  {
+    iconURL: 'https://astroneer.wiki.gg/images/thumb/d/d2/Icon_Sylva.png/30px-Icon_Sylva.png',
+    imageURL: 'https://astroneer.wiki.gg/images/thumb/f/f1/Sylva.png/270px-Sylva.png',
+    key: planetKeysMap['Sylva'],
+    name: 'Sylva',
+    type: 'Planet',
+  },
+  {
+    iconURL: 'https://astroneer.wiki.gg/images/thumb/0/0e/Icon_Desolo.png/30px-Icon_Desolo.png',
+    imageURL: 'https://astroneer.wiki.gg/images/thumb/a/a8/Desolo.png/270px-Desolo.png',
+    key: planetKeysMap['Desolo'],
+    name: 'Desolo',
+    type: 'Planet',
+  },
+  {
+    iconURL: 'https://astroneer.wiki.gg/images/thumb/f/f6/Icon_Calidor.png/30px-Icon_Calidor.png',
+    imageURL: 'https://astroneer.wiki.gg/images/thumb/3/3a/Calidor.png/270px-Calidor.png',
+    key: planetKeysMap['Calidor'],
+    name: 'Calidor',
+    type: 'Planet',
+  },
+  {
+    iconURL: 'https://astroneer.wiki.gg/images/thumb/f/fd/Icon_Vesania.png/30px-Icon_Vesania.png',
+    imageURL: 'https://astroneer.wiki.gg/images/thumb/b/b6/Vesania.png/270px-Vesania.png',
+    key: planetKeysMap['Vesania'],
+    name: 'Vesania',
+    type: 'Planet',
+  },
+  {
+    iconURL: 'https://astroneer.wiki.gg/images/thumb/1/1c/Icon_Novus.png/30px-Icon_Novus.png',
+    imageURL: 'https://astroneer.wiki.gg/images/thumb/4/49/Novus.png/270px-Novus.png',
+    key: planetKeysMap['Novus'],
+    name: 'Novus',
+    type: 'Planet',
+  },
+  {
+    iconURL: 'https://astroneer.wiki.gg/images/thumb/d/dc/Icon_Glacio.png/30px-Icon_Glacio.png',
+    imageURL: 'https://astroneer.wiki.gg/images/thumb/2/2e/Glacio.png/270px-Glacio.png',
+    key: planetKeysMap['Glacio'],
+    name: 'Glacio',
+    type: 'Planet',
+  },
+  {
+    iconURL: 'https://astroneer.wiki.gg/images/thumb/5/5c/Icon_Atrox.png/30px-Icon_Atrox.png',
+    imageURL: 'https://astroneer.wiki.gg/images/thumb/a/a2/Atrox.png/270px-Atrox.png',
+    key: planetKeysMap['Atrox'],
+    name: 'Atrox',
+    type: 'Planet',
+  },
+  {
+    iconURL: 'https://astroneer.wiki.gg/images/thumb/c/c3/Icon_Aeoluz.png/30px-Icon_Aeoluz.png',
+    imageURL: 'https://astroneer.wiki.gg/images/thumb/5/50/Aeoluz.png/270px-Aeoluz.png',
+    key: planetKeysMap['Aeoluz'],
+    name: 'Aeoluz',
+    type: 'Planet',
   },
 ]
 
