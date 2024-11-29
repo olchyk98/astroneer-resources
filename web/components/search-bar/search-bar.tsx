@@ -43,7 +43,16 @@ export function SearchBar (_props: SearchBarProps) {
     <>
       {
         isFocused &&
-          <Box onClick={ () => setIsFocused(false) } top="0" left="0" w="full" h="full" position="fixed" zIndex="1" />
+          <Box
+            onMouseDown={ () => setIsFocused(false) }
+            onClick={ () => setIsFocused(false) }
+            top="0"
+            left="0"
+            w="full"
+            h="full"
+            position="fixed"
+            zIndex="1"
+          />
       }
       <HStack position="relative" zIndex="2" maxW="full" px="8">
         <VStack gap="0" w="full" position="relative">
