@@ -3,6 +3,7 @@ import { FaGithub } from 'react-icons/fa'
 import { SearchBar } from '../search-bar'
 import { ArticlePins } from '../article-pins'
 import { Divider } from '../divider'
+import { OpenHistoryButton } from '../articles-history'
 
 export function Header () {
   return (
@@ -16,7 +17,10 @@ export function Header () {
       <HStack w="12" />
       <VStack gap="4" w="full">
         <SearchBar />
-        <ArticlePins />
+        <HStack gap="8" w="xl" maxW="full">
+          <ArticlePins />
+          <OpenHistoryButton />
+        </HStack>
       </VStack>
       <Link
         cursor="alias"

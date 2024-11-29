@@ -28,6 +28,8 @@ export function ArticleStoreProvider (props: PropsWithChildren) {
     },
   })
 
+  // TODO: Inheritance is messed up. History store
+  // should rely on ArticleStore, not the other way around. Fix it.
   useEffect(() => {
     if (article != null) {
       historyStore.add(article.article)

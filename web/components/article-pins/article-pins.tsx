@@ -2,14 +2,15 @@ import { PinnedArticle } from './pinned-article'
 import { MotionHStack } from '../motion'
 import { useArticlePinsStore } from '../../state'
 import { AnimatePresence } from 'framer-motion'
+import { PlaceholderPinnedArticle } from './placeholder-pinned-article'
+import { useIsSmallDevice } from '../../hooks'
 
 export function ArticlePins () {
   const pinsStore = useArticlePinsStore()
-
-  if (pinsStore.get().length === 0) return null
+  const isSmallDevice = useIsSmallDevice()
 
   return (
-    <MotionHStack w="xl" maxW="full" overflow="auto" layout={ true }>
+    <MotionHStack w="full" overflowX="auto" overflowY="hidden" layout={ true }>
       <AnimatePresence>
         {
           pinsStore.get().map((article) => (
@@ -18,6 +19,21 @@ export function ArticlePins () {
               article={ article }
             />
           ))
+        }
+        {
+          pinsStore.get().length <= 0 && (
+            <>
+              <PlaceholderPinnedArticle />
+              {
+                !isSmallDevice && (
+                  <>
+                    <PlaceholderPinnedArticle />
+                    <PlaceholderPinnedArticle />
+                  </>
+                )
+              }
+            </>
+          )
         }
       </AnimatePresence>
     </MotionHStack>

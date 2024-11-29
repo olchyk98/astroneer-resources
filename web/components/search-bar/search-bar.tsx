@@ -54,7 +54,7 @@ export function SearchBar (_props: SearchBarProps) {
             zIndex="1"
           />
       }
-      <HStack position="relative" zIndex="2" maxW="full" px="8">
+      <HStack position="relative" zIndex="2" maxW="full">
         <VStack gap="0" w="full" position="relative">
           <LayoutGroup>
             <MotionHStack gap="2" w="full">

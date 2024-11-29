@@ -16,6 +16,7 @@ export function PinnedArticle (props: PinnedArticleProps) {
       transition={ { bounce: 0 } }
       exit={ { opacity: 0, width: 0, scale: 0 } }
       animate={ { opacity: [ 0, 1 ], scale: [ 0.7, 1 ] } }
+      flexShrink="0"
     >
       <MotionButton
         key={ article.key }

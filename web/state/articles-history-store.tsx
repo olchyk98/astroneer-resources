@@ -1,5 +1,5 @@
 import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useState } from 'react'
-import { persistentArticlePinsStore } from '../helpers'
+import { persistentArticlesHistoryStore } from '../helpers'
 import { Article } from '@astroneer/types'
 import { any } from 'ramda'
 
@@ -12,13 +12,12 @@ const ArticlesHistoryContext = createContext<ArticlesHistoryState>({
 })
 
 export function ArticlesHistoryStoreProvider (props: PropsWithChildren) {
-
   const [ history, setHistory ] = useState<Article[]>([])
 
   useEffect(() => {
     // XXX: Because the SSR loaded, we have to load state
     // from localStorage upon first render.
-    setHistory(persistentArticlePinsStore.get())
+    setHistory(persistentArticlesHistoryStore.get())
   }, [])
 
   const add = (article: Article): boolean => {
@@ -30,7 +29,7 @@ export function ArticlesHistoryStoreProvider (props: PropsWithChildren) {
     setHistory((c) => {
       // XXX: Takes last X items of the history and pushes a new one
       const next = [ ...c.slice(-MAX_HISTORY_SIZE + 1), article ]
-      persistentArticlePinsStore.set(next)
+      persistentArticlesHistoryStore.set(next)
       return next
     })
     return true
