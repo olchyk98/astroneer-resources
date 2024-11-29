@@ -1,5 +1,6 @@
 import { Badge, Box, HStack, IconButton, Spinner, Text, VStack } from '@chakra-ui/react'
 import { MdCheck, MdClose, MdOutlineCallMade, MdOutlineCallReceived } from 'react-icons/md'
+import { TiPin, TiPinOutline } from 'react-icons/ti'
 import { Handle, NodeProps, Position } from '@xyflow/react'
 import { ArticleGraphNodeData, formatNumber, getWikiURL, normalizePlanet } from '../../../helpers'
 import { Divider } from '../../divider'
@@ -9,7 +10,7 @@ import { NoOriginImage } from '../../no-origin-image'
 import { Link } from '../../link'
 import { ContentColumn } from './content-column'
 import { useArticleRecipes, useArticleUsages } from '../../../hooks'
-import { useArticleStore, useNodesStatusStore } from '../../../state'
+import { useArticlePinsStore, useArticleStore, useNodesStatusStore } from '../../../state'
 import { Blinker } from '../../blinker'
 import { getChildRefKeysForArticle } from '@astroneer/utils'
 import { MotionHStack } from '../../motion'
@@ -25,6 +26,7 @@ export function NodeRenderer (props: NodeRendererProps) {
   const { article, isRoot, _referencesMap } = props.data
   const { hasUsages, toggleUsages, isSearchingUsages } = useArticleUsages(props)
   const { hasRecipes, toggleRecipes, expandRecipe } = useArticleRecipes(props)
+  const articlePinsStore = useArticlePinsStore()
   const articleStore = useArticleStore()
   const nodesStatusStore = useNodesStatusStore()
 
@@ -126,6 +128,16 @@ export function NodeRenderer (props: NodeRendererProps) {
               ) }
               { isSearchingUsages && <Spinner size="xs" /> }
               { !isSearchingUsages && <MdOutlineCallMade /> }
+            </IconButton>
+            <IconButton
+              size="xs"
+              variant="ghost"
+              aria-label="Pin article"
+              className="nopan nodrag"
+              onClick={ () => articlePinsStore.togglePin(article) }
+            >
+              { articlePinsStore.pinned(article.key) && <TiPin /> }
+              { !articlePinsStore.pinned(article.key) && <TiPinOutline /> }
             </IconButton>
             <IconButton
               size="xs"
